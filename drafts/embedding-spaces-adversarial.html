@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<!-- OpenGraph protocol tags: http://ogp.me/ -->
+<meta property="og:site_name" content="Ömer Yüksel" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Adversarial Inputs in Embedding Spaces -- " />
+<meta property="og:url" content="https://osyuksel.github.io/drafts/embedding-spaces-adversarial.html" />
+<meta property="og:description" content="Exploring embedding space vulnerabilities through lessons learned from a recent Kaggle competition." />
+<meta property="article:published_time" content="2025-05-20 10:20:00+02:00" />
+<!-- End of OpenGraph protocol tags -->
+
+<head>
+      <title>Ömer Yüksel - Adversarial Inputs in Embedding Spaces</title>
+    <meta charset="utf-8"/>
+    <meta name="generator" content="Pelican"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://osyuksel.github.io/feeds/all.atom.xml"
+          type="application/atom+xml" rel="alternate" title="Ömer Yüksel Full Atom Feed"/>
+    <link href="https://osyuksel.github.io/feeds/technical.atom.xml"
+          type="application/atom+xml" rel="alternate" title="Ömer Yüksel Categories Atom Feed"/>
+
+        <link rel="stylesheet" href="https://osyuksel.github.io/theme/css/rdark.css" />
+        <link rel="stylesheet" href="https://osyuksel.github.io/theme/css/page.css">
+
+	<link rel="stylesheet" type="text/css" href="https://osyuksel.github.io/theme/css/main.css" />
+        <link href="https://osyuksel.github.io/" type="application/atom+xml" rel="alternate" title="Ömer Yüksel ATOM Feed" /><!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="c3018972-a599-4b25-80a8-4d03ceff62ff"></script>
+
+	
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  "HTML-CSS": {
+  styles: {
+  ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+  },
+  tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+  });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+
+
+
+
+    <meta name="tags" content="machine-learning" />
+    <meta name="tags" content="nlp" />
+    <meta name="tags" content="embeddings" />
+
+</head>
+
+<body>
+<header>
+    <hgroup style="text-align: center"><h1><a href="https://osyuksel.github.io/">Ömer Yüksel</a></h1>    </hgroup>
+    <nav>
+        <a href="https://www.github.com/osyuksel"  target="_blank" rel="noopener noreferrer"><img height="16" src="https://osyuksel.github.io/assets/github-mark.svg" width="16"/></a>
+        <a href="https://www.linkedin.com/in/omersyuksel"  target="_blank" rel="noopener noreferrer"><img height="16" src="https://osyuksel.github.io/assets/linkedin.webp" width="16"/></a>
+    </nav>
+
+    <br>
+    <nav>
+             &#124;
+            <a href="https://osyuksel.github.io/index.html" >Home</a> &#124;
+
+            <a href="https://osyuksel.github.io/pages/about.html" >About</a> &#124;
+
+            <a href="https://osyuksel.github.io/pages/my-work.html" >My Work</a> &#124;
+
+            <a href="https://osyuksel.github.io/pages/contact.html" >Contact</a> &#124;
+
+                <a href="/blog/">Blog</a> &#124;
+
+    </nav>
+</header>
+<main>
+  <article>
+    <header>
+      <h1>
+        <a href="https://osyuksel.github.io/drafts/embedding-spaces-adversarial.html" rel="bookmark"
+           title="Permalink to Adversarial Inputs in Embedding Spaces">Adversarial Inputs in Embedding Spaces</a></h1>
+      
+    </header>
+    <p>While working on a Kaggle competition last year focused on <a href="https://www.kaggle.com/competitions/llm-prompt-recovery">LLMs and text transformations</a>, I discovered some fascinating
+patterns regarding embedding spaces and their edge-case behaviors when used for semantic similarity. The competition's goal was to guess the original
+prompt
+given to an LLM that converted text A to text B. Here, I'll focus on a particularly interesting aspect: how embedding
+spaces behave in unintuitive ways.</p>
+<p>Here's an example of what the competition data could look like:</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Original Text</th>
+<th>Prompt <br><em>(Target - hidden during inference)</em></th>
+<th>Transformed Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Beautiful is better than ugly.<br>Simple is better than complex.<br>Complex is better than complicated.</td>
+<td>Convert this text into a sea shanty</td>
+<td>Oh, beauty's the way, not ugliness bold,<br>And simplicity's path we shall hold!<br>Though complex she be, ain't complicated to see,<br>As we sail through these principles old!</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Not all those who wander are lost.<br>All that is gold does not glitter.</td>
+<td>Convert this text to Shakespearean style</td>
+<td>Hark! These wandering souls, they stray not from path divine,<br>Though golden treasures lack their expected shine.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Friends, Romans, countrymen, lend me your ears.<br>I come to bury Caesar, not to praise him.</td>
+<td>Convert this text to modern teen speech</td>
+<td>OMG guys! Everyone listen up!<br>I'm just here to get Caesar six feet under, not hype him up fr fr.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h3 id="the-scoring-mechanism">The Scoring Mechanism</h3>
+<p>The competition used a <a href="https://github.com/brohrer/sharpened-cosine-similarity/blob/main/README.md?plain=1#L32">sharpened cosine similarity</a> with exponent of 3 between sentence embeddings of the T5 sentence model as its scoring mechanism. This means that for two sentences, their embeddings would be compared using cosine similarity, and the result would be cubed, penalizing wrong answers more strongly.</p>
+<p>This scoring method turned out to be quite unforgiving. Missing a few key words could tank your score dramatically, even if you were conceptually in the right ballpark. For example, "Convert this text into a shanty" scores significantly lower than "Convert this text into a sea shanty," despite being semantically very similar. It gets worse if you manage to find the overall theme, song conversion but couldn't find the exact keyword, shanty.</p>
+<p>If we were to generate some scores to see how it looks:</p>
+<table>
+<thead>
+<tr>
+<th>sentence</th>
+<th>score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transform this text into a sea shanty.</td>
+<td>0.970698</td>
+</tr>
+<tr>
+<td>Convert this text into a shanty.</td>
+<td>0.901210</td>
+</tr>
+<tr>
+<td>Convert this text into a song.</td>
+<td>0.638192</td>
+</tr>
+<tr>
+<td>Make this text better.</td>
+<td>0.621427</td>
+</tr>
+<tr>
+<td>Convert this text into song lyrics.</td>
+<td>0.609144</td>
+</tr>
+<tr>
+<td>Improve this text.</td>
+<td>0.604455</td>
+</tr>
+<tr>
+<td>Convert this text into rap format.</td>
+<td>0.593446</td>
+</tr>
+</tbody>
+</table>
+<h3 id="finding-the-mean-sentence">Finding the Mean Sentence</h3>
+<p>One interesting discovery came from analyzing how sentences relate to each other in the embedding space. By computing the average similarity between each sentence and all others in a diverse pool of prompts, we can find what I call a "mean sentence" – one that sits centrally in the embedding space.</p>
+<p>Vague and general instructions like "Make this text better" often score higher on average than more specific ones, even if sometimes, the specific sentence, according to a human reader, is more closely related to the original. This suggests that such generic prompts occupy a central position in the embedding space, making them potentially useful as fallback guesses when unsure about the specific prompt.</p>
+<p>These insights proved valuable – building up on this idea helped me eventually reach a high score. But the story doesn't end there. The most interesting findings (and ranking boost) came from pushing these observations further.</p>
+<h3 id="exploring-edge-cases-in-embedding-space">Exploring Edge Cases in Embedding Space</h3>
+<p>Some questions we can ask at this stage are:
+1. Can we do better?
+2. Does the mean sentence have to be sensical?</p>
+<p>And the answers turn out to be interesting: there are unexpected patterns in how embedding spaces represent text.</p>
+<p>We can actually generate sentences that achieve even higher average similarity scores than natural language prompts. Through a simple greedy search in the token space, we can construct sequences that position themselves optimally in the embedding space – even if they're complete nonsense to human readers.</p>
+<p>Given a dataset <code>sentence_pool</code>, and a function named <code>score</code> which calculates the mean score for a given output, below is a greedy algorithm with multiple passes, constructing the mean sentence one token at a time, left to right:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">generate_adversarial_prompt</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sentence_pool</span><span class="p">,</span> <span class="n">num_iterations</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot;Generate adversarial prompt for a given model and sentence pool.</span>
+
+<span class="sd">   Intentionally left out early stopping to prevent getting stuck in a &#39;local minimum&#39;.</span>
+<span class="sd">   &quot;&quot;&quot;</span>
+
+   <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span>
+   <span class="n">vocabulary</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+   <span class="n">current_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">20</span>
+
+   <span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+   <span class="n">texts</span> <span class="o">=</span> <span class="p">[]</span>
+
+   <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iterations</span><span class="p">):</span>
+     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+         <span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span><span class="n">current_tokens</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">vocabulary</span><span class="p">]</span>
+         <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vocabulary</span><span class="p">):</span>
+             <span class="n">candidates</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span>
+             <span class="n">candidates</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">if</span> <span class="n">t</span><span class="o">!=</span><span class="s2">&quot;&quot;</span><span class="p">]</span>        
+
+         <span class="n">candidate_texts</span> <span class="o">=</span> <span class="p">[</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_string</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">]</span>
+
+         <span class="n">scores</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span><span class="n">sentence_pool</span><span class="p">,</span> <span class="n">candidate_texts</span><span class="p">)</span>
+
+         <span class="n">current_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+
+         <span class="n">next_token</span> <span class="o">=</span> <span class="n">vocabulary</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">scores</span><span class="p">)]</span>
+         <span class="n">current_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_token</span>
+         <span class="n">current_text</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_string</span><span class="p">(</span><span class="n">current_tokens</span><span class="p">)</span>
+         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">current_text</span><span class="si">=}</span><span class="s2"> </span><span class="si">{</span><span class="n">current_score</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+         <span class="n">texts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_text</span><span class="p">)</span>
+         <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_score</span><span class="p">)</span>
+
+   <span class="k">return</span> <span class="n">texts</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">scores</span><span class="p">)]</span>
+</code></pre></div>
+
+<p>With <code>length=10</code> and <code>num_iterations=2</code>, we can find a nonsensical string like "<strong>Text this PieceICWLISHTION aslucrarea</strong>", which scores higher than any natural language prompt on average. This reveals a fundamental vulnerability in embedding-based scoring systems: they can be gamed by inputs that exploit the geometric properties of the embedding space without regard for semantic meaning.</p>
+<p>Performing beam search or using a more global optimization method like a genetic algorithm can help achieve an even higher score. In my experience, however, the returns were diminishing after the greedy search.</p>
+<h3 id="related-work-and-interesting-token-phenomena">Related Work and Interesting Token Phenomena</h3>
+<p>The unexpected behaviors in embedding spaces aren't unique to this competition. One fascinating example is the case of <a href="https://www.lesswrong.com/posts/aPeJE8bSo6rAFoLqg/solidgoldmagikarp-plus-prompt-generation">"SolidGoldMagikarp"</a> – a now-patched token that became famous for causing unusual behaviors in GPT models. This seemingly random combination of words could cause language models to produce erratic outputs, demonstrating how certain token sequences can interact with embedding spaces in unexpected ways.</p>
+<p>Further investigations have revealed the existence of "under-trained tokens" in large language models, <a href="https://medium.com/data-science/under-trained-and-unused-tokens-in-large-language-models-db5fa17589ec">as documented in this exploration</a>. These are tokens that received limited exposure during training, potentially leading to unusual geometric positions in the embedding space. This relates to our findings where certain token combinations achieved unexpectedly high similarity scores despite lacking semantic meaning.</p>
+<p>A particularly interesting example comes from <a href="https://aclanthology.org/D19-1221.pdf">research on universal adversarial triggers</a>, where certain sequences of tokens can reliably cause specific behaviors in language models when prepended to any input. This demonstrates how the geometric properties of embedding spaces can be leveraged in systematic ways.</p>
+<p>The phenomenon isn't limited to text – similar patterns have been observed in <a href="https://proceedings.neurips.cc/paper/2021/hash/01894d6f048493d2cacde3c579c315a3-Abstract.html">multimodal embedding spaces</a>, where researchers found that carefully crafted perturbations in one modality (like text) could affect the behavior of the system in another modality (like images).</p>
+<h3 id="practical-implications">Practical Implications</h3>
+<p>These findings have implications beyond just gaming a competition:</p>
+<ol>
+<li>Scoring mechanisms based on embedding similarity might not be as robust as they appear at first glance.</li>
+<li>The relationship between semantic similarity and geometric proximity in embedding spaces isn't always intuitive.</li>
+<li>Systems using embedding similarity for matching or comparison might need additional safeguards against adversarial
+   inputs.</li>
+</ol>
+<p>This observation becomes particularly relevant as more systems rely on embedding similarity for tasks like semantic
+search, document comparison, or prompt matching. For instance, a malicious actor could potentially game search engine
+rankings by generating content that is geometrically optimal in the embedding space but semantically meaningless to
+humans. Embedding spaces are powerful tools, but their geometrical properties can sometimes be exploited in ways that
+diverge from their intended semantic purpose.</p>
+<p>Although I haven't tested it, intuitively, it is possible that a more sophisticated model would be more resistant to mapping a nonsensical sentence to a central position in the embedding space by recognizing nonsense. However, even then, I suspect it would make the problem harder rather than prevent it.</p>
+<p>The challenge lies in developing scoring mechanisms that maintain the benefits of embedding spaces while being more resistant to these kinds of adversarial inputs. For this specific competition, a straightforward improvement would have been to combine the embedding similarity score with a binary classifier that detects valid English sentences. While this wouldn't completely prevent gaming the system, it would at least minimize nonsensical inputs like "<strong>Text this PieceICWLISHTION aslucrarea</strong>" and force competitors to find adversarial inputs that either: (i) maintain grammatical structure or (ii) escape the classifier as well.</p>
+<p>Combining these insights about embedding space vulnerabilities with a fine-tuned model for prompt prediction, I managed to achieve <a href="https://www.kaggle.com/competitions/llm-prompt-recovery/discussion/494569">11th place out of 2000+</a> competitors in this Kaggle competition. The success came from understanding both the ML aspects of prompt recovery and the geometric properties of the scoring mechanism that could be exploited.</p>
+<p>This exploration into embedding spaces and their vulnerabilities was just one aspect of the competition, but it highlights broader challenges in building robust AI systems. As we continue to develop and deploy such systems, understanding these vulnerabilities becomes increasingly important.</p>
+    <footer>
+      <hr>
+      <p>Published: <time datetime="2025-05-20T10:20:00+02:00">
+        Tue 20 May 2025
+      </time></p>
+        <address>
+          By <!--            <a href="https://osyuksel.github.io/author/omer-yuksel.html">Ömer Yüksel</a>-->
+          Ömer Yüksel
+        </address>
+<!--      -->
+<!--        <p>-->
+<!--          Category: <a href="https://osyuksel.github.io/category/technical.html">Technical</a>-->
+<!--        </p>-->
+<!--      -->
+        <p>
+          Tags:
+            <a href="https://osyuksel.github.io/tag/machine-learning.html">machine-learning</a>
+            <a href="https://osyuksel.github.io/tag/nlp.html">nlp</a>
+            <a href="https://osyuksel.github.io/tag/embeddings.html">embeddings</a>
+        </p>
+    </footer>
+  </article>
+</main>
+<footer>
+  <footer>
+    <address>
+      © 2025 Powered by <a href="https://getpelican.com/">Pelican</a>.
+    </address>
+  </footer>
+</footer>
+</body>
+</html>
