@@ -1,29 +1,56 @@
 body {
-  font-family: monospace;
-  font-size: 125%;
-  background-color: white;
-  color: #111;
-  width: 80%;
-  min-width: 400px;
-  max-width: 800px;
-  min-height: 200px;
-  padding: 1em;
-  /*margin: 5% 10%;*/
-  border: thin solid gray;
-  border-radius: 5px;
-  margin: 0 auto;
+    font-family: monospace;
+    font-size: 125%;
+    background-color: white;
+    color: #111;
+    width: 80%;
+    min-width: 400px;
+    max-width: 800px;
+    min-height: 200px;
+    padding: 1em;
+    /*margin: 5% 10%;*/
+    border: thin solid gray;
+    border-radius: 5px;
+    margin: 0 auto;
 }
 
-a:link    { color: blue; text-decoration: none;      }
-a:hover   { color: blue; text-decoration: underline; }
-a:visited { color: blue;                             }
+a:link {
+    color: blue;
+    text-decoration: none;
+}
 
-h1 a { color: inherit !important }
-h2 a { color: inherit !important }
-h3 a { color: inherit !important }
-h4 a { color: inherit !important }
-h5 a { color: inherit !important }
-h6 a { color: inherit !important }
+a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: blue;
+}
+
+h1 a {
+    color: inherit !important
+}
+
+h2 a {
+    color: inherit !important
+}
+
+h3 a {
+    color: inherit !important
+}
+
+h4 a {
+    color: inherit !important
+}
+
+h5 a {
+    color: inherit !important
+}
+
+h6 a {
+    color: inherit !important
+}
 
 #menu li {
     display: inline;
@@ -49,3 +76,28 @@ blockquote {
     margin-left: 0;
     background-color: #f8f9fa;
 }
+
+/* Make tables slightly smaller and distinct */
+table {
+    font-size: 0.9em; /* or try 85%, 14px, etc. */
+    line-height: 1.4;
+    border-collapse: collapse;
+    margin: 1em 0;
+    width: 100%;
+    opacity: 0.95;
+
+}
+
+table th,
+table td {
+    padding: 0.4em 0.8em;
+    /*border: 1px solid #ccc;*/
+}
+
+table th {
+    font-weight: bold;
+    /*background-color: #f9f9f9;*/
+    text-align: left; /* 👈 center the header content */
+
+}
+

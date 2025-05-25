@@ -5,7 +5,7 @@
 <meta property="og:site_name" content="Ömer Yüksel" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Adversarial inputs in embedding spaces -- " />
-<meta property="og:url" content="https://osyuksel.github.io/drafts/embedding-spaces-adversarial.html" />
+<meta property="og:url" content="https://osyuksel.github.io/blog/embedding-spaces-adversarial/" />
 <meta property="og:description" content="Exploring embedding space vulnerabilities through lessons learned from a recent Kaggle competition." />
 <meta property="article:published_time" content="2025-05-20 10:20:00+02:00" />
 <!-- End of OpenGraph protocol tags -->
@@ -80,11 +80,12 @@
   <article>
     <header>
       <h1>
-        <a href="https://osyuksel.github.io/drafts/embedding-spaces-adversarial.html" rel="bookmark"
+        <a href="https://osyuksel.github.io/blog/embedding-spaces-adversarial/" rel="bookmark"
            title="Permalink to Adversarial inputs in embedding spaces">Adversarial inputs in embedding spaces</a></h1>
       
     </header>
-    <p>Back when I was working on a Kaggle competition focused on <a href="https://www.kaggle.com/competitions/llm-prompt-recovery">LLMs and text transformations</a>, I discovered some fascinating patterns regarding embedding spaces and their edge-case behaviors when used for semantic similarity. The competition's goal was to guess the original prompt given to an LLM that converted text A to text B. Here, I'll focus on a particularly interesting aspect: how embedding spaces behave in unintuitive ways.</p>
+    <p>Back when I was working on a Kaggle competition focused on <a href="https://www.kaggle.com/competitions/llm-prompt-recovery">LLMs and text transformations</a>, I discovered some fascinating patterns regarding embedding spaces and their edge-case behaviors when used for semantic similarity.</p>
+<p>The competition's goal was to guess the original prompt given to an LLM that converted text A to text B. Here, I'll focus on a particularly interesting aspect: how embedding spaces behave in unintuitive ways.</p>
 <p>Here's an example of what the competition data could look like:</p>
 <p><br></p>
 <table>
@@ -125,8 +126,11 @@
 </table>
 <p><br></p>
 <h3 id="the-scoring-mechanism">The scoring mechanism</h3>
-<p>The competition used a <a href="https://github.com/brohrer/sharpened-cosine-similarity/blob/main/README.md?plain=1#L32">sharpened cosine similarity</a> with exponent of 3 between sentence embeddings of the T5 sentence model as its scoring mechanism. This means that for two sentences, their embeddings would be compared using cosine similarity, and the result would be cubed, penalizing wrong answers more strongly.</p>
-<p>Let's look at similarity scores for candidate sentences compared to "Convert this text into a sea shanty.":</p>
+<p>Comparing the similarity of two sentences – in this case, a candidate prompt and the actual prompt –  is fundamentally challenging.</p>
+<p>The simplest approach, which is rewarding only exact matches, is too draconian. After all, there are often multiple valid ways to phrase the same instruction. String similarity metrics like Levenshtein distance aren't much better since they operate on surface-level text patterns: a one-letter difference can completely change the meaning of a sentence, while synonyms and rephrasing get heavily penalized despite preserving the semantic content.</p>
+<p>Bag of words and n-gram-based approaches suffer from similar issues. While they can capture some basic patterns of word usage, they still fail to recognize when two differently phrased prompts mean the same thing. They also tend to overemphasize common words and struggle with word order, which can be crucial for understanding meaning.</p>
+<p>Sentence embedding similarity seems like a more promising approach: in theory, it should capture the degree of semantic difference between prompts, understanding when two different phrasings carry the same meaning. This is the direction the competition took, using a <a href="https://github.com/brohrer/sharpened-cosine-similarity/blob/main/README.md?plain=1#L32">sharpened cosine similarity</a> with exponent of 3 between embeddings from the <a href="https://huggingface.co/sentence-transformers/sentence-t5-base">T5 sentence </a> model. The sharpening (cubing the cosine similarity) helps penalize wrong answers more strongly. In practice, however, the situation turns out to be more complex, as we'll see below.</p>
+<p>Let's look at similarity scores for candidate sentences compared to <em>Convert this text into a sea shanty.</em></p>
 <table>
 <thead>
 <tr>
@@ -171,21 +175,20 @@
 <p>Vague and general instructions like "Make this text better" often score higher on average than more specific ones, even if sometimes, the specific sentence, according to a human reader, is more closely related to the original. This suggests that such generic prompts occupy a central position in the embedding space, making them potentially useful as fallback guesses when unsure about the specific prompt.</p>
 <p>These insights proved valuable – building up on this idea helped me eventually reach a high score. But the story doesn't end there. The most interesting findings (and ranking boost) came from pushing these observations further.</p>
 <h3 id="exploring-edge-cases-in-embedding-space">Exploring edge cases in embedding space</h3>
-<p>Some questions we can ask at this stage are:
-1. Can we do better?
-2. Does the mean sentence have to be sensical?</p>
-<p>And the answers turn out to be interesting: there are unexpected patterns in how embedding spaces represent text.</p>
-<p>We can actually generate sentences that achieve even higher average similarity scores than natural language prompts. Through a simple greedy search in the token space, we can construct sequences that position themselves optimally in the embedding space – even if they're complete nonsense to human readers.</p>
-<p>Given a dataset <code>sentence_pool</code>, and a function named <code>score</code> which calculates the mean score for a given output, below is a greedy algorithm with multiple passes, constructing the mean sentence one token at a time, left to right:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<p>Having found that vague instructions occupy a comparatively central position in the embedding space, two key questions emerge:
+1. Can we find sentence embeddings that score even higher than generic phrases like "make this text better"?
+2. Do these optimal embeddings need to correspond to meaningful English sentences?</p>
+<p>And the answers turn out to be interesting: there are unexpected patterns in how embedding spaces represent text. Even with the simplest optimization approach, we can generate nonsensical sequences that score higher on average than any natural language prompt in the embedding space.</p>
+<p>Here's a greedy algorithm that optimizes token selection to maximize embedding similarity scores. For each position from left to right, it tries every possible token and keeps the one that yields the highest average similarity against our sentence pool. After reaching the maximum length, it starts over from the beginning for additional optimization passes:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">score</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
     <span class="o">...</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">generate_adversarial_prompt</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sentence_pool</span><span class="p">,</span> <span class="n">num_iterations</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">generate_adversarial_prompt</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sentence_pool</span><span class="p">,</span> <span class="n">num_iterations</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
 <span class="w">   </span><span class="sd">&quot;&quot;&quot;Generate adversarial prompt for a given model and sentence pool.</span>
 
-<span class="sd">   Intentionally left out early stopping to prevent getting stuck in a &#39;local minimum&#39;.</span>
+<span class="sd">   Intentionally left out early stopping to prevent getting stuck in a local minimum.</span>
 <span class="sd">   &quot;&quot;&quot;</span>
 
    <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span>
@@ -222,6 +225,7 @@
    <span class="k">return</span> <span class="n">all_texts</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">all_scores</span><span class="p">)]</span>
 </code></pre></div>
 
+<p><em>(Full version is <a href="https://gist.github.com/osyuksel/56f1efe3633c1682d3098aaf9467aa2f">here</a>)</em></p>
 <p>With <code>length=10</code> and <code>num_iterations=2</code>, we can find a nonsensical string like "<strong>Text this PieceICWLISHTION aslucrarea</strong>", which scores higher than any natural language prompt on average. This reveals a fundamental vulnerability in embedding-based scoring systems: they can be gamed by inputs that exploit the geometric properties of the embedding space without regard for semantic meaning.</p>
 <p>Performing beam search or using a more global optimization method like a genetic algorithm can help achieve an even higher score. In my experience, however, the returns were diminishing after the greedy search.</p>
 <h3 id="related-work-and-interesting-token-phenomena">Related work and interesting token phenomena</h3>
@@ -242,10 +246,10 @@ search, document comparison, or prompt matching. For instance, a malicious actor
 rankings by generating content that is geometrically optimal in the embedding space but semantically meaningless to
 humans. Embedding spaces are powerful tools, but their geometrical properties can sometimes be exploited in ways that
 diverge from their intended semantic purpose.</p>
-<p>Although I haven't tested it, intuitively, it is possible that a more sophisticated model would be more resistant to mapping a nonsensical sentence to a central position in the embedding space by recognizing nonsense. However, even then, I suspect it would make the problem harder rather than prevent it.</p>
+<p>Intuitively, a more sophisticated model should be better at avoiding these pitfalls. For example, it could learn to distinguish between well-formed English sentences and nonsensical text, pushing gibberish away from the center of the embedding space. Models like OpenAI's embeddings, trained on vastly more data and with more parameters, might show more resistance to these attacks. However, I suspect this would only raise the bar for adversarial inputs rather than eliminate the fundamental vulnerability - the core problem of embedding spaces having a "middle ground" would likely remain.</p>
 <p>The challenge lies in developing scoring mechanisms that maintain the benefits of embedding spaces while being more resistant to these kinds of adversarial inputs. For this specific competition, a straightforward improvement would have been to combine the embedding similarity score with a binary classifier that detects valid English sentences. While this wouldn't completely prevent gaming the system, it would at least minimize nonsensical inputs like "<strong>Text this PieceICWLISHTION aslucrarea</strong>" and force competitors to find adversarial inputs that either: (i) maintain grammatical structure or (ii) escape the classifier as well.</p>
 <p>Combining these insights about embedding space vulnerabilities with a fine-tuned model for prompt prediction, I managed to achieve <a href="https://www.kaggle.com/competitions/llm-prompt-recovery/discussion/494569">11th place out of 2000+</a> competitors in this Kaggle competition. The success came from understanding both the ML aspects of prompt recovery and the geometric properties of the scoring mechanism that could be exploited.</p>
-<p>This exploration into embedding spaces and their vulnerabilities was just one aspect of the competition, but it highlights broader challenges in building robust AI systems. As we continue to develop and deploy such systems, understanding these vulnerabilities becomes increasingly important.</p>
+<p>This exploration into embedding spaces and their vulnerabilities was just one aspect of the competition, but it highlights broader challenges in building robust AI systems. Later, when building a client's text-based recommender system, these insights helped me better understand embedding limitations. As we continue to develop and deploy such systems, understanding these vulnerabilities becomes increasingly important.</p>
     <footer>
       <hr>
       <p>Published: <time datetime="2025-05-20T10:20:00+02:00">
