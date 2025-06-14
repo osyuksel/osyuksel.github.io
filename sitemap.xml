@@ -5,36 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://osyuksel.github.io/</loc>
-<lastmod>2025-06-13T17:35:48-00:00</lastmod>
+<lastmod>2025-06-14T23:08:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/</loc>
-<lastmod>2025-06-13T17:35:48-00:00</lastmod>
+<lastmod>2025-06-14T23:08:51-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/pages/about.html</loc>
-<lastmod>2025-06-13T17:35:48-00:00</lastmod>
+<lastmod>2025-06-14T23:08:51-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/pages/my-work.html</loc>
-<lastmod>2025-06-13T17:35:48-00:00</lastmod>
+<lastmod>2025-06-14T23:08:51-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/pages/contact.html</loc>
-<lastmod>2025-06-13T17:35:48-00:00</lastmod>
+<lastmod>2025-06-14T23:08:51-00:00</lastmod>
 <changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://osyuksel.github.io/blog/llm-color-test/</loc>
+<lastmod>2025-06-14T20:00:00+02:00</lastmod>
+<changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -54,14 +61,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://osyuksel.github.io/tag/machine-learning.html</loc>
-<lastmod>2025-06-13T15:20:00+00:18</lastmod>
+<lastmod>2025-06-14T20:00:00+00:18</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://osyuksel.github.io/tag/llm.html</loc>
+<lastmod>2025-06-14T20:00:00+00:18</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/tag/nlp.html</loc>
-<lastmod>2025-06-13T15:20:00+00:18</lastmod>
+<lastmod>2025-06-14T20:00:00+00:18</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://osyuksel.github.io/tag/benchmarking.html</loc>
+<lastmod>2025-06-14T20:00:00+00:18</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
