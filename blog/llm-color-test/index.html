@@ -8,6 +8,7 @@
 <meta property="og:url" content="https://osyuksel.github.io/blog/llm-color-test/" />
 <meta property="og:description" content="A simple yet effective test for weeding out unreliable LLMs using eye and hair color descriptions." />
 <meta property="article:published_time" content="2025-06-14 20:00:00+02:00" />
+<meta property="article:modified_time" content="2025-06-15 14:00:00+02:00" />
 <!-- End of OpenGraph protocol tags -->
 
 <head>
@@ -101,11 +102,9 @@ While valuable for ranking models, these comprehensive tests can be overwhelming
 <li>What is Karl's hair color?</li>
 </ol>
 </blockquote>
-<p>What makes this test particularly interesting is that it challenges two common biases in LLM training data:</p>
-<ol>
-<li>Statistical prevalence: Most descriptions of people in training data would contain common eye colors (brown, blue, green) and hair colors (black, brown, blonde).</li>
-<li>Real-world knowledge: The model knows that humans typically don't have pink eyes or blue hair.</li>
-</ol>
+<p>What makes this test particularly interesting is that it challenges two common biases in LLM training data. First,
+there's statistical prevalence: most descriptions of people in training data would contain common eye colors (brown,
+blue, green) and hair colors (black, brown, blonde). Second (related but different), there's real-world knowledge: the model knows that humans typically don't have pink eyes or blue hair.</p>
 <p>A reliable model should be able to override both these biases and simply repeat what it was told in the prompt. After all, if a model can't accurately recall explicitly stated information because it's "unusual", how can we trust it with more complex reasoning tasks?</p>
 <h3 id="why-this-test-matters">Why This Test Matters</h3>
 <p>This test is particularly relevant in the context of LLM development history. Early models (pre-<a href="https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback">RLHF</a> era) often struggled with this type of task, showing a strong tendency to "hallucinate" more common colors despite explicit contradicting information in the prompt. The model would effectively override the given information with what it considered more "likely" or "realistic" based on its training data.</p>
@@ -122,7 +121,7 @@ patterns.</p>
 </ol>
 <p>These capabilities are fundamental to many practical applications. For instance, if you're using an LLM for processing technical documentation, you want it to faithfully maintain the specific details provided, regardless of what it has been trained with. This becomes especially crucial when working with newer versions of libraries or frameworks. If the model keeps defaulting to its training data instead of the current documentation, you'll end up fighting against its outdated assumptions rather than getting meaningful assistance.</p>
 <h3 id="the-experiment">The Experiment</h3>
-<p>I selected 10 prompts with randomized names, hair colors, and eye colors. Each model received exactly the same prompts, giving us n=10 samples per model. As the model provider, I opted for <a href="https://openrouter.ai/">OpenRouter</a> for the ease of trying out different models with the same API key. The complete implementation is available in the <a href="https://github.com/osyuksel/llm-playground/blob/main/src/llm_playground/color_test.py">LLM Playground repository</a>.</p>
+<p>I selected 10 prompts with randomized names, hair colors, and eye colors. To ensure (relatively) deterministic behavior, I set the temperature parameter to 0.01 (rather than 0, as some endpoints disallow or ignore that value). Each model received exactly the same prompts, giving us n=10 samples per model. As the model provider, I opted for <a href="https://openrouter.ai/">OpenRouter</a> for the ease of trying out different models with the same API key. The complete implementation is available in the <a href="https://github.com/osyuksel/llm-playground/blob/main/src/llm_playground/color_test.py">LLM Playground repository</a>.</p>
 <h4 id="results">Results</h4>
 <p>Below is a result for the subset that failed to achieve 100% accuracy. You can find the full results in
 the <a href="#appendix-full-results">appendix</a>.</p>
@@ -163,7 +162,7 @@ the <a href="#appendix-full-results">appendix</a>.</p>
 <p>Several observations emerge from these results:</p>
 <ul>
 <li>
-<p>Only the smaller and deprecated (mistral-tiny) models failed to achieve 100% accuracy, as mentioned earlier in the discussion about model capabilities.</p>
+<p>Only the smaller or deprecated (mistral-tiny) models failed to achieve 100% accuracy, as mentioned earlier in the discussion about model capabilities.</p>
 </li>
 <li>
 <p>When examining individual failures, one particularly interesting case was claude-3.5-haiku's response to: "John has pink eyes and amber hair." It returned "pink" for John's hair rather than amber. This error is quite telling – it's sensible from a statistical perspective (between pink and amber, pink is the more likely hair color) but fails to follow the explicit instructions.</p>
@@ -180,7 +179,10 @@ one piece of evidence in a model's favor.</p>
 <h3 id="practical-applications">Practical Applications</h3>
 <p>This test has proven valuable in several practical scenarios. When evaluating a new LLM for a project, it serves as a quick initial filter before investing time in more comprehensive testing. It's equally useful for version comparisons, providing a quick way to verify if a model update has maintained or improved fundamental reliability. Perhaps most importantly, when fine-tuning models for specific tasks, this test helps ensure that the optimization hasn't compromised the model's basic ability to handle explicit information faithfully.</p>
 <p>Unlike complex benchmarks, this test provides clear binary results: the model either maintains unusual information
-accurately or it doesn't.</p>
+accurately or it doesn't and it's suitable for a CI pipeline.</p>
+<p><br></p>
+<hr>
+
 <h3 id="appendix-full-results">Appendix: Full Results</h3>
 <iframe src="/assets/model-results.html" width="60%" height="800" frameborder="0"></iframe>
     <footer>
@@ -188,6 +190,9 @@ accurately or it doesn't.</p>
       <p>Published: <time datetime="2025-06-14T20:00:00+02:00">
         Sat 14 June 2025
       </time></p>
+        <p>Last updated: <time datetime="2025-06-15T14:00:00+02:00">
+          Sun 15 June 2025
+        </time></p>
         <address>
           By <!--            <a href="https://osyuksel.github.io/author/omer-yuksel.html">Ömer Yüksel</a>-->
           Ömer Yüksel
