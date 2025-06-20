@@ -1,0 +1,11 @@
+#page-content a {
+  text-decoration: none;
+  color: #357EDD;
+  opacity: 1;
+  transition: opacity .15s ease-in;
+}
+
+#page-content a:hover {
+  opacity: 0.5;
+  transition: opacity .15s ease-in;
+}
