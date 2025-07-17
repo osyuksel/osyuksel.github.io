@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ömer Yüksel</title><link href="https://osyuksel.github.io/" rel="alternate"></link><link href="https://osyuksel.github.io/feeds/all.atom.xml" rel="self"></link><id>https://osyuksel.github.io/</id><updated>2025-06-15T14:00:00+02:00</updated><entry><title>The color memory test: a quick filter for language model quality</title><link href="https://osyuksel.github.io/blog/llm-color-test/" rel="alternate"></link><published>2025-06-14T20:00:00+02:00</published><updated>2025-06-15T14:00:00+02:00</updated><author><name>Ömer Yüksel</name></author><id>tag:osyuksel.github.io,2025-06-14:/blog/llm-color-test/</id><summary type="html">&lt;p&gt;A simple yet effective test for weeding out unreliable LLMs using eye and hair color descriptions.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Language model benchmarks typically test various capabilities like mathematical reasoning, coding, and world knowledge.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ömer Yüksel</title><link href="https://osyuksel.github.io/" rel="alternate"></link><link href="https://osyuksel.github.io/feeds/all.atom.xml" rel="self"></link><id>https://osyuksel.github.io/</id><updated>2025-07-17T22:35:00+02:00</updated><entry><title>The color memory test: a quick filter for language model quality</title><link href="https://osyuksel.github.io/blog/llm-color-test/" rel="alternate"></link><published>2025-06-14T20:00:00+02:00</published><updated>2025-07-17T22:35:00+02:00</updated><author><name>Ömer Yüksel</name></author><id>tag:osyuksel.github.io,2025-06-14:/blog/llm-color-test/</id><summary type="html">&lt;p&gt;A simple yet effective test for weeding out unreliable LLMs using eye and hair color descriptions.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Language model benchmarks typically test various capabilities like mathematical reasoning, coding, and world knowledge.
 While valuable for ranking models, these comprehensive tests can be overwhelming for quick reliability assessments.&lt;/p&gt;
 &lt;p&gt;In my experience working with LLMs, I've found that sometimes what we need is a simple binary criterion – a basic test that can help us quickly reject unreliable models. One such test I've been using evaluates a fundamental capability that any reliable LLM should possess: the ability to overcome statistical biases in training data when presented with explicit contradicting information.&lt;/p&gt;
-&lt;h3 id="the-eye-and-hair-color-test"&gt;The Eye and Hair Color Test&lt;/h3&gt;
-&lt;p&gt;The test is deceptively simple: we present the model with descriptions of people having unusual eye and hair colors, then ask it to recall these attributes. Here's an example:&lt;/p&gt;
+&lt;h3 id="the-eye-and-hair-color-test"&gt;The eye and hair color test&lt;/h3&gt;
+&lt;p&gt;In this test, we present the model with descriptions of people having unusual eye and hair colors, then ask it to recall these attributes. Here's an example:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Ali has pink eyes and blue hair. John has red eyes and green hair. Karl has copper eyes and violet hair. Lucy has green eyes and brown hair. Dimitri has brown eyes and black hair.&lt;/p&gt;
 &lt;p&gt;Given the above information, answer the following:&lt;/p&gt;
@@ -17,13 +17,13 @@ While valuable for ranking models, these comprehensive tests can be overwhelming
 there's statistical prevalence: most descriptions of people in training data would contain common eye colors (brown,
 blue, green) and hair colors (black, brown, blonde). Second (related but different), there's real-world knowledge: the model knows that humans typically don't have pink eyes or blue hair.&lt;/p&gt;
 &lt;p&gt;A reliable model should be able to override both these biases and simply repeat what it was told in the prompt. After all, if a model can't accurately recall explicitly stated information because it's "unusual", how can we trust it with more complex reasoning tasks?&lt;/p&gt;
-&lt;h3 id="why-this-test-matters"&gt;Why This Test Matters&lt;/h3&gt;
+&lt;h3 id="why-this-test-matters"&gt;Why this test matters&lt;/h3&gt;
 &lt;p&gt;This test is particularly relevant in the context of LLM development history. Early models (pre-&lt;a href="https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback"&gt;RLHF&lt;/a&gt; era) often struggled with this type of task, showing a strong tendency to "hallucinate" more common colors despite explicit contradicting information in the prompt. The model would effectively override the given information with what it considered more "likely" or "realistic" based on its training data.&lt;/p&gt;
-&lt;p&gt;In the current landscape, this issue is largely solved in major models like GPT-4o, Claude 4, or Gemini 2.5, but remains a useful discriminator for evaluating smaller, local models. When working with lightweight or fine-tuned models, this test can quickly reveal if the model has maintained the fundamental ability to override its statistical biases or if compression and optimization have compromised this capability.&lt;/p&gt;
+&lt;p&gt;In the current landscape, this issue is largely solved in major models like GPT-4o, Claude 4, or Gemini 2.5, but remains a useful discriminator for evaluating smaller, local models. When working with lightweight, distilled, quantized, or fine-tuned models, this test can quickly reveal if the model has maintained the fundamental ability to override its statistical biases or if compression and optimization have compromised this capability.&lt;/p&gt;
 &lt;p&gt;This behavior indicates a fundamental reliability issue. If a model can't override its statistical biases for simple
 color recall, it likely struggles with more complex scenarios where correct answers contradict its training data
 patterns.&lt;/p&gt;
-&lt;h3 id="beyond-simple-recall"&gt;Beyond Simple Recall&lt;/h3&gt;
+&lt;h3 id="beyond-simple-recall"&gt;Beyond simple recall&lt;/h3&gt;
 &lt;p&gt;The test, seemingly about memory, actually evaluates several important capabilities:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;Information precedence&lt;/strong&gt;: Can the model prioritize explicitly given information over its statistical priors?&lt;/li&gt;
@@ -31,11 +31,11 @@ patterns.&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Instruction following&lt;/strong&gt;: Can it stick to simply reporting what it was told without embellishment or "correction"?&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;These capabilities are fundamental to many practical applications. For instance, if you're using an LLM for processing technical documentation, you want it to faithfully maintain the specific details provided, regardless of what it has been trained with. This becomes especially crucial when working with newer versions of libraries or frameworks. If the model keeps defaulting to its training data instead of the current documentation, you'll end up fighting against its outdated assumptions rather than getting meaningful assistance.&lt;/p&gt;
-&lt;h3 id="the-experiment"&gt;The Experiment&lt;/h3&gt;
-&lt;p&gt;I selected 10 prompts with randomized names, hair colors, and eye colors. To ensure (relatively) deterministic behavior, I set the temperature parameter to 0.01 (rather than 0, as some endpoints disallow or ignore that value). Each model received exactly the same prompts, giving us n=10 samples per model. As the model provider, I opted for &lt;a href="https://openrouter.ai/"&gt;OpenRouter&lt;/a&gt; for the ease of trying out different models with the same API key. The complete implementation is available in the &lt;a href="https://github.com/osyuksel/llm-playground/blob/main/src/llm_playground/color_test.py"&gt;LLM Playground repository&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="the-experiment"&gt;The experiment&lt;/h3&gt;
+&lt;p&gt;I selected 10 prompts with randomized names, hair colors, and eye colors. To ensure (relatively) deterministic behavior, I set the temperature parameter to 0.01 (rather than 0, as some endpoints disallow or ignore that value). Each model received exactly the same prompts, giving us n=10 samples per model. As the model provider, I opted for &lt;a href="https://openrouter.ai/"&gt;OpenRouter&lt;/a&gt; for the ease of trying out different models with the same API key. I picked a mixture of small and large models. The complete implementation is available in the &lt;a href="https://github.com/osyuksel/llm-playground/blob/main/src/llm_playground/color_test.py"&gt;LLM Playground repository&lt;/a&gt;.&lt;/p&gt;
 &lt;h4 id="results"&gt;Results&lt;/h4&gt;
-&lt;p&gt;Below is a result for the subset that failed to achieve 100% accuracy. You can find the full results in
-the &lt;a href="#appendix-full-results"&gt;appendix&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Below is the subset of the models that failed the test (&amp;lt;100% accuracy). You can find the full results in
+the &lt;a href="#appendix-full-results"&gt;appendix&lt;/a&gt;. As mentioned earlier, only the smaller models failed achieving 100%.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -73,24 +73,21 @@ the &lt;a href="#appendix-full-results"&gt;appendix&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Several observations emerge from these results:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Only the smaller or deprecated (mistral-tiny) models failed to achieve 100% accuracy, as mentioned earlier in the discussion about model capabilities.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
 &lt;p&gt;When examining individual failures, one particularly interesting case was claude-3.5-haiku's response to: "John has pink eyes and amber hair." It returned "pink" for John's hair rather than amber. This error is quite telling – it's sensible from a statistical perspective (between pink and amber, pink is the more likely hair color) but fails to follow the explicit instructions.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;A clear pattern emerges in the accuracy distribution: the larger, more advanced models consistently achieve perfect scores, while smaller models show varying degrees of degradation. This suggests that the ability to override statistical biases with explicit information is correlated with model scale.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="test-limitations"&gt;Test Limitations&lt;/h3&gt;
+&lt;h3 id="limitations"&gt;Limitations&lt;/h3&gt;
 &lt;p&gt;While effective at identifying unreliable models, passing this test doesn't guarantee overall reliability. Like other
 negative tests, it serves as an error detector rather than a reliability certifier.&lt;/p&gt;
 &lt;p&gt;This test should be viewed as a necessary but not sufficient condition – failing indicates problems, but passing is just
 one piece of evidence in a model's favor.&lt;/p&gt;
-&lt;h3 id="practical-applications"&gt;Practical Applications&lt;/h3&gt;
+&lt;h3 id="practical-applications"&gt;Practical applications&lt;/h3&gt;
 &lt;p&gt;This test has proven valuable in several practical scenarios. When evaluating a new LLM for a project, it serves as a quick initial filter before investing time in more comprehensive testing. It's equally useful for version comparisons, providing a quick way to verify if a model update has maintained or improved fundamental reliability. Perhaps most importantly, when fine-tuning models for specific tasks, this test helps ensure that the optimization hasn't compromised the model's basic ability to handle explicit information faithfully.&lt;/p&gt;
 &lt;p&gt;Unlike complex benchmarks, this test provides clear binary results: the model either maintains unusual information
-accurately or it doesn't and it's suitable for a CI pipeline.&lt;/p&gt;
+accurately or it doesn't. Therefore, it's suitable for a CI pipeline.&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;hr&gt;
 
