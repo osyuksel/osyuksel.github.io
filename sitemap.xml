@@ -5,35 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://osyuksel.github.io/</loc>
-<lastmod>2025-07-17T22:36:10-00:00</lastmod>
+<lastmod>2025-07-31T23:45:06-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/</loc>
-<lastmod>2025-07-17T22:36:10-00:00</lastmod>
+<lastmod>2025-07-31T23:45:06-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/pages/about.html</loc>
-<lastmod>2025-07-17T22:36:10-00:00</lastmod>
+<lastmod>2025-07-31T23:45:06-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/pages/my-work.html</loc>
-<lastmod>2025-07-17T22:36:10-00:00</lastmod>
+<lastmod>2025-07-31T23:45:06-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/pages/contact.html</loc>
-<lastmod>2025-07-17T22:36:10-00:00</lastmod>
+<lastmod>2025-07-31T23:45:06-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -54,7 +54,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://osyuksel.github.io/blog/freelancing-intro/</loc>
-<lastmod>2025-05-20T20:53:00+02:00</lastmod>
+<lastmod>2025-07-31T20:53:00+02:00</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -96,21 +96,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://osyuksel.github.io/tag/business.html</loc>
-<lastmod>2025-05-20T20:53:00+00:18</lastmod>
+<lastmod>2025-07-31T20:53:00+00:18</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/tag/freelance.html</loc>
-<lastmod>2025-05-20T20:53:00+00:18</lastmod>
+<lastmod>2025-07-31T20:53:00+00:18</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/tag/company.html</loc>
-<lastmod>2025-05-20T20:53:00+00:18</lastmod>
+<lastmod>2025-07-31T20:53:00+00:18</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<!-- OpenGraph protocol tags: http://ogp.me/ -->
+<meta property="og:site_name" content="Ömer Yüksel" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Understanding Itô's lemma through numerical simulation -- " />
+<meta property="og:url" content="https://osyuksel.github.io/drafts/itos-lemma-numerical.html" />
+<meta property="og:description" content="Exploring Itô's Lemma and stochastic calculus through numerical simulations rather than complex mathematical proofs." />
+<meta property="article:published_time" content="2025-07-31 00:00:00+02:00" />
+<meta property="article:modified_time" content="2025-07-31 00:00:00+02:00" />
+<!-- End of OpenGraph protocol tags -->
+
+<head>
+      <title>Ömer Yüksel - Understanding Itô's lemma through numerical simulation</title>
+    <meta charset="utf-8"/>
+    <meta name="generator" content="Pelican"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://osyuksel.github.io/feeds/all.atom.xml"
+          type="application/atom+xml" rel="alternate" title="Ömer Yüksel Full Atom Feed"/>
+    <link href="https://osyuksel.github.io/feeds/technical.atom.xml"
+          type="application/atom+xml" rel="alternate" title="Ömer Yüksel Categories Atom Feed"/>
+
+        <link rel="stylesheet" href="https://osyuksel.github.io/theme/css/rdark.css" />
+        <link rel="stylesheet" href="https://osyuksel.github.io/theme/css/page.css">
+        <link rel="icon" href="https://osyuksel.github.io/favicon.ico" type="image/ico">
+
+
+	<link rel="stylesheet" type="text/css" href="https://osyuksel.github.io/theme/css/main.css" />
+        <link href="https://osyuksel.github.io/" type="application/atom+xml" rel="alternate" title="Ömer Yüksel ATOM Feed" /><!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="c3018972-a599-4b25-80a8-4d03ceff62ff"></script>
+
+	
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  "HTML-CSS": {
+    styles: {
+      ".MathJax .mo, .MathJax .mi": {color: "black ! important"}
+    },
+    scale: 75,  // Scale inline math to 60%
+    minScaleAdjust: 50
+  },
+  CommonHTML: {
+    scale: 75   // Scale inline math to 60%
+  },
+  SVG: {
+    scale: 75   // Scale inline math to 60%
+  },
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\\\(','\\\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true
+  }
+  });
+
+  // After MathJax processes, adjust display math back to larger size
+  MathJax.Hub.Queue(function () {
+    var displays = document.querySelectorAll('.MathJax_Display');
+    displays.forEach(function(display) {
+      display.style.fontSize = '1.3em';  // Make display math 1.5x the scaled size
+    });
+  });
+</script>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+
+
+
+
+    <meta name="tags" content="mathematics" />
+    <meta name="tags" content="finance" />
+    <meta name="tags" content="stochastic-calculus" />
+    <meta name="tags" content="python" />
+
+</head>
+
+<body>
+<header>
+    <hgroup style="text-align: center"><h1><a href="https://osyuksel.github.io/">Ömer Yüksel</a></h1>    </hgroup>
+    <nav>
+        <a href="https://www.github.com/osyuksel"  target="_blank" rel="noopener noreferrer"><img height="16" src="https://osyuksel.github.io/assets/github-mark.svg" width="16"/></a>
+        <a href="https://www.linkedin.com/in/omersyuksel"  target="_blank" rel="noopener noreferrer"><img height="16" src="https://osyuksel.github.io/assets/linkedin.webp" width="16"/></a>
+    </nav>
+
+    <br>
+    <nav>
+             &#124;
+            <a href="https://osyuksel.github.io/index.html" >Home</a> &#124;
+
+            <a href="https://osyuksel.github.io/pages/about.html" >About</a> &#124;
+
+            <a href="https://osyuksel.github.io/pages/my-work.html" >My Work</a> &#124;
+
+            <a href="https://osyuksel.github.io/pages/contact.html" >Contact</a> &#124;
+
+                <a href="/blog/">Blog</a> &#124;
+
+    </nav>
+</header>
+<main>
+  <article>
+    <header>
+      <h1>
+        <a href="https://osyuksel.github.io/drafts/itos-lemma-numerical.html" rel="bookmark"
+           title="Permalink to Understanding Itô's lemma through numerical simulation">Understanding Itô's lemma through numerical simulation</a></h1>
+      
+    </header>
+    <p>Most Itô's lemma explanations suffer from excessive handwaving, oversimplification, or circular reasoning ("this works because that's how Itô calculus is defined"). Even ChatGPT, sometimes quite good at complex mathematical concepts, struggles here, presumably because its training data contains these same problematic explanations.</p>
+<p>Rigorous proofs exist, but require background in real analysis, martingale theory, stochastic integrals, and measure theory that most STEM graduates encounter only in specialized graduate coursework, if at all. This post takes an empirical approach instead: numerical simulation using Monte Carlo methods to demonstrate Itô's lemma from quadratic variation through financial modeling applications.</p>
+<h3 id="quadratic-variation">Quadratic variation</h3>
+<p>Let's start with the fundamental concept that makes Itô Calculus different from ordinary calculus: quadratic variation. In ordinary calculus, the infinitesimal changes ($dx$) squared are so small they vanish as we take finer and finer partitions. But with Brownian motion, the sum of squared increments converges to the time interval itself.</p>
+<p>To demonstrate this, I've written some code that simulates Brownian motion and calculates its quadratic variation:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="k">def</span> <span class="nf">generate_quadratic_variation</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">N_steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a single path of Brownian motion and calculate its quadratic variation</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    - T: Time horizon</span>
+<span class="sd">    - N_steps: Number of points in partition</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    - dt: Time step size</span>
+<span class="sd">    - qv: Quadratic variation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="n">N_steps</span>
+
+    <span class="c1"># Generate a single Brownian motion path</span>
+    <span class="n">dB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">),</span> <span class="n">N_steps</span><span class="p">)</span>
+
+    <span class="c1"># Calculate quadratic variation</span>
+    <span class="n">qv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dB</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">dt</span><span class="p">,</span> <span class="n">qv</span>
+</code></pre></div>
+
+<p>Running this code with different partition sizes, we see a pattern:</p>
+<table>
+<thead>
+<tr>
+<th>N</th>
+<th>dt</th>
+<th>QV</th>
+<th>Error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>1.00e-02</td>
+<td>0.827306</td>
+<td>0.172694</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>1.00e-03</td>
+<td>0.967506</td>
+<td>0.032494</td>
+</tr>
+<tr>
+<td>10000</td>
+<td>1.00e-04</td>
+<td>1.004778</td>
+<td>0.004778</td>
+</tr>
+<tr>
+<td>100000</td>
+<td>1.00e-05</td>
+<td>1.001046</td>
+<td>0.001046</td>
+</tr>
+</tbody>
+</table>
+<p>As we increase the number of points in our partition, the quadratic variation converges to 1.0 (our time horizon T). This isn't a coincidence but a fundamental property of Brownian motion.</p>
+<p>This is just a single path. To see why the error shrinks as partition size goes down, let's look at the statistical properties across multiple simulations over 100 trials (note that #trials is different from N, the path size):</p>
+<table>
+<thead>
+<tr>
+<th>N</th>
+<th>dt</th>
+<th>mean(QV)</th>
+<th>std(QV)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>1.00e-02</td>
+<td>0.999603</td>
+<td>0.143813</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>1.00e-03</td>
+<td>1.001703</td>
+<td>0.043909</td>
+</tr>
+<tr>
+<td>10000</td>
+<td>1.00e-04</td>
+<td>0.999985</td>
+<td>0.014373</td>
+</tr>
+<tr>
+<td>100000</td>
+<td>1.00e-05</td>
+<td>1.000197</td>
+<td>0.004347</td>
+</tr>
+</tbody>
+</table>
+<p>The standard deviation shrinks with the square root of the number of partition points as Central Limit Theorem predicts. This property of Brownian motion - that its quadratic variation equals the time interval - is what makes Itô Calculus necessary and different from ordinary calculus.</p>
+<h3 id="numerical-verification-methodology">Numerical verification methodology</h3>
+<p>Here we compare two integration methods:</p>
+<ol>
+<li><strong>Itô integration</strong>: This approach numerically integrates the stochastic differential equation using the complete Itô
+   formula, including the correction term: $df = cos(t)dt + 2X·dB + dt$. We accumulate these increments step by step
+   along the path to approximate the solution.</li>
+<li><strong>Naive integration</strong>: This approach also uses numerical integration but applies ordinary calculus rules that would
+   be correct for smooth processes, omitting the Itô correction term: $df = cos(t)dt + 2X·dB$. It's "naive" because it
+   incorrectly assumes standard calculus applies to Brownian motion.</li>
+</ol>
+<p>We test both integration methods against the true value of $f(t,X(t))$. A correct integration method should satisfy: integrating $df$ from $t=0$ to $t=1$ equals $f(1) - f(0)$.</p>
+<h3 id="itos-lemma">Itô's lemma</h3>
+<p>Now that we've established the behavior of quadratic variation, we can explore Itô's Lemma itself. This lemma tells us how to compute the differential of a function of a stochastic process.</p>
+<p>In ordinary calculus, if we have a function $f(t,X)$ and $X$ changes with time according to some process, we use the chain rule:</p>
+<p>$$df = (∂f/∂t)dt + (∂f/∂x)dx$$</p>
+<p>But when x follows a stochastic process like Brownian motion, we need an extra term:</p>
+<p>$$df = (∂f/∂t)dt + (∂f/∂x)dx + (1/2)(∂^2f/∂x^2)(dx)^2$$</p>
+<p>That last term is the Itô correction, and it appears because the quadratic variation of Brownian motion doesn't vanish as dt approaches zero.</p>
+<h3 id="verification-1-quadratic-function">Verification 1: quadratic function</h3>
+<p>Now verifying this numerically with a simple function $f(t,X) = X^2 + sin(t)$, where $X(t)=B(t)$ (Brownian motion).</p>
+<p>Recall the formulas for the differential:</p>
+<p>For $f(t,X) = X^2 + \sin(t)$:</p>
+<p><strong>Naive differential:</strong>
+$$df = \frac{\partial f}{\partial t}dt + \frac{\partial f}{\partial X}dX = \cos(t)dt + 2X \, dB$$</p>
+<p><strong>Itô's lemma:</strong>
+$$df = \frac{\partial f}{\partial t}dt + \frac{\partial f}{\partial X}dX + \frac{1}{2}\frac{\partial^2 f}{\partial X^2}dt = \cos(t)dt + 2X \, dB + dt$$</p>
+<p>First, we have to partition the time period into discrete time steps. Then for each time step:</p>
+<ul>
+<li>Generate $X(t)$, then calculate $f(t, X(t))$ </li>
+<li>Calculate $\Delta f$ using Itô's lemma </li>
+<li>Calculate naive $\Delta f$ using ordinary calculus</li>
+</ul>
+<p>Afterwards we integrate the naive and Itô differentials to get the final result, and check how close they are to f at final time step.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">demonstrate_ito_lemma</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">N_steps</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Demonstrate Itô&#39;s Lemma for f(t,B_t) = B_t² + sin(t)</span>
+<span class="sd">    where B_t is standard Brownian motion</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">T</span><span class="o">/</span><span class="n">N_steps</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N_steps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Pre-calculate trig functions</span>
+    <span class="n">cos_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># We need cos(t) only for N_steps steps</span>
+    <span class="n">sin_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>       <span class="c1"># We need sin(t) for N_steps+1 points</span>
+
+    <span class="c1"># Generate Brownian path</span>
+    <span class="n">dB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">),</span> <span class="n">N_steps</span><span class="p">)</span>
+
+    <span class="c1"># Note: Arrays B and f have size N_steps+1 because they include </span>
+    <span class="c1"># the initial state at t=0 while dB has size N_steps (the </span>
+    <span class="c1"># increments between consecutive time points)</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dB</span><span class="p">]))</span>
+
+    <span class="c1"># Initialize paths</span>
+    <span class="n">f_ito</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N_steps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">f_naive</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N_steps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">f_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N_steps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Initial values</span>
+    <span class="n">f_true</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">sin_t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">f_ito</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">f_true</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">f_naive</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">f_true</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># True value (exact solution)</span>
+    <span class="n">f_true</span> <span class="o">=</span> <span class="n">B</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">sin_t</span>
+
+    <span class="c1"># Calculate increments</span>
+    <span class="n">increments_ito</span> <span class="o">=</span> <span class="n">cos_t</span><span class="o">*</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">B</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">dB</span> <span class="o">+</span> <span class="n">dt</span>
+    <span class="n">increments_naive</span> <span class="o">=</span> <span class="n">cos_t</span><span class="o">*</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">B</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">dB</span>
+
+    <span class="c1"># Use cumsum to evolve paths</span>
+    <span class="n">f_ito</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">f_ito</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">increments_ito</span><span class="p">)</span>
+    <span class="n">f_naive</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">f_naive</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">increments_naive</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">f_true</span><span class="p">,</span> <span class="n">f_ito</span><span class="p">,</span> <span class="n">f_naive</span>
+</code></pre></div>
+
+<p>Statistics for 100 trials with 100 thousand time steps in time period $[0,1]$:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Mean</th>
+<th>Std</th>
+<th>Mean Abs Error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>True</td>
+<td>1.960321</td>
+<td>1.673978</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Itô integration</td>
+<td>1.960386</td>
+<td>1.673497</td>
+<td>0.003710</td>
+</tr>
+<tr>
+<td>Naive integration</td>
+<td>0.960386</td>
+<td>1.673497</td>
+<td>0.999935</td>
+</tr>
+</tbody>
+</table>
+<p>The naive approach (ignoring the Itô correction) has a mean absolute error of nearly 1.0, while the Itô approach has an error of only 0.0037. This difference is caused by the missing Itô correction term $(1/2)(∂^2f/∂x^2)(dx)^2$ in the Naive approach, which has a theoretical value of 1.0 in this case.</p>
+<p>Below is the code generating data for a single path:</p>
+<h3 id="verification-2-geometric-brownian-motion">Verification 2: geometric Brownian motion</h3>
+<p>Finally, let's apply Itô's Lemma to something with practical importance: geometric Brownian motion (GBM), which is widely used to model stock prices in finance.</p>
+<p>In the log space, GBM follows:</p>
+<p><strong>Itô's lemma (correct):</strong>
+$$d(\log S) = \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma dB$$</p>
+<p><strong>Naive approach (incorrect):</strong>
+$$d(\log S) = \mu dt + \sigma dB$$</p>
+<p>The difference is the $-\sigma^2/2$ term, which is the Itô correction. The naive approach applies ordinary calculus rules and misses this correction term, leading to systematic bias in the model.</p>
+<p>Let's verify this numerically for $μ=0.1, σ=0.3$:</p>
+<p><em>(Note: Code implementation omitted for brevity - it follows the same pattern as the simpler example above, but uses the GBM increments shown in the equations.)</em></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Mean</th>
+<th>Std</th>
+<th>Mean Abs Error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>True (log space)</td>
+<td>0.058349</td>
+<td>0.302257</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Itô integration</td>
+<td>0.058349</td>
+<td>0.302257</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<td>Naive integration</td>
+<td>0.103349</td>
+<td>0.302257</td>
+<td>0.045000</td>
+</tr>
+</tbody>
+</table>
+<p>The naive approach systematically overestimates the mean by 77% (0.103349 vs. 0.058349). This 0.045 bias matches the theoretical Itô correction of σ²/2 = 0.3²/2 = 0.045.</p>
+<p>In the original space (not log space), the difference becomes even more visible:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Mean</th>
+<th>Std</th>
+<th>Mean Abs Error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>True</td>
+<td>1.108515</td>
+<td>0.328547</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Itô integration</td>
+<td>1.108515</td>
+<td>0.328547</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<td>Naive integration</td>
+<td>1.159537</td>
+<td>0.343669</td>
+<td>0.051023</td>
+</tr>
+</tbody>
+</table>
+<h3 id="conclusion">Conclusion</h3>
+<p>We've verified several key properties of stochastic calculus through these numerical simulations:</p>
+<ol>
+<li>The quadratic variation of Brownian motion over a time interval T equals T</li>
+<li>Itô's Lemma correctly accounts for this non-vanishing quadratic variation</li>
+<li>The Itô correction term is crucial for unbiased modeling of processes like Geometric Brownian Motion</li>
+</ol>
+<p>These numerical simulations verify key stochastic calculus properties without requiring measure theory. The empirical approach demonstrates why Itô's correction term is necessary for unbiased modeling—particularly valuable for practitioners who need to apply these concepts without absorbing the full mathematical framework.</p>
+    <footer>
+      <hr>
+      <p>Published: <time datetime="2025-07-31T00:00:00+02:00">
+        Thu 31 July 2025
+      </time></p>
+        <p>Last updated: <time datetime="2025-07-31T00:00:00+02:00">
+          Thu 31 July 2025
+        </time></p>
+        <address>
+          By <!--            <a href="https://osyuksel.github.io/author/omer-yuksel.html">Ömer Yüksel</a>-->
+          Ömer Yüksel
+        </address>
+<!--      -->
+<!--        <p>-->
+<!--          Category: <a href="https://osyuksel.github.io/category/technical.html">Technical</a>-->
+<!--        </p>-->
+<!--      -->
+        <p>
+          Tags:
+            <a href="https://osyuksel.github.io/tag/mathematics.html">mathematics</a>
+            <a href="https://osyuksel.github.io/tag/finance.html">finance</a>
+            <a href="https://osyuksel.github.io/tag/stochastic-calculus.html">stochastic-calculus</a>
+            <a href="https://osyuksel.github.io/tag/python.html">python</a>
+        </p>
+    </footer>
+  </article>
+</main>
+<footer>
+  <footer>
+    <address>
+      © 2025 Powered by <a href="https://getpelican.com/">Pelican</a>.
+    </address>
+  </footer>
+</footer>
+</body>
+</html>

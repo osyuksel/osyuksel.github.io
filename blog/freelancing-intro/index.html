@@ -8,7 +8,7 @@
 <meta property="og:url" content="https://osyuksel.github.io/blog/freelancing-intro/" />
 <meta property="og:description" content="An introduction to tech freelancing with personal experiences from the Netherlands." />
 <meta property="article:published_time" content="2025-05-01 10:20:00+02:00" />
-<meta property="article:modified_time" content="2025-05-20 20:53:00+02:00" />
+<meta property="article:modified_time" content="2025-07-31 20:53:00+02:00" />
 <!-- End of OpenGraph protocol tags -->
 
 <head>
@@ -32,19 +32,39 @@
     <script defer src="https://cloud.umami.is/script.js" data-website-id="c3018972-a599-4b25-80a8-4d03ceff62ff"></script>
 
 	
-<!-- Using MathJax, with the delimiters $ -->
-<!-- Conflict with pygments for the .mo and .mi -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
   "HTML-CSS": {
-  styles: {
-  ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+    styles: {
+      ".MathJax .mo, .MathJax .mi": {color: "black ! important"}
+    },
+    scale: 75,  // Scale inline math to 60%
+    minScaleAdjust: 50
   },
-  tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+  CommonHTML: {
+    scale: 75   // Scale inline math to 60%
+  },
+  SVG: {
+    scale: 75   // Scale inline math to 60%
+  },
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\\\(','\\\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true
+  }
+  });
+
+  // After MathJax processes, adjust display math back to larger size
+  MathJax.Hub.Queue(function () {
+    var displays = document.querySelectorAll('.MathJax_Display');
+    displays.forEach(function(display) {
+      display.style.fontSize = '1.3em';  // Make display math 1.5x the scaled size
+    });
   });
 </script>
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 
 
@@ -133,23 +153,26 @@
 <p>Some red flags to watch out for:</p>
 <ul>
 <li>Those offering already publicly available assignments (such as from the aforementioned marketplaces) that you can apply directly to.</li>
+<li>Those that remain secretive about their client's name. They probably do not have an agreement with them yet. Or worse, in some cases, the assignment does not even exist, and they are just fishing for resumes.</li>
+<li>On top of the above, agencies that spend excessive time asking about your management chain and demanding "references" without having an actual project. They don't need references but are looking for sales leads.</li>
 <li>Outrageous profit margins. Always ask what their cut is and watch out for those that evade the question. More than 15 Eur/hour raises questions. You might think that what goes on between the agency and end-client is their own business, but keep in mind that the more the end-client pays, the more they will expect out of you. Therefore, a huge discrepancy between what they pay and what you receive may lead to soured relations.</li>
-<li>Unfair contract terms: think shifting all the liability to you, non-compete period over a year, asymmetric notice periods, not being allowed to cancel the contract.</li>
+<li>Unfair contract terms. Think shifting all the liability to you, non-compete period over a year, asymmetric notice periods, not being allowed to cancel the contract.</li>
 </ul>
 <p>In general, I had better experience with local and smaller firms, as they have more skin in the game and an incentive to build personal relationships.</p>
 <p>Another factor is whether the company allows building their recruiters a career or if they are burning through juniors: the ones in the latter category are more likely to see you as a row in their Excel sheet rather than a long-term business partner.</p>
-<p>You can make yourself available on LinkedIn and passively wait for agencies to contact you. However, in my limited experience, I had better luck actively applying for assignments that are out there rather than the passive approach – the latter turned out mostly bad fits.</p>
+<p>You can make yourself available on LinkedIn and passively wait for agencies to contact you. However, in my limited experience, I had better luck actively applying for assignments that are out there rather than the passive approach.</p>
 <h4 id="communication">Communication</h4>
 <p>Once you start your business, your number will be in a publicly accessible registry (Chamber of Commerce in the Netherlands). I highly recommend getting a business phone number in advance before creating your company. That is because this public number will likely receive many unwanted calls over time. In the Netherlands, you can expect spam calls trying to sell you an energy or internet contract.</p>
-<p>Most calls, however, will be from recruiters. In my experience, most of the projects from these calls were "shotgun" attempts and not very good fits – the same as outlined above about the passive approach. That's why I prioritize emails and LinkedIn messages over random calls as it allows filtering out bad matches from the start.</p>
+<p>Most calls, however, will be from recruiters. In my experience, most of the projects from these calls were "shotgun" attempts and not very good fits. That's why I prioritize emails and LinkedIn messages over random calls as it helps filter out bad matches from the beginning.</p>
 <p>However, your personal preference regarding calls may differ, and if you have the capacity, investing time in these calls can increase your chances of finding good opportunities.</p>
 <p>Regardless, it's important to remain polite and professional during these interactions, but also remember that your time is valuable. You do not owe fifteen minutes of your time to someone that has nothing meaningful to offer. Ultimately, <a href="https://en.wikipedia.org/wiki/Sturgeon%27s_law">Sturgeon's Law</a> will apply to many messages and cold calls you'll receive.</p>
 <h3 id="determining-your-hourly-rate">Determining your hourly rate</h3>
 <p>It is best to ask around your own network, of course, but you can also find some publicly available information to have a reference point.</p>
 <p>Especially government agencies tend to be more transparent about the maximum budget, so that would provide a good place to start.</p>
 <p><a href="https://techpays.com/">TechPays.com</a>, a crowdsourced database primarily focused on employees, also has data on freelancers. Some freelance assignments on LinkedIn, as well as the aforementioned marketplaces, have visible hourly rate ranges.</p>
-<p>There is quite a variance in rates – if I had picked the first assignment offered to me, I would be earning half of what I make now. Location also matters – big cities tend to pay better than smaller ones, and in my experience, I saw a drop up to 40% for some cases in the Netherlands for the same title.</p>
-<p>Finally, for assignments through intermediaries, you can think of the process as a reverse auction: they sort offers from lowest to highest and pick the most affordable one that ticks all the boxes. Therefore, asking for the maximum budget will significantly lower your chances unless the project requires niche expertise.</p>
+<p>There is quite a variance in rates: if I had picked the first assignment offered to me, I would be earning half of what I make now. Location also matters as big cities tend to pay better than smaller ones. I saw a drop up to 40% for some cases in the Netherlands for the same assignment description.</p>
+<p>Finally, for assignments through intermediaries, you can think of the process as a reverse auction: they sort offers from lowest to highest and pick the most affordable one that ticks all the boxes. This differs from paid employment in big tech or finance, where they try to find the absolute best candidate within the budget.</p>
+<p>Therefore, asking for the maximum budget will significantly lower your chances unless the project requires niche expertise.</p>
 <h3 id="conclusion">Conclusion</h3>
 <p>To reiterate: freelance is high risk and high reward.</p>
 <p>I personally find the autonomy liberating, and the variety of projects stimulating. On the other hand, I do miss some comforts of my former paid employment, as well as the type of high-context work that can only be done by long-term employees with specific knowledge.</p>
@@ -158,8 +181,8 @@
       <p>Published: <time datetime="2025-05-01T10:20:00+02:00">
         Thu 01 May 2025
       </time></p>
-        <p>Last updated: <time datetime="2025-05-20T20:53:00+02:00">
-          Tue 20 May 2025
+        <p>Last updated: <time datetime="2025-07-31T20:53:00+02:00">
+          Thu 31 July 2025
         </time></p>
         <address>
           By <!--            <a href="https://osyuksel.github.io/author/omer-yuksel.html">Ömer Yüksel</a>-->

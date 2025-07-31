@@ -32,19 +32,39 @@
     <script defer src="https://cloud.umami.is/script.js" data-website-id="c3018972-a599-4b25-80a8-4d03ceff62ff"></script>
 
 	
-<!-- Using MathJax, with the delimiters $ -->
-<!-- Conflict with pygments for the .mo and .mi -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
   "HTML-CSS": {
-  styles: {
-  ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+    styles: {
+      ".MathJax .mo, .MathJax .mi": {color: "black ! important"}
+    },
+    scale: 75,  // Scale inline math to 60%
+    minScaleAdjust: 50
   },
-  tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+  CommonHTML: {
+    scale: 75   // Scale inline math to 60%
+  },
+  SVG: {
+    scale: 75   // Scale inline math to 60%
+  },
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\\\(','\\\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true
+  }
+  });
+
+  // After MathJax processes, adjust display math back to larger size
+  MathJax.Hub.Queue(function () {
+    var displays = document.querySelectorAll('.MathJax_Display');
+    displays.forEach(function(display) {
+      display.style.fontSize = '1.3em';  // Make display math 1.5x the scaled size
+    });
   });
 </script>
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 
 
@@ -186,12 +206,12 @@
 </ol>
 <p>And the answers turn out to be interesting: there are unexpected patterns in how embedding spaces represent text. Even with the simplest optimization approach, we can generate nonsensical sequences that score higher on average than any natural language prompt in the embedding space.</p>
 <p>Here's a greedy algorithm that optimizes token selection to maximize embedding similarity scores. For each position from left to right, it tries every possible token and keeps the one that yields the highest average similarity against our sentence pool. After reaching the maximum length, it starts over from the beginning for additional optimization passes:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">score</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
     <span class="o">...</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">generate_adversarial_prompt</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sentence_pool</span><span class="p">,</span> <span class="n">num_iterations</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">generate_adversarial_prompt</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sentence_pool</span><span class="p">,</span> <span class="n">num_iterations</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
 <span class="w">   </span><span class="sd">&quot;&quot;&quot;Generate adversarial prompt for a given model and sentence pool.</span>
 
 <span class="sd">   Intentionally left out early stopping to prevent getting stuck in a local minimum.</span>

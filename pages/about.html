@@ -26,19 +26,39 @@
     <script defer src="https://cloud.umami.is/script.js" data-website-id="c3018972-a599-4b25-80a8-4d03ceff62ff"></script>
 
 	
-<!-- Using MathJax, with the delimiters $ -->
-<!-- Conflict with pygments for the .mo and .mi -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
   "HTML-CSS": {
-  styles: {
-  ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+    styles: {
+      ".MathJax .mo, .MathJax .mi": {color: "black ! important"}
+    },
+    scale: 75,  // Scale inline math to 60%
+    minScaleAdjust: 50
   },
-  tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+  CommonHTML: {
+    scale: 75   // Scale inline math to 60%
+  },
+  SVG: {
+    scale: 75   // Scale inline math to 60%
+  },
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\\\(','\\\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true
+  }
+  });
+
+  // After MathJax processes, adjust display math back to larger size
+  MathJax.Hub.Queue(function () {
+    var displays = document.querySelectorAll('.MathJax_Display');
+    displays.forEach(function(display) {
+      display.style.fontSize = '1.3em';  // Make display math 1.5x the scaled size
+    });
   });
 </script>
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 
 
