@@ -5,10 +5,10 @@
 <meta property="og:site_name" content="Ömer Yüksel" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Understanding Itô's lemma through numerical simulation -- " />
-<meta property="og:url" content="https://osyuksel.github.io/drafts/itos-lemma-numerical.html" />
+<meta property="og:url" content="https://osyuksel.github.io/blog/itos-lemma-numerical/" />
 <meta property="og:description" content="Exploring Itô's Lemma and stochastic calculus through numerical simulations rather than complex mathematical proofs." />
-<meta property="article:published_time" content="2025-07-31 00:00:00+02:00" />
-<meta property="article:modified_time" content="2025-07-31 00:00:00+02:00" />
+<meta property="article:published_time" content="2025-08-01 00:00:00+02:00" />
+<meta property="article:modified_time" content="2025-08-01 00:00:00+02:00" />
 <!-- End of OpenGraph protocol tags -->
 
 <head>
@@ -104,12 +104,13 @@
   <article>
     <header>
       <h1>
-        <a href="https://osyuksel.github.io/drafts/itos-lemma-numerical.html" rel="bookmark"
+        <a href="https://osyuksel.github.io/blog/itos-lemma-numerical/" rel="bookmark"
            title="Permalink to Understanding Itô's lemma through numerical simulation">Understanding Itô's lemma through numerical simulation</a></h1>
       
     </header>
-    <p>Most Itô's lemma explanations suffer from excessive handwaving, oversimplification, or circular reasoning ("this works because that's how Itô calculus is defined"). Even ChatGPT, sometimes quite good at complex mathematical concepts, struggles here, presumably because its training data contains these same problematic explanations.</p>
-<p>Rigorous proofs exist, but require background in real analysis, martingale theory, stochastic integrals, and measure theory that most STEM graduates encounter only in specialized graduate coursework, if at all. This post takes an empirical approach instead: numerical simulation using Monte Carlo methods to demonstrate Itô's lemma from quadratic variation through financial modeling applications.</p>
+    <p>Most <a href="https://en.wikipedia.org/wiki/It%C3%B4%27s_lemma">Itô's lemma</a> explanations rely on intuitive hand-waving or focus only on expected values, without demonstrating the underlying mathematical mechanics. Even ChatGPT, which has been good at explaining complex textbook concepts, struggles here, presumably because its training data contains these same problematic explanations.</p>
+<p>That is because understanding <a href="https://mathtm.blogspot.com/2014/06/a-rigorous-proof-of-itos-lemma_4.html">rigorous proofs</a> require background in real analysis, martingale theory, stochastic integrals, and measure theory that most STEM graduates encounter only in specialized graduate coursework, if at all.</p>
+<p>This post takes an empirical approach instead: numerical simulation using Monte Carlo methods to demonstrate Itô's lemma from quadratic variation through geometric Brownian motion. When rigorous proofs are inaccessible, seeing the formula "work" in practice provides the next best kind of confidence in its validity. The complete code for all simulations shown in this post is <a href="https://gist.github.com/osyuksel/b5477b9f4ea00159cf8d44fde8a62e4e">available on GitHub</a>.</p>
 <h3 id="quadratic-variation">Quadratic variation</h3>
 <p>Let's start with the fundamental concept that makes Itô Calculus different from ordinary calculus: quadratic variation. In ordinary calculus, the infinitesimal changes ($dx$) squared are so small they vanish as we take finer and finer partitions. But with Brownian motion, the sum of squared increments converges to the time interval itself.</p>
 <p>To demonstrate this, I've written some code that simulates Brownian motion and calculates its quadratic variation:</p>
@@ -213,17 +214,6 @@
 </tbody>
 </table>
 <p>The standard deviation shrinks with the square root of the number of partition points as Central Limit Theorem predicts. This property of Brownian motion - that its quadratic variation equals the time interval - is what makes Itô Calculus necessary and different from ordinary calculus.</p>
-<h3 id="numerical-verification-methodology">Numerical verification methodology</h3>
-<p>Here we compare two integration methods:</p>
-<ol>
-<li><strong>Itô integration</strong>: This approach numerically integrates the stochastic differential equation using the complete Itô
-   formula, including the correction term: $df = cos(t)dt + 2X·dB + dt$. We accumulate these increments step by step
-   along the path to approximate the solution.</li>
-<li><strong>Naive integration</strong>: This approach also uses numerical integration but applies ordinary calculus rules that would
-   be correct for smooth processes, omitting the Itô correction term: $df = cos(t)dt + 2X·dB$. It's "naive" because it
-   incorrectly assumes standard calculus applies to Brownian motion.</li>
-</ol>
-<p>We test both integration methods against the true value of $f(t,X(t))$. A correct integration method should satisfy: integrating $df$ from $t=0$ to $t=1$ equals $f(1) - f(0)$.</p>
 <h3 id="itos-lemma">Itô's lemma</h3>
 <p>Now that we've established the behavior of quadratic variation, we can explore Itô's Lemma itself. This lemma tells us how to compute the differential of a function of a stochastic process.</p>
 <p>In ordinary calculus, if we have a function $f(t,X)$ and $X$ changes with time according to some process, we use the chain rule:</p>
@@ -231,21 +221,33 @@
 <p>But when x follows a stochastic process like Brownian motion, we need an extra term:</p>
 <p>$$df = (∂f/∂t)dt + (∂f/∂x)dx + (1/2)(∂^2f/∂x^2)(dx)^2$$</p>
 <p>That last term is the Itô correction, and it appears because the quadratic variation of Brownian motion doesn't vanish as dt approaches zero.</p>
+<h3 id="numerical-verification-methodology">Numerical verification methodology</h3>
+<p>Here we compare two discretization schemes for stochastic differential equations:</p>
+<ol>
+<li><strong>Itô-corrected scheme</strong>: This approach uses the complete Itô formula to derive the proper discretized increments, 
+   including the correction term: $(1/2)(∂^2f/∂x^2)(dx)^2$. We accumulate these increments step by step
+   along the path to approximate the solution.</li>
+<li><strong>Naive scheme</strong>: This approach applies ordinary calculus rules that would be correct for smooth processes,
+   omitting the Itô correction term. It is "naive" because it incorrectly assumes standard calculus chain rule
+   applies to Brownian motion.</li>
+</ol>
+<p>We test both discretization schemes against the true analytical value of $f(t,X)$. A correct scheme, i.e. the correct value of $d_f$, should satisfy: </p>
+<p>$$\int_{0}^{1} df = f(1) - f(0)$$</p>
 <h3 id="verification-1-quadratic-function">Verification 1: quadratic function</h3>
-<p>Now verifying this numerically with a simple function $f(t,X) = X^2 + sin(t)$, where $X(t)=B(t)$ (Brownian motion).</p>
+<p>Now verifying this numerically with a simple function $f(t,X) = X^2 + \sin(t)$, where $X=B$ (Brownian motion).</p>
 <p>Recall the formulas for the differential:</p>
-<p>For $f(t,X) = X^2 + \sin(t)$:</p>
-<p><strong>Naive differential:</strong>
-$$df = \frac{\partial f}{\partial t}dt + \frac{\partial f}{\partial X}dX = \cos(t)dt + 2X \, dB$$</p>
 <p><strong>Itô's lemma:</strong>
-$$df = \frac{\partial f}{\partial t}dt + \frac{\partial f}{\partial X}dX + \frac{1}{2}\frac{\partial^2 f}{\partial X^2}dt = \cos(t)dt + 2X \, dB + dt$$</p>
+$$df = \frac{\partial f}{\partial t}dt + \frac{\partial f}{\partial B}dB + \frac{1}{2}\frac{\partial^2 f}{\partial B^2}dt = \cos(t)dt + 2B \, dB + dt$$</p>
+<p><strong>Naive differential:</strong>
+$$df = \frac{\partial f}{\partial t}dt + \frac{\partial f}{\partial B}dB = \cos(t)dt + 2B \, dB$$</p>
 <p>First, we have to partition the time period into discrete time steps. Then for each time step:</p>
 <ul>
-<li>Generate $X(t)$, then calculate $f(t, X(t))$ </li>
+<li>Generate $X$, then calculate $f(t, X)$ </li>
 <li>Calculate $\Delta f$ using Itô's lemma </li>
 <li>Calculate naive $\Delta f$ using ordinary calculus</li>
 </ul>
 <p>Afterwards we integrate the naive and Itô differentials to get the final result, and check how close they are to f at final time step.</p>
+<p>Below is the code generating data for a single path:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">demonstrate_ito_lemma</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">N_steps</span><span class="p">):</span>
@@ -311,13 +313,13 @@ $$df = \frac{\partial f}{\partial t}dt + \frac{\partial f}{\partial X}dX + \frac
 <td>N/A</td>
 </tr>
 <tr>
-<td>Itô integration</td>
+<td>Integration (Itô)</td>
 <td>1.960386</td>
 <td>1.673497</td>
 <td>0.003710</td>
 </tr>
 <tr>
-<td>Naive integration</td>
+<td>Integration (naive)</td>
 <td>0.960386</td>
 <td>1.673497</td>
 <td>0.999935</td>
@@ -325,7 +327,6 @@ $$df = \frac{\partial f}{\partial t}dt + \frac{\partial f}{\partial X}dX + \frac
 </tbody>
 </table>
 <p>The naive approach (ignoring the Itô correction) has a mean absolute error of nearly 1.0, while the Itô approach has an error of only 0.0037. This difference is caused by the missing Itô correction term $(1/2)(∂^2f/∂x^2)(dx)^2$ in the Naive approach, which has a theoretical value of 1.0 in this case.</p>
-<p>Below is the code generating data for a single path:</p>
 <h3 id="verification-2-geometric-brownian-motion">Verification 2: geometric Brownian motion</h3>
 <p>Finally, let's apply Itô's Lemma to something with practical importance: geometric Brownian motion (GBM), which is widely used to model stock prices in finance.</p>
 <p>In the log space, GBM follows:</p>
@@ -333,9 +334,8 @@ $$df = \frac{\partial f}{\partial t}dt + \frac{\partial f}{\partial X}dX + \frac
 $$d(\log S) = \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma dB$$</p>
 <p><strong>Naive approach (incorrect):</strong>
 $$d(\log S) = \mu dt + \sigma dB$$</p>
-<p>The difference is the $-\sigma^2/2$ term, which is the Itô correction. The naive approach applies ordinary calculus rules and misses this correction term, leading to systematic bias in the model.</p>
-<p>Let's verify this numerically for $μ=0.1, σ=0.3$:</p>
-<p><em>(Note: Code implementation omitted for brevity - it follows the same pattern as the simpler example above, but uses the GBM increments shown in the equations.)</em></p>
+<p>The difference is the $-\sigma^2/2$ term, which is the Itô correction. The naive approach applies ordinary calculus rules and misses this correction term, leading to systematic bias in the model. I've left the code for brevity, but it is similar to the previous case, where the primary difference is the increment calculation.</p>
+<p>Let's verify this numerically for $μ=0.1, σ=0.3$ in T. </p>
 <table>
 <thead>
 <tr>
@@ -353,20 +353,20 @@ $$d(\log S) = \mu dt + \sigma dB$$</p>
 <td>N/A</td>
 </tr>
 <tr>
-<td>Itô integration</td>
+<td>Integration (Itô)</td>
 <td>0.058349</td>
 <td>0.302257</td>
 <td>0.000000</td>
 </tr>
 <tr>
-<td>Naive integration</td>
+<td>Integration (naive)</td>
 <td>0.103349</td>
 <td>0.302257</td>
 <td>0.045000</td>
 </tr>
 </tbody>
 </table>
-<p>The naive approach systematically overestimates the mean by 77% (0.103349 vs. 0.058349). This 0.045 bias matches the theoretical Itô correction of σ²/2 = 0.3²/2 = 0.045.</p>
+<p>The naive approach systematically overestimates the mean by 77% (0.103349 vs. 0.058349). This 0.045 bias matches the theoretical Itô correction of $σ^2/2 = 0.3²/2 = 0.045$.</p>
 <p>In the original space (not log space), the difference becomes even more visible:</p>
 <table>
 <thead>
@@ -385,13 +385,13 @@ $$d(\log S) = \mu dt + \sigma dB$$</p>
 <td>N/A</td>
 </tr>
 <tr>
-<td>Itô integration</td>
+<td>Integration (Itô)</td>
 <td>1.108515</td>
 <td>0.328547</td>
 <td>0.000000</td>
 </tr>
 <tr>
-<td>Naive integration</td>
+<td>Integration (naive)</td>
 <td>1.159537</td>
 <td>0.343669</td>
 <td>0.051023</td>
@@ -408,11 +408,11 @@ $$d(\log S) = \mu dt + \sigma dB$$</p>
 <p>These numerical simulations verify key stochastic calculus properties without requiring measure theory. The empirical approach demonstrates why Itô's correction term is necessary for unbiased modeling—particularly valuable for practitioners who need to apply these concepts without absorbing the full mathematical framework.</p>
     <footer>
       <hr>
-      <p>Published: <time datetime="2025-07-31T00:00:00+02:00">
-        Thu 31 July 2025
+      <p>Published: <time datetime="2025-08-01T00:00:00+02:00">
+        Fri 01 August 2025
       </time></p>
-        <p>Last updated: <time datetime="2025-07-31T00:00:00+02:00">
-          Thu 31 July 2025
+        <p>Last updated: <time datetime="2025-08-01T00:00:00+02:00">
+          Fri 01 August 2025
         </time></p>
         <address>
           By <!--            <a href="https://osyuksel.github.io/author/omer-yuksel.html">Ömer Yüksel</a>-->
