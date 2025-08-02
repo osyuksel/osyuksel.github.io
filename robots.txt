@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://osyuksel.github.io/sitemap.xml
+Disallow: /pages/contact.html
+Disallow: /blog/about.html
