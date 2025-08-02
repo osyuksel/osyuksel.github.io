@@ -231,7 +231,7 @@
    omitting the Itô correction term. It is "naive" because it incorrectly assumes standard calculus chain rule
    applies to Brownian motion.</li>
 </ol>
-<p>We test both discretization schemes against the true analytical value of $f(t,X)$. A correct scheme, i.e. the correct value of $d_f$, should satisfy: </p>
+<p>We test both discretization schemes against the true analytical value of $f(t,X)$. A correct scheme, i.e. the correct formulation of $d_f$, should satisfy: </p>
 <p>$$\int_{0}^{1} df = f(1) - f(0)$$</p>
 <h3 id="verification-1-quadratic-function">Verification 1: quadratic function</h3>
 <p>Now verifying this numerically with a simple function $f(t,X) = X^2 + \sin(t)$, where $X=B$ (Brownian motion).</p>
