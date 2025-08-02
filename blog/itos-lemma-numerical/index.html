@@ -109,7 +109,7 @@
       
     </header>
     <p>Most <a href="https://en.wikipedia.org/wiki/It%C3%B4%27s_lemma">Itô's lemma</a> explanations rely on intuitive hand-waving or focus only on expected values, without demonstrating the underlying mathematical mechanics. Even ChatGPT, which has been good at explaining complex textbook concepts, struggles here, presumably because its training data contains these same problematic explanations.</p>
-<p>That is because understanding <a href="https://mathtm.blogspot.com/2014/06/a-rigorous-proof-of-itos-lemma_4.html">rigorous proofs</a> require background in real analysis, martingale theory, stochastic integrals, and measure theory that most STEM graduates encounter only in specialized graduate coursework, if at all.</p>
+<p>That is because understanding <a href="https://mathtm.blogspot.com/2014/06/a-rigorous-proof-of-itos-lemma_4.html">rigorous proofs</a> requires background in real analysis, martingale theory, stochastic integrals, and measure theory that many STEM graduates (myself included) encounter only in specialized graduate coursework, if at all.</p>
 <p>This post takes an empirical approach instead: numerical simulation using Monte Carlo methods to demonstrate Itô's lemma from quadratic variation through geometric Brownian motion. When rigorous proofs are inaccessible, seeing the formula "work" in practice provides the next best kind of confidence in its validity. The complete code for all simulations shown in this post is <a href="https://gist.github.com/osyuksel/b5477b9f4ea00159cf8d44fde8a62e4e">available on GitHub</a>.</p>
 <h3 id="quadratic-variation">Quadratic variation</h3>
 <p>Let's start with the fundamental concept that makes Itô Calculus different from ordinary calculus: quadratic variation. In ordinary calculus, the infinitesimal changes ($dx$) squared are so small they vanish as we take finer and finer partitions. But with Brownian motion, the sum of squared increments converges to the time interval itself.</p>
@@ -405,7 +405,7 @@ $$d(\log S) = \mu dt + \sigma dB$$</p>
 <li>Itô's Lemma correctly accounts for this non-vanishing quadratic variation</li>
 <li>The Itô correction term is crucial for unbiased modeling of processes like Geometric Brownian Motion</li>
 </ol>
-<p>These numerical simulations verify key stochastic calculus properties without requiring measure theory. The empirical approach demonstrates why Itô's correction term is necessary for unbiased modeling—particularly valuable for practitioners who need to apply these concepts without absorbing the full mathematical framework.</p>
+<p>These numerical simulations verify key stochastic calculus properties without requiring measure theory. The empirical approach demonstrates why Itô's correction term is necessary for unbiased modeling, which is particularly valuable for practitioners who need to apply these concepts without absorbing the full mathematical framework.</p>
     <footer>
       <hr>
       <p>Published: <time datetime="2025-08-01T00:00:00+02:00">
