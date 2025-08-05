@@ -5,35 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://osyuksel.github.io/</loc>
-<lastmod>2025-08-02T02:44:20-00:00</lastmod>
+<lastmod>2025-08-05T20:49:39-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://osyuksel.github.io/</loc>
-<lastmod>2025-08-02T02:44:20-00:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>https://osyuksel.github.io/pages/about.html</loc>
-<lastmod>2025-08-02T02:44:20-00:00</lastmod>
+<lastmod>2025-08-05T20:49:39-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/pages/my-work.html</loc>
-<lastmod>2025-08-02T02:44:20-00:00</lastmod>
+<lastmod>2025-08-05T20:49:39-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/pages/contact.html</loc>
-<lastmod>2025-08-02T02:44:20-00:00</lastmod>
+<lastmod>2025-08-05T20:49:39-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -41,28 +34,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://osyuksel.github.io/blog/itos-lemma-numerical/</loc>
 <lastmod>2025-08-01T00:00:00+02:00</lastmod>
-<changefreq>weekly</changefreq>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/blog/llm-color-test/</loc>
 <lastmod>2025-07-17T22:35:00+02:00</lastmod>
-<changefreq>weekly</changefreq>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/blog/embedding-spaces-adversarial/</loc>
 <lastmod>2025-06-13T15:20:00+02:00</lastmod>
-<changefreq>weekly</changefreq>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/blog/freelancing-intro/</loc>
 <lastmod>2025-07-31T20:53:00+02:00</lastmod>
-<changefreq>weekly</changefreq>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 

@@ -137,7 +137,7 @@ $$df = \frac{\partial f}{\partial t}dt + \frac{\partial f}{\partial B}dB = \cos(
 &lt;li&gt;Calculate $\Delta f$ using Itô's lemma &lt;/li&gt;
 &lt;li&gt;Calculate naive $\Delta f$ using ordinary calculus&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Afterwards we integrate the naive and Itô differentials to get the final result, and check how close they are to f at final time step.&lt;/p&gt;
+&lt;p&gt;Afterward we integrate the naive and Itô differentials to get the final result and check how close they are to f at the final time step.&lt;/p&gt;
 &lt;p&gt;Below is the code generating data for a single path:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
 
