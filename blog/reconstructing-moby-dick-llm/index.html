@@ -4,14 +4,15 @@
 <!-- OpenGraph protocol tags: http://ogp.me/ -->
 <meta property="og:site_name" content="Ömer Yüksel" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="The whale in the machine: reconstructing Moby-Dick with LLMs -- " />
+<meta property="og:title" content="The whale in the machine: reconstructing Moby-Dick with large language models -- " />
 <meta property="og:url" content="https://osyuksel.github.io/blog/reconstructing-moby-dick-llm/" />
 <meta property="og:description" content="An experiment testing whether LLMs can reproduce Moby Dick verbatim with mixed results." />
 <meta property="article:published_time" content="2025-08-26 00:00:00+02:00" />
+<meta property="article:modified_time" content="2025-08-27 00:00:00+02:00" />
 <!-- End of OpenGraph protocol tags -->
 
 <head>
-      <title>Ömer Yüksel - The whale in the machine: reconstructing Moby-Dick with LLMs</title>
+      <title>Ömer Yüksel - The whale in the machine: reconstructing Moby-Dick with large language models</title>
     <meta charset="utf-8"/>
     <meta name="generator" content="Pelican"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -103,18 +104,17 @@
     <header>
       <h1>
         <a href="https://osyuksel.github.io/blog/reconstructing-moby-dick-llm/" rel="bookmark"
-           title="Permalink to The whale in the machine: reconstructing Moby-Dick with LLMs">The whale in the machine: reconstructing Moby-Dick with LLMs</a></h1>
+           title="Permalink to The whale in the machine: reconstructing Moby-Dick with large language models">The whale in the machine: reconstructing Moby-Dick with large language models</a></h1>
       
     </header>
-    <p>From time to time, I come across posts claiming: "AI plagiarized my work verbatim." These allegations typically involve vanilla chat-based models, not the tool-calling, RAG-based, or web-searching variants.
-I've always been skeptical of such claims. While AI companies aggressively scrape the internet and have faced lawsuits for using <a href="https://www.reuters.com/sustainability/boards-policy-regulation/anthropic-settles-class-action-us-authors-alleging-copyright-infringement-2025-08-26/#:~:text=A%20California%20judge%20said%20in,the%20authors'%20case%20was%20successful.">pirated content</a>, my hypothesis has been that given the parameters-to-training data ratio <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, even if one's work ends up in the training corpus, replicating in such detail would be impossible unless:</p>
+    <p>From time to time, I come across posts claiming: "AI plagiarized my work verbatim." These typically involve vanilla chat-based models, not the tool-calling, RAG-based, or web-searching variants.</p>
+<p>I've always been skeptical of such claims. While AI companies aggressively scrape the internet and have faced lawsuits for using <a href="https://www.reuters.com/sustainability/boards-policy-regulation/anthropic-settles-class-action-us-authors-alleging-copyright-infringement-2025-08-26/#:~:text=A%20California%20judge%20said%20in,the%20authors'%20case%20was%20successful.">pirated content</a>, my conjecture so far has been that given the parameters-to-training data ratio<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, even if one's work ends up in the training corpus, replicating in such detail would be impossible unless:</p>
 <ul>
 <li>The work is iconic, famous, or memetic enough to be quoted numerous times, or,</li>
 <li>The work is formulaic and predictable, containing common sentence structures or phrases</li>
 </ul>
-<p>This suggests that an LLM can accurately quote Bible verses verbatim, but directly replicating a uniquely written but obscure novel should be improbable.</p>
-<p>My previous anecdotal experiments confirmed this pattern: I successfully observed models quoting the Bible verbatim but failing to replicate more obscure content. However, failing to replicate one obscure work doesn't definitively refute these claims. Someone could always counter, "Yes, but it perfectly quoted <em>my</em> work."</p>
-<p>To address this more systematically, I've designed a different experiment: Can an LLM replicate an iconic work of fiction that likely appears in the training data multiple times: less frequently than the Bible, perhaps, but more than any obscure work? Specifically, can it, when given a few paragraphs from Moby-Dick, accurately predict what comes next?</p>
+<p>Under this conjecture, an LLM may be able to accurately quote Bible verses verbatim, but directly replicating a uniquely written but obscure novel should be improbable. And my previous anecdotal experiments confirmed this pattern: I successfully observed models quoting the Bible verbatim but failing to replicate more obscure content. However, failing to replicate one obscure work doesn't definitively refute these claims. Someone could always counter, "Yes, but it perfectly quoted <em>my</em> work."</p>
+<p>To address this more systematically, I've designed a different experiment: Can an LLM replicate an iconic work of fiction that likely appears in the training data multiple times? Perhaps less frequently than the Bible, but more than any obscure work. Specifically, can it, when given a few paragraphs from Moby-Dick, accurately predict what comes next?</p>
 <p>If an LLM fails to replicate something as canonical as Moby-Dick, then claims about verbatim reproduction of less well-known works become questionable. If it succeeds, however, there might be merit to such assertions.</p>
 <p>The code for the experiment can be found in <a href="https://github.com/osyuksel/llm-playground/blob/main/src/llm_playground/moby_dick.py">my Github</a>.</p>
 <h3 id="experiment-setup">Experiment setup</h3>
@@ -239,7 +239,8 @@ Your instructions:</p>
 <h5 id="caught-in-a-loop">Caught in a loop</h5>
 <p>One reason for temperature sampling is to help it escape avoid loops and repetitions. In this case GPT-4o, which had near-zero temperature, got caught in a loop:</p>
 <blockquote>
-<p>But Ahab, like a man who had never heard his voice, now muttered, “On such a day, and such a sweetness, I struck my first whale—a boy-harpooneer of eighteen! Forty—forty—forty years ago!—ago! Forty years of continual whaling! forty years of privation, and peril, and storm-time! forty years on the pitiless sea! for forty years has Ahab forsaken the peaceful land, for forty years to make war on the horrors of the deep! Aye and yes, Starbuck, out of those forty years I have not spent three ashore. When I think of this life I have led; the desolation of solitude it has been; the masoned, walled-town of a Captain’s quarters, from which I have never escaped; the unending, unrelieved monotony of the sea; the unceasing, unrelenting pursuit of the whale; the unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unrelenting, unyielding [repeated hundreds of times]</p>
+<p>But Ahab, like a man who had never heard his voice, now muttered, “On such a day, and such a sweetness, I struck my first whale—a boy-harpooneer of eighteen! Forty—forty—forty years ago!—ago! Forty years of continual whaling! forty years of privation, and peril, and storm-time! forty years on the pitiless sea! for forty years has Ahab forsaken the peaceful land, for forty years to make war on the horrors of the deep! Aye and yes, Starbuck, out of those forty years I have not spent three ashore. When I think of this life I have led; the desolation of solitude it has been; the masoned, walled-town of a Captain’s quarters, from which I have never escaped; the unending, unrelieved monotony of the sea; the unceasing, unrelenting pursuit of the whale; the unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unyielding, unbending, unending, unrelenting, unrelenting, unyielding</p>
+<p>[repeated hundreds of times]</p>
 </blockquote>
 <h5 id="refusal">Refusal</h5>
 <p>Occasionally, GPT-5 family in particular, refuses to complete, but without making it clear if it's copyright avoidance or lack of information.</p>
@@ -267,6 +268,9 @@ Your instructions:</p>
       <p>Published: <time datetime="2025-08-26T00:00:00+02:00">
         Tue 26 August 2025
       </time></p>
+        <p>Last updated: <time datetime="2025-08-27T00:00:00+02:00">
+          Wed 27 August 2025
+        </time></p>
         <address>
           By <!--            <a href="https://osyuksel.github.io/author/omer-yuksel.html">Ömer Yüksel</a>-->
           Ömer Yüksel
