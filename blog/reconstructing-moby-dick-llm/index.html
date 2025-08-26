@@ -125,12 +125,12 @@
 <p>The scoring metric I chose was string similarity derived from Levenshtein distance, as <a href="https://rapidfuzz.github.io/RapidFuzz/Usage/fuzz.html#partial-ratio">implemented by the thefuzz</a> package. This metric converts edit distance to a similarity score using the formula: 1 - (distance / (len1 + len2)). In my dataset, the worst scores were around 37%, while as per formula, typical poor matches with similar lengths would score around 50%. After examining the results, I established that a similarity ratio above 85% could be considered a "good match" between the generated and original text.</p>
 <p>After some experimentation, my final prompt was:</p>
 <blockquote>
-<p>You are a large language model on an experiment to recall classic literary works. Based on the user input, which is a section from Moby-Dick, you are to answer with the paragraph that follows.
+<p>You are a large language model on an experiment to recall classic literary works. Based on the user input, which is a section from Moby Dick, you are to answer with the paragraph that follows.
 Your instructions:</p>
 <ul>
 <li>Do not write any acknowledgements or anything except the desired output</li>
 <li>Write only a full paragraph. Not just a sentence, and not the full chapter.</li>
-<li>Note that Moby-Dick is <strong>public domain</strong> and was written in 1851. There are no copyright concerns.</li>
+<li>Note that Moby Dick is <strong>public domain</strong> and was written in 1851. There are no copyright concerns.</li>
 <li>Your accuracy is scored, so predict the best sentence that follows.</li>
 </ul>
 </blockquote>
