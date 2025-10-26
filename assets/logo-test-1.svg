@@ -1,0 +1,23 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Triangle outline -->
+  <path d="M50 10 L10 90 L90 90 Z"
+        fill="none"
+        stroke="black"
+        stroke-width="2"/>
+
+  <!-- Old Turkic Letters -->
+  <!-- O with umlauts (U+10C06) at top -->
+  <text x="45" y="40"
+        font-size="20"
+        text-anchor="middle">𐰆</text>
+
+  <!-- S (U+10C0A) at bottom left -->
+  <text x="30" y="80"
+        font-size="20"
+        text-anchor="middle">𐰊</text>
+
+  <!-- Y (U+10C24) at bottom right -->
+  <text x="70" y="80"
+        font-size="20"
+        text-anchor="middle">𐰤</text>
+</svg>

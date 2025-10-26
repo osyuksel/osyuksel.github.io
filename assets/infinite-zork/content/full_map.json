@@ -1,0 +1,2574 @@
+{
+  "player": null,
+  "rooms": {
+    "b702d9ea-0f3f-4091-8e5e-8c766d993b8e": {
+      "id": "b702d9ea-0f3f-4091-8e5e-8c766d993b8e",
+      "title": "The Marble Antechamber",
+      "base_description": "Ancient marble columns rise from the polished floor to the vaulted ceiling, their surfaces etched with intricate brass inlays that have long since tarnished. Mist coils lazily near the ground, giving the chamber an ethereal quality as it catches what little light filters through the elaborate copper ventilation grates above. The air here carries a distinctive chill, and your footsteps echo hollowly across the vast space.\n\nThe walls bear the marks of a civilization lost to time - faded frescoes depicting scenes of technological marvels intermingle with decorative brass pipes that seem to serve no practical purpose. Several brass pressure gauges, their glass faces clouded with age, are mounted at regular intervals along the walls, their needles frozen in place.\n\nA massive brass clock mechanism is embedded in the center of the ceiling, its gears motionless but still magnificent in their complexity. The timepiece casts intricate shadows across the marble floor, creating patterns that seem almost deliberate in their arrangement.\n\nTo the south, an ornate archway leads to what appears to be a cluttered chamber shrouded in shadow. To the west, a grand colonnade opens into a vast, light-filled hall.",
+      "items": [],
+      "fixtures": [
+        {
+          "id": "b6a3bde9-9bb6-4c49-b81f-2ddd4505efc0",
+          "short_name": "inlaid marble columns",
+          "description": "Towering marble columns stretch from floor to ceiling, their surfaces adorned with tarnished brass inlays creating intricate patterns that speak of ancient craftsmanship.",
+          "aliases": [
+            "marble columns",
+            "columns",
+            "inlaid columns"
+          ],
+          "container": false
+        },
+        {
+          "id": "7d0a92f6-6aec-4e50-ad3c-49f0d7aad915",
+          "short_name": "copper ventilation grates",
+          "description": "Elaborate copper grates set into the ceiling filter streams of light through their ornate metalwork, casting subtle patterns in the misty air below.",
+          "aliases": [
+            "ventilation grates",
+            "copper grates",
+            "grates"
+          ],
+          "container": false
+        },
+        {
+          "id": "bb61b286-7f95-4b92-b4d4-1890cad67581",
+          "short_name": "technological frescoes",
+          "description": "Faded but still impressive frescoes cover the walls, depicting scenes of advanced machinery and technological achievements from a long-lost civilization.",
+          "aliases": [
+            "frescoes",
+            "wall paintings",
+            "technological murals"
+          ],
+          "container": false
+        },
+        {
+          "id": "6a0e5388-bbe4-4acc-a360-1ab4b5eaacbd",
+          "short_name": "decorative brass pipes",
+          "description": "Ornamental brass pipes wind their way across the walls in complex patterns, their purpose seemingly more artistic than functional.",
+          "aliases": [
+            "brass pipes",
+            "pipes",
+            "wall pipes"
+          ],
+          "container": false
+        },
+        {
+          "id": "220eaf78-f360-4e8b-a4d2-e184a04565db",
+          "short_name": "brass pressure gauges",
+          "description": "Ancient brass pressure gauges line the walls at regular intervals, their glass faces clouded with age and their needles permanently fixed in position.",
+          "aliases": [
+            "pressure gauges",
+            "gauges",
+            "wall gauges"
+          ],
+          "container": false
+        },
+        {
+          "id": "019167a0-743e-4fab-9739-549097f133b1",
+          "short_name": "brass clock mechanism",
+          "description": "A magnificent brass clockwork dominates the ceiling's center, its complex array of motionless gears and mechanisms creating an impressive mechanical tableau.",
+          "aliases": [
+            "clock mechanism",
+            "ceiling clock",
+            "clockwork"
+          ],
+          "container": false
+        },
+        {
+          "id": "d3c42cac-dc4f-4669-ab8f-efc877a4e236",
+          "short_name": "ornate archway",
+          "description": "A beautifully decorated archway to the south frames the entrance to a shadowy chamber beyond, its surface adorned with detailed architectural embellishments.",
+          "aliases": [
+            "archway",
+            "south arch",
+            "decorated arch"
+          ],
+          "container": false
+        },
+        {
+          "id": "68d3aa97-8dab-488d-87df-ea4736eb9913",
+          "short_name": "grand colonnade",
+          "description": "A majestic series of columns forms an impressive colonnade to the west, leading into a vast hall filled with natural light.",
+          "aliases": [
+            "colonnade",
+            "western colonnade",
+            "column hall"
+          ],
+          "container": false
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "south": {
+          "location": [
+            0,
+            -1
+          ],
+          "direction": "south",
+          "description": "An ornate archway leading to a shadowy, cluttered chamber",
+          "room_id": "d61fcdb2-8a67-4e9d-b3aa-9df7f3054287",
+          "allowed": true
+        },
+        "west": {
+          "location": [
+            -1,
+            0
+          ],
+          "direction": "west",
+          "description": "A grand colonnade opening to a bright, expansive hall",
+          "room_id": "8a45eeb7-e3cf-4490-8b41-0b27e0315567",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 0,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "start",
+        "tags": [
+          "marble",
+          "simple",
+          "chilly",
+          "ancient"
+        ]
+      },
+      "position": [
+        0,
+        0
+      ]
+    },
+    "d61fcdb2-8a67-4e9d-b3aa-9df7f3054287": {
+      "id": "d61fcdb2-8a67-4e9d-b3aa-9df7f3054287",
+      "title": "The Clockmaker's Workshop",
+      "base_description": "Brass gears of various sizes adorn the walls of this once-bustling workshop, their surfaces dulled by decades of neglect. Workbenches line the perimeter, their wooden surfaces scarred and stained with ancient oil spills. Elaborate mechanical diagrams, now yellow with age, remain pinned to the walls, their corners curling inward like withered leaves.\n\nOverhead, a network of copper pipes crisscrosses the ceiling, occasionally releasing small puffs of stale steam with an eerie whistle. A massive, broken chronometer dominates the center of the room, its countless hands frozen at different times, telling stories of moments long past. The brass and copper innards of the device spill out onto the floor like mechanical entrails.\n\nBehind the main workbench, a partially dismantled automaton sits slumped in a chair, its glass eyes reflecting the dim light in an unsettling manner. Various tool racks mounted on the walls cast strange shadows that seem to shift and dance when viewed from the corner of one's eye.\n\nThe workshop opens to the north through an ornate archway leading to the Marble Antechamber, while a fog-shrouded doorway to the south leads deeper into the underground city.",
+      "items": [
+        {
+          "id": "519afb75-0375-464d-b8e0-5c5938e6d7b3",
+          "item_id": "5a8297c6-42ba-4e6a-b68d-a17308b552fc",
+          "description": "Among the various tools, a golden-hued caliper catches your eye, its brass surface adorned with intricate gear patterns.",
+          "location": "6dd2f2f1-f05c-42cd-bb97-1a869f925110"
+        }
+      ],
+      "fixtures": [
+        {
+          "id": "892e3fe8-0b3d-4f58-b3dd-eb5afb955fde",
+          "short_name": "brass gears",
+          "description": "Various sized brass gears hang on the walls, their once-bright surfaces now dulled and tarnished by time. They appear to be decorative remnants of the workshop's more active days.",
+          "aliases": [
+            "brass gears",
+            "gears",
+            "wall gears"
+          ],
+          "container": false
+        },
+        {
+          "id": "0d9e5e29-7162-4024-addb-a681c50e5157",
+          "short_name": "workbenches",
+          "description": "Heavy wooden workbenches line the room's perimeter, their surfaces bearing the marks of countless projects in the form of deep scratches and dark oil stains.",
+          "aliases": [
+            "workbenches",
+            "benches",
+            "work surfaces"
+          ],
+          "container": true
+        },
+        {
+          "id": "3f310c4b-9b25-497b-8ad6-adee6e153f09",
+          "short_name": "mechanical diagrams",
+          "description": "Technical drawings depicting complex mechanical designs cover the walls. The paper has yellowed significantly with age, and the corners have begun to curl inward.",
+          "aliases": [
+            "mechanical diagrams",
+            "diagrams",
+            "technical drawings"
+          ],
+          "container": false
+        },
+        {
+          "id": "3bf8f097-e6a0-4efa-828b-061118b27761",
+          "short_name": "copper pipes",
+          "description": "An intricate network of copper pipes spans across the ceiling, occasionally releasing whispers of steam with an unsettling sound. The pipes have developed a patina over years of use.",
+          "aliases": [
+            "copper pipes",
+            "pipes",
+            "ceiling pipes"
+          ],
+          "container": false
+        },
+        {
+          "id": "ecad597d-797e-4f44-87de-82cead17f3d7",
+          "short_name": "broken chronometer",
+          "description": "A massive timepiece dominates the room's center. Its multiple hands are frozen in time, and its intricate brass and copper mechanisms have spilled out across the floor in a mechanical disaster.",
+          "aliases": [
+            "broken chronometer",
+            "chronometer",
+            "timepiece"
+          ],
+          "container": false
+        },
+        {
+          "id": "369a9757-35e9-48e7-a056-e46b5784978e",
+          "short_name": "dismantled automaton",
+          "description": "A partially disassembled mechanical figure sits limply in a chair behind the main workbench. Its glass eyes catch what little light there is, creating an eerily lifelike gleam.",
+          "aliases": [
+            "dismantled automaton",
+            "automaton",
+            "mechanical figure"
+          ],
+          "container": false
+        },
+        {
+          "id": "6dd2f2f1-f05c-42cd-bb97-1a869f925110",
+          "short_name": "tool racks",
+          "description": "Metal racks mounted on the walls hold various workshop tools, casting shifting shadows in the dim light. Many of the tools appear well-worn from years of use.",
+          "aliases": [
+            "tool racks",
+            "racks",
+            "wall racks"
+          ],
+          "container": true
+        },
+        {
+          "id": "c586e9a9-f1a7-4d44-9263-c122fc2d876d",
+          "short_name": "ornate archway",
+          "description": "A beautifully decorated arch marks the northern exit to the Marble Antechamber. The archway's intricate details speak to the grand architecture of the underground city.",
+          "aliases": [
+            "ornate archway",
+            "archway",
+            "northern arch"
+          ],
+          "container": false
+        },
+        {
+          "id": "c41b10c6-880f-425b-943d-5dd8e7984c58",
+          "short_name": "fog-shrouded doorway",
+          "description": "The southern doorway is partially obscured by a mysterious fog, leading deeper into the underground city. The mist seems to move with a life of its own.",
+          "aliases": [
+            "fog-shrouded doorway",
+            "foggy doorway",
+            "southern door"
+          ],
+          "container": false
+        },
+        {
+          "id": "08561d13-16d7-4a79-b264-6cbac2d7c18f",
+          "short_name": "glass eyes",
+          "description": "The automaton's eyes are made of carefully crafted glass, reflecting light in an almost lifelike manner. Their vacant stare is somehow unsettling.",
+          "aliases": [
+            "glass eyes",
+            "eyes",
+            "automaton eyes"
+          ],
+          "container": false
+        },
+        {
+          "id": "56f3353c-0444-4ecd-860d-ac87becb6b3e",
+          "short_name": "chair",
+          "description": "A sturdy workshop chair holds the partially dismantled automaton. It appears to be a simple yet practical piece of furniture, built for function rather than comfort.",
+          "aliases": [
+            "chair",
+            "workshop chair",
+            "wooden chair"
+          ],
+          "container": true
+        },
+        {
+          "id": "b8b3fe13-b23e-4b78-be80-0bc9cf1a518f",
+          "short_name": "workshop tools",
+          "description": "An assortment of specialized mechanical tools hangs from the wall racks. They range from common wrenches to more exotic instruments specific to clockwork maintenance.",
+          "aliases": [
+            "workshop tools",
+            "tools",
+            "mechanical tools"
+          ],
+          "container": false
+        },
+        {
+          "id": "2e0e76ff-9a3b-4545-8214-12064d5b93e6",
+          "short_name": "main workbench",
+          "description": "The primary workbench stands out from the others, positioned prominently with the automaton seated behind it. Its surface bears the marks of countless mechanical projects.",
+          "aliases": [
+            "main workbench",
+            "primary workbench",
+            "central bench"
+          ],
+          "container": true
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "north": {
+          "location": [
+            0,
+            0
+          ],
+          "direction": "north",
+          "description": "An ornate archway leading to the Marble Antechamber",
+          "room_id": "b702d9ea-0f3f-4091-8e5e-8c766d993b8e",
+          "allowed": true
+        },
+        "south": {
+          "location": [
+            0,
+            -2
+          ],
+          "direction": "south",
+          "description": "A fog-shrouded doorway leading deeper into the underground city",
+          "room_id": "7b7a8673-598e-43b4-bb63-6eef06c8cc0a",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 1,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "treasure",
+        "tags": [
+          "detailed",
+          "messy",
+          "haunted",
+          "enigmatic"
+        ]
+      },
+      "position": [
+        0,
+        -1
+      ]
+    },
+    "8a45eeb7-e3cf-4490-8b41-0b27e0315567": {
+      "id": "8a45eeb7-e3cf-4490-8b41-0b27e0315567",
+      "title": "The Luminous Grand Hall",
+      "base_description": "Towering brass-framed windows line the walls of this vast ceremonial hall, their stained glass panels depicting scenes of industrial progress and mechanical marvels. Despite years of abandonment, golden light still streams through the glass, casting kaleidoscopic patterns across the polished stone floor through some mysterious power source.\n\nDominating the center of the hall is an elaborate mechanical fountain, its multiple tiers frozen in time. Intricate gears and pipes weave through the structure, suggesting it once performed a complex water and steam display. Around the fountain's base, a series of brass control panels sit embedded in ornate pedestals, their levers and dials waiting to be deciphered.\n\nThe vaulted ceiling soars overhead, supported by massive copper-plated columns that double as steam conduits. Each column features a series of pressure gauges and release valves at various heights. A network of dormant brass pipes spans between them, creating an industrial canopy that seems to pulse with residual energy.\n\nTo the east, a grand colonnade connects to the Marble Antechamber, while the western wall features an imposing brass-fitted doorway embellished with intricate clockwork designs.",
+      "items": [],
+      "fixtures": [
+        {
+          "id": "d41fc5db-cc3d-4292-ad75-bc869b68ab21",
+          "short_name": "stained glass windows",
+          "description": "Towering windows set in brass frames, their stained glass panels depicting detailed scenes of industrial progress and mechanical innovation. Golden light mysteriously streams through them, creating dancing patterns of colored light on the floor.",
+          "aliases": [
+            "stained glass windows",
+            "windows",
+            "brass-framed windows"
+          ],
+          "container": false
+        },
+        {
+          "id": "1b5d04c8-0889-43b7-9f53-52594581f68e",
+          "short_name": "mechanical fountain",
+          "description": "An elaborate multi-tiered fountain stands frozen in the center of the hall. Complex arrangements of gears and pipes suggest it once produced an impressive display of water and steam. Though inactive, it remains a masterpiece of engineering artistry.",
+          "aliases": [
+            "mechanical fountain",
+            "fountain",
+            "steam fountain"
+          ],
+          "container": false
+        },
+        {
+          "id": "06ded3b7-0cbb-4501-a065-821a3a695010",
+          "short_name": "brass control panels",
+          "description": "A series of ornately designed brass panels encircle the fountain's base, each mounted on an decorated pedestal. Various levers and dials cover their surfaces, their purposes unclear but intriguing.",
+          "aliases": [
+            "brass control panels",
+            "control panels",
+            "panels"
+          ],
+          "container": false
+        },
+        {
+          "id": "7f0e59d8-2693-4d06-b796-eb44276d8f49",
+          "short_name": "copper columns",
+          "description": "Massive columns plated in copper rise to the ceiling, serving both as structural supports and steam conduits. Each is equipped with multiple pressure gauges and release valves at different heights.",
+          "aliases": [
+            "copper columns",
+            "columns",
+            "steam conduits"
+          ],
+          "container": false
+        },
+        {
+          "id": "4061b227-e380-4522-9161-56b66ffd993a",
+          "short_name": "brass pipes",
+          "description": "An extensive network of dormant brass pipes spans between the columns near the ceiling, forming an industrial canopy. Though inactive, they seem to retain some form of residual energy, creating an almost organic feeling of suspended animation.",
+          "aliases": [
+            "brass pipes",
+            "pipes",
+            "pipe network"
+          ],
+          "container": false
+        },
+        {
+          "id": "8fff58eb-039f-4e56-87f1-8d8b1a1263ab",
+          "short_name": "clockwork doorway",
+          "description": "An imposing doorway fitted with brass hardware dominates the western wall. Its surface is adorned with intricate clockwork patterns and mechanical designs, suggesting both functionality and artistic merit.",
+          "aliases": [
+            "clockwork doorway",
+            "doorway",
+            "brass doorway"
+          ],
+          "container": false
+        },
+        {
+          "id": "879b7ebf-95fe-400f-b4df-28d9a8a16a31",
+          "short_name": "control levers",
+          "description": "Various brass levers of different sizes protrude from the control panels. Each appears to be carefully crafted and labeled, though time has made some markings difficult to read.",
+          "aliases": [
+            "control levers",
+            "levers",
+            "brass levers"
+          ],
+          "container": false
+        },
+        {
+          "id": "b7283620-47d1-405c-8756-fc1a5cda9169",
+          "short_name": "control dials",
+          "description": "Circular dials with intricate markings cover portions of the control panels. Their brass faces are etched with numbers and symbols, suggesting different measurement scales or control functions.",
+          "aliases": [
+            "control dials",
+            "dials",
+            "brass dials"
+          ],
+          "container": false
+        },
+        {
+          "id": "69e6d8b4-7d13-4a1a-9cdb-2e40ba8b135a",
+          "short_name": "pressure gauges",
+          "description": "Round pressure gauges are mounted at various heights on the columns. Their glass faces protect brass needles and numbered displays, though most sit at zero in their current dormant state.",
+          "aliases": [
+            "pressure gauges",
+            "gauges",
+            "steam gauges"
+          ],
+          "container": false
+        },
+        {
+          "id": "1db2510e-d995-45e1-94e8-18f947ecfcca",
+          "short_name": "release valves",
+          "description": "Heavy brass valves are positioned along the columns, designed to control steam flow. Each features a wheel-like handle and safety markings, suggesting they once regulated the building's steam system.",
+          "aliases": [
+            "release valves",
+            "valves",
+            "steam valves"
+          ],
+          "container": false
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "east": {
+          "location": [
+            0,
+            0
+          ],
+          "direction": "east",
+          "description": "A grand colonnade opening to the Marble Antechamber",
+          "room_id": "b702d9ea-0f3f-4091-8e5e-8c766d993b8e",
+          "allowed": true
+        },
+        "west": {
+          "location": [
+            -2,
+            0
+          ],
+          "direction": "west",
+          "description": "An imposing brass-fitted doorway with clockwork designs",
+          "room_id": "b459e8f5-347b-4e81-8f98-9f272fe83e15",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 0,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "puzzle",
+        "tags": [
+          "radiant",
+          "grandabandoned",
+          "puzzling",
+          "vast"
+        ]
+      },
+      "position": [
+        -1,
+        0
+      ]
+    },
+    "7b7a8673-598e-43b4-bb63-6eef06c8cc0a": {
+      "id": "7b7a8673-598e-43b4-bb63-6eef06c8cc0a",
+      "title": "The Mist-Veiled Plaza",
+      "base_description": "Weathered cobblestones stretch out beneath your feet in this vast underground plaza, their surfaces worn smooth by countless footsteps of a long-gone civilization. Brass lamp posts rise at regular intervals, their metalwork twisted into elaborate spirals, though most now stand dark and silent. A few still sputter with weak, blue-tinged flames that cast dancing shadows across the space.\n\nTowering archways of copper and iron frame the plaza's perimeter, their surfaces etched with intricate geometric patterns that seem to shift in the dim light. Tendrils of mist curl around their bases, creating an almost ethereal atmosphere. Above, a network of brass pipes spans the ceiling, occasionally releasing small puffs of steam that dissolve into the ever-present haze.\n\nA grand fountain dominates the center of the plaza, its multiple tiers crafted from tarnished bronze. Though no water flows now, the fountain's elaborate mechanisms – gears, pistons, and valves – remain frozen in time, telling tales of its former splendor. The base is decorated with relief sculptures depicting scenes of the underground city's daily life in its prime.\n\nThree passages lead away from this misty space: a fog-shrouded doorway northward to the Clockmaker's Workshop, a steam-filled corridor to the south emanating waves of heat, and an eastern passage where earthen walls are barely visible through the gloom.",
+      "items": [],
+      "fixtures": [
+        {
+          "id": "2807afd1-7514-4c72-a3d3-449e9086f41c",
+          "short_name": "cobblestone floor",
+          "description": "Ancient cobblestones fit together in a precise pattern across the plaza floor. Their surfaces have been worn to a glossy smoothness by countless feet over the centuries, creating an almost polished appearance in the dim light.",
+          "aliases": [
+            "cobblestone floor",
+            "cobblestones",
+            "floor",
+            "stones"
+          ],
+          "container": false
+        },
+        {
+          "id": "7b6c943a-f431-4e43-ac6b-e45f8cbb6a18",
+          "short_name": "brass lamp posts",
+          "description": "Elegant lamp posts rise from the floor at regular intervals, their brass surfaces worked into complex spiral patterns. While most stand dark and lifeless, a few still emanate an ethereal blue flame, creating an interplay of light and shadow across the plaza.",
+          "aliases": [
+            "brass lamp posts",
+            "lamp posts",
+            "lamps",
+            "posts"
+          ],
+          "container": false
+        },
+        {
+          "id": "20e329d6-2ede-4824-b60b-dc9266f4a69d",
+          "short_name": "copper and iron archways",
+          "description": "Massive archways frame the plaza's edges, their surfaces a striking combination of copper and iron. Intricate geometric patterns cover every inch, seeming to shift and move as the dim light plays across their surfaces. Wisps of mist curl around their bases.",
+          "aliases": [
+            "copper and iron archways",
+            "archways",
+            "arches"
+          ],
+          "container": false
+        },
+        {
+          "id": "72d4ec60-d8a6-4e4c-a603-6003cd491c8b",
+          "short_name": "brass pipes",
+          "description": "An extensive network of brass pipes crisscrosses the ceiling, their metallic surfaces dulled with age. Occasionally, they release small bursts of steam into the misty air with a soft hiss, contributing to the perpetual haze that fills the space.",
+          "aliases": [
+            "brass pipes",
+            "pipes",
+            "ceiling pipes",
+            "pipe network"
+          ],
+          "container": false
+        },
+        {
+          "id": "e98d90b0-669b-40c7-bca9-58349af82e2c",
+          "short_name": "grand fountain",
+          "description": "This impressive bronze fountain dominates the plaza's center, rising in multiple ornate tiers. Though dry now, its complex mechanical systems of gears, pistons, and valves remain frozen in place, hinting at once-magnificent water displays. The tarnished bronze surface still maintains a subtle luster in the dim light.",
+          "aliases": [
+            "grand fountain",
+            "fountain",
+            "bronze fountain"
+          ],
+          "container": true
+        },
+        {
+          "id": "e74ea4d4-53b4-4a90-9abe-5455f8b301cf",
+          "short_name": "relief sculptures",
+          "description": "Intricate relief sculptures encircle the fountain's base, carved with remarkable detail. The scenes depict the daily life of the underground city's former inhabitants, showing merchants, craftsmen, and citizens going about their business in this once-thriving metropolis.",
+          "aliases": [
+            "relief sculptures",
+            "sculptures",
+            "reliefs",
+            "carvings"
+          ],
+          "container": false
+        },
+        {
+          "id": "8aa28589-c49c-484d-b604-f9ed6c396620",
+          "short_name": "fountain mechanics",
+          "description": "The fountain's internal workings are a marvel of engineering, featuring an intricate assembly of gears, pistons, and valves. Though motionless now, each component appears precisely crafted and positioned, suggesting a once-complex system that powered spectacular water displays.",
+          "aliases": [
+            "fountain mechanics",
+            "mechanics",
+            "fountain machinery",
+            "mechanical system"
+          ],
+          "container": false
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "south": {
+          "location": [
+            0,
+            -3
+          ],
+          "direction": "south",
+          "description": "A steam-filled corridor radiating heat",
+          "room_id": "24566605-9513-4b0f-8bd3-b631dc2eda34",
+          "allowed": true
+        },
+        "east": {
+          "location": [
+            1,
+            -2
+          ],
+          "direction": "east",
+          "description": "A dim passage with earthen walls",
+          "room_id": "115758c0-1dbf-4b49-9b61-6e7dfb04d4af",
+          "allowed": true
+        },
+        "north": {
+          "location": [
+            0,
+            -1
+          ],
+          "direction": "north",
+          "description": "A fog-shrouded doorway leading to the Clockmaker's Workshop",
+          "room_id": "d61fcdb2-8a67-4e9d-b3aa-9df7f3054287",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 0,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "atmospheric",
+        "tags": [
+          "simple",
+          "welcoming",
+          "shadowy",
+          "misty"
+        ]
+      },
+      "position": [
+        0,
+        -2
+      ]
+    },
+    "b459e8f5-347b-4e81-8f98-9f272fe83e15": {
+      "id": "b459e8f5-347b-4e81-8f98-9f272fe83e15",
+      "title": "The Automation Archives",
+      "base_description": "Towering shelves of brass and iron stretch upward into the shadows, their metallic frames adorned with intricate gearwork patterns. This vast chamber appears to be an ancient repository of mechanical knowledge, with built-in display cases lining the walls, most of their glass faces clouded with age. Motionless automaton librarians, their copper bodies frozen in time, stand eternally at their posts between the shelves.\n\nSuspended from the ceiling, a network of brass tubes and pneumatic mechanisms crisscrosses the space, presumably once used to transport documents throughout the archive. The gentle whisper of stale air moving through these tubes creates an almost musical ambiance.\n\nAt the center of the room, a massive circular desk dominates the space, its surface embedded with countless brass dials and mechanical indicators. Behind it, a wall-mounted catalog system of countless small drawers spreads outward like a mechanical spiderweb, its intricate sorting mechanism still intact but dormant.\n\nTo the west, a broad archway leads into a darker chamber, while an ornate brass-fitted doorway with clockwork designs connects to the Luminous Grand Hall in the east.",
+      "items": [
+        {
+          "id": "4c31378f-14e0-4f13-8617-7f33147b81c6",
+          "item_id": "c8027dea-ab71-4eec-8d36-29d88a4bf768",
+          "description": "A sophisticated brass magnifying lens rests on the desk's surface, its intricate clockwork adjustments catching the dim light.",
+          "location": "dad1a7f4-859f-457b-baf4-9d77a69d6ffc"
+        }
+      ],
+      "fixtures": [
+        {
+          "id": "edb3edf4-f4ff-4fa1-bbfd-6f07dad7f9ef",
+          "short_name": "metallic shelves",
+          "description": "Towering shelves of brass and iron stretch upward into the shadows, their frames decorated with intricate patterns of gears and mechanical motifs. They stand as silent sentinels of knowledge, their contents waiting to be discovered.",
+          "aliases": [
+            "metallic shelves",
+            "brass shelves",
+            "iron shelves",
+            "shelves",
+            "towering shelves"
+          ],
+          "container": true
+        },
+        {
+          "id": "3fac0e62-35ea-47fe-9e14-6d0dbfb2c0ab",
+          "short_name": "display cases",
+          "description": "Built into the walls are glass-fronted display cases, their surfaces dulled by the passage of time. Though clouded with age, they still protect their mysterious contents behind their weathered panes.",
+          "aliases": [
+            "display cases",
+            "wall cases",
+            "cases",
+            "glass cases"
+          ],
+          "container": true
+        },
+        {
+          "id": "d50e1bba-3331-4280-9820-881524bc827b",
+          "short_name": "automaton librarians",
+          "description": "Copper-bodied mechanical figures stand frozen between the shelves, their articulated forms caught mid-motion in eternal service. These automated custodians of knowledge remain at their posts, though their mechanisms have long since ceased to function.",
+          "aliases": [
+            "automaton librarians",
+            "automatons",
+            "librarians",
+            "copper librarians",
+            "mechanical librarians"
+          ],
+          "container": false
+        },
+        {
+          "id": "ac71d3f8-de69-4a85-9bf9-aa19139028ee",
+          "short_name": "pneumatic tube network",
+          "description": "An elaborate network of brass tubes spans the ceiling, connected by pneumatic mechanisms and junction points. The system softly whispers as stale air moves through its ancient passages, creating an ethereal melody.",
+          "aliases": [
+            "pneumatic tube network",
+            "tube network",
+            "brass tubes",
+            "pneumatic tubes",
+            "ceiling tubes"
+          ],
+          "container": false
+        },
+        {
+          "id": "dad1a7f4-859f-457b-baf4-9d77a69d6ffc",
+          "short_name": "central desk",
+          "description": "A massive circular desk commands the center of the room, its surface a complex array of brass dials and mechanical indicators. The impressive workstation speaks of the sophisticated systems once used to manage this repository.",
+          "aliases": [
+            "central desk",
+            "circular desk",
+            "desk",
+            "brass desk",
+            "mechanical desk"
+          ],
+          "container": true
+        },
+        {
+          "id": "78396aad-6196-4016-9626-e50456b24da7",
+          "short_name": "catalog system",
+          "description": "Spreading across the wall like a mechanical spiderweb, this vast array of small drawers forms an intricate sorting system. Though dormant, its complex mechanism remains intact, suggesting the methodical organization once employed here.",
+          "aliases": [
+            "catalog system",
+            "drawer system",
+            "sorting system",
+            "wall catalog",
+            "mechanical catalog"
+          ],
+          "container": true
+        },
+        {
+          "id": "03d86235-fbb2-49d3-8809-de5ef1ee6c8a",
+          "short_name": "brass doorway",
+          "description": "An ornate doorway fitted with brass fixtures and adorned with clockwork designs provides passage to the Luminous Grand Hall. The craftsmanship of its mechanical embellishments matches the technical grandeur of the archive.",
+          "aliases": [
+            "brass doorway",
+            "clockwork door",
+            "ornate door",
+            "mechanical door",
+            "eastern door"
+          ],
+          "container": false
+        },
+        {
+          "id": "89d0d1ba-a130-4a76-8b36-6d61f2a0a2b8",
+          "short_name": "brass dials",
+          "description": "Numerous brass dials and mechanical indicators are embedded in the desk's surface, each featuring precise calibration marks and intricate needle indicators. Though no longer active, they hint at the complex systems once monitored here.",
+          "aliases": [
+            "brass dials",
+            "mechanical indicators",
+            "dials",
+            "desk indicators",
+            "brass indicators"
+          ],
+          "container": false
+        },
+        {
+          "id": "89f26691-23cc-45ea-a724-bf650356c858",
+          "short_name": "catalog drawers",
+          "description": "Countless small drawers, each with a brass pull and label plate, compose the catalog system. These precisely crafted compartments once housed the archive's indexing system, their smooth mechanisms still sliding with surprising ease.",
+          "aliases": [
+            "catalog drawers",
+            "small drawers",
+            "index drawers",
+            "sorting drawers",
+            "brass drawers"
+          ],
+          "container": true
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "west": {
+          "location": [
+            -3,
+            0
+          ],
+          "direction": "west",
+          "description": "A broad archway leading into a darker chamber",
+          "room_id": "adf0a303-6611-4f67-b2e4-5abcc46e0fc5",
+          "allowed": true
+        },
+        "east": {
+          "location": [
+            -1,
+            0
+          ],
+          "direction": "east",
+          "description": "An ornate brass-fitted doorway with clockwork designs",
+          "room_id": "8a45eeb7-e3cf-4490-8b41-0b27e0315567",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 1,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "treasure",
+        "tags": [
+          "cool",
+          "metallic",
+          "brass",
+          "enigmatic"
+        ]
+      },
+      "position": [
+        -2,
+        0
+      ]
+    },
+    "24566605-9513-4b0f-8bd3-b631dc2eda34": {
+      "id": "24566605-9513-4b0f-8bd3-b631dc2eda34",
+      "title": "The Pressure Junction",
+      "base_description": "Massive brass pipes snake across the ceiling and walls of this sweltering chamber, their surfaces beaded with condensation. Ancient pressure gauges, their faces clouded with age, line the walls in methodical rows, some still twitching with residual steam pressure. The copper-plated floor panels are arranged in a honeycomb pattern, worn smooth by countless years of foot traffic.\n\nTowering valve wheels, each as tall as a person, stand like silent sentinels in the corners of the room. Their deep red paint has largely flaked away, revealing the oxidized metal beneath. A network of smaller pipes branches out from these wheels, disappearing into the walls through ornately carved brass fittings.\n\nThe air is thick with warm mist, creating ghostly shapes that dance in the amber glow of aged gas lamps. A constant, low humming vibrates through the chamber, accompanied by the occasional hiss of escaping steam.\n\nThe junction opens to the north through a corridor filled with billowing steam, while a notably cramped passage leads south.",
+      "items": [],
+      "fixtures": [
+        {
+          "id": "84995d0e-396e-4563-8297-f1ed360eef2b",
+          "short_name": "brass pipes",
+          "description": "Massive brass pipes snake across the ceiling and walls, their surfaces slick with beads of condensation. They seem to be part of some ancient steam system, still actively carrying steam through their weathered channels.",
+          "aliases": [
+            "brass pipes",
+            "pipes",
+            "ceiling pipes",
+            "wall pipes"
+          ],
+          "container": false
+        },
+        {
+          "id": "e5cfbc13-c34e-4c97-a889-0df9bae34627",
+          "short_name": "pressure gauges",
+          "description": "Rows of circular pressure gauges line the walls in precise formation. Their glass faces are clouded with age, but some still twitch and dance with the movement of steam behind their aged faces.",
+          "aliases": [
+            "pressure gauges",
+            "gauges",
+            "steam gauges",
+            "wall gauges"
+          ],
+          "container": false
+        },
+        {
+          "id": "dc90f962-478c-4071-993b-dce83ee44d91",
+          "short_name": "copper floor",
+          "description": "The floor is covered in copper-plated panels arranged in an elegant honeycomb pattern. Years of foot traffic have worn them to a smooth finish, creating a subtle sheen in the amber light.",
+          "aliases": [
+            "copper floor",
+            "floor panels",
+            "honeycomb floor",
+            "copper panels"
+          ],
+          "container": false
+        },
+        {
+          "id": "672d50ed-51d7-4086-8981-aa94f6dae968",
+          "short_name": "valve wheels",
+          "description": "Imposing valve wheels stand in the room's corners, each one as tall as an adult. Their original red paint is peeling away, revealing patches of oxidized metal underneath. They appear to control the main steam flow.",
+          "aliases": [
+            "valve wheels",
+            "wheels",
+            "steam valves",
+            "control wheels"
+          ],
+          "container": false
+        },
+        {
+          "id": "f3bead43-5620-4c56-9916-0b56e481d7ed",
+          "short_name": "branch pipes",
+          "description": "Smaller pipes branch out from the main valve wheels in an intricate network, disappearing into the walls. Despite their smaller size, they seem just as essential to the steam system as their larger counterparts.",
+          "aliases": [
+            "branch pipes",
+            "smaller pipes",
+            "pipe network",
+            "branching pipes"
+          ],
+          "container": false
+        },
+        {
+          "id": "3b4562e9-0527-41ab-aaf0-3b0987d5e645",
+          "short_name": "brass fittings",
+          "description": "Ornately carved brass fittings adorn the points where pipes enter the walls. Each fitting features detailed decorative patterns, suggesting that even in this industrial space, aesthetics were not overlooked.",
+          "aliases": [
+            "brass fittings",
+            "pipe fittings",
+            "fittings",
+            "wall fittings"
+          ],
+          "container": false
+        },
+        {
+          "id": "0b2de977-7973-4d46-9480-62fa338a5b3c",
+          "short_name": "gas lamps",
+          "description": "Aged gas lamps cast an amber glow throughout the chamber, their light creating shifting shadows in the ever-present steam. The lamps' brass housings have developed a distinguished patina over time.",
+          "aliases": [
+            "gas lamps",
+            "lamps",
+            "amber lamps",
+            "wall lamps"
+          ],
+          "container": false
+        },
+        {
+          "id": "fb7958c3-7f9b-4fb8-b815-9749f3990f15",
+          "short_name": "lamp housings",
+          "description": "The brass housings of the gas lamps show years of wear, with a rich patina giving them a distinguished, aged appearance. Their design is both functional and decorative, with ventilation patterns that cast interesting shadows.",
+          "aliases": [
+            "lamp housings",
+            "brass housings",
+            "lamp cases",
+            "lamp fixtures"
+          ],
+          "container": false
+        },
+        {
+          "id": "40013a9e-4868-4458-b382-a91ec92bbd6e",
+          "short_name": "gauge faces",
+          "description": "The circular glass faces of the pressure gauges are clouded with age, though you can still make out the numbered markings behind the haze. Some have developed spider-web patterns of fine cracks.",
+          "aliases": [
+            "gauge faces",
+            "gauge glass",
+            "gauge covers",
+            "meter faces"
+          ],
+          "container": false
+        },
+        {
+          "id": "7e6f5790-35eb-483d-ae84-0eda0c82408d",
+          "short_name": "decorative patterns",
+          "description": "The brass fittings are adorned with intricate patterns that speak to a bygone era of industrial artistry. Swirling motifs of steam and mechanical elements have been carefully carved into the metal.",
+          "aliases": [
+            "decorative patterns",
+            "carved patterns",
+            "brass patterns",
+            "fitting designs"
+          ],
+          "container": false
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "north": {
+          "location": [
+            0,
+            -2
+          ],
+          "direction": "north",
+          "description": "A steam-filled corridor radiating heat",
+          "room_id": "7b7a8673-598e-43b4-bb63-6eef06c8cc0a",
+          "allowed": true
+        },
+        "south": {
+          "location": [
+            0,
+            -4
+          ],
+          "direction": "south",
+          "description": "A narrow maintenance tunnel with exposed pipework",
+          "room_id": "dc5839a4-1902-4d70-83a2-a5a73c4cfcc7",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 0,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "atmospheric",
+        "tags": [
+          "intricate",
+          "hot",
+          "enigmatic",
+          "foggy"
+        ]
+      },
+      "position": [
+        0,
+        -3
+      ]
+    },
+    "115758c0-1dbf-4b49-9b61-6e7dfb04d4af": {
+      "id": "115758c0-1dbf-4b49-9b61-6e7dfb04d4af",
+      "title": "The Earthen Holding Chamber",
+      "base_description": "This spacious underground chamber appears to have been carved directly from the earth, with walls showing the natural striations of compressed soil and ancient rock. Brass pipes of varying sizes run along the ceiling in an intricate network, their surfaces dulled by years of accumulated dust. Several empty storage alcoves are set into the walls, their brass frames still sturdy despite their age.\n\nMounted on the walls are peculiar mechanical bulletin boards, their clockwork mechanisms frozen in time. The brass and copper display panels still hold fragments of notices and announcements, though most have long since crumbled to dust. A large, immobile ventilation fan dominates one wall, its massive brass blades eternally still.\n\nLow wooden crates and shelving units line the walls, their surfaces bearing the weight of years of settled dust. The floor is packed earth, but inlaid with a geometric pattern of copper strips that occasionally emit a faint, warm glow.\n\nThe chamber offers two paths: a passage to the west leads to the Mist-Veiled Plaza, while an ornate archway opens to the east.",
+      "items": [
+        {
+          "id": "a3dd1c99-b647-4937-995f-e475a5f42bad",
+          "item_id": "0dd2ad24-cc6d-4b15-b349-9bb8f5c02734",
+          "description": "A brass manometer sits among the dust on one of the shelves, its metallic surface catching what little light reaches it. The pressure-measuring device appears remarkably preserved.",
+          "location": "fc8c344c-2d05-482e-8f52-571974467bb7"
+        }
+      ],
+      "fixtures": [
+        {
+          "id": "21d3fd2a-850b-4bda-a8b4-9f8331ccd459",
+          "short_name": "brass pipes",
+          "description": "An intricate network of brass pipes in various sizes runs across the ceiling. Years of dust have dulled their once-bright surfaces, creating a complex industrial canopy overhead.",
+          "aliases": [
+            "brass pipes",
+            "pipes",
+            "pipe network"
+          ],
+          "container": false
+        },
+        {
+          "id": "a0279b57-5f75-46f9-9b00-40fef071967b",
+          "short_name": "storage alcoves",
+          "description": "These empty recesses are set into the earthen walls, each framed with sturdy brass that has withstood the test of time. Though vacant now, they clearly once served as organized storage spaces.",
+          "aliases": [
+            "storage alcoves",
+            "alcoves",
+            "wall alcoves"
+          ],
+          "container": true
+        },
+        {
+          "id": "86f154f1-bd3a-482d-ae0b-a0ce1c692a77",
+          "short_name": "mechanical bulletin boards",
+          "description": "These fascinating wall-mounted displays feature intricate clockwork mechanisms that have seized up over time. Fragments of old notices still cling to their brass and copper panels, though most have deteriorated beyond recognition.",
+          "aliases": [
+            "mechanical bulletin boards",
+            "bulletin boards",
+            "display panels"
+          ],
+          "container": false
+        },
+        {
+          "id": "4907e24d-5d3e-4a6a-8625-29d6fe976f6f",
+          "short_name": "ventilation fan",
+          "description": "A massive industrial fan dominates one wall, its brass blades frozen in perpetual stillness. Despite its dormant state, the impressive scale of the device suggests it once provided vital air circulation to the underground chamber.",
+          "aliases": [
+            "ventilation fan",
+            "fan",
+            "brass fan"
+          ],
+          "container": false
+        },
+        {
+          "id": "b9eebc0c-64e7-40b5-b7f8-a2f68645e9b7",
+          "short_name": "wooden crates",
+          "description": "These low-lying wooden crates appear weathered and dusty, their rough surfaces telling tales of long-term storage. Though sturdy, they show signs of age in their worn corners and faded wood.",
+          "aliases": [
+            "wooden crates",
+            "crates",
+            "storage crates"
+          ],
+          "container": true
+        },
+        {
+          "id": "fc8c344c-2d05-482e-8f52-571974467bb7",
+          "short_name": "shelving units",
+          "description": "Practical wooden shelving units line the walls, their surfaces thick with accumulated dust. Despite their age, they remain solid and serviceable, ready to hold various items and supplies.",
+          "aliases": [
+            "shelving units",
+            "shelves",
+            "storage shelves"
+          ],
+          "container": true
+        },
+        {
+          "id": "fc08ec9a-529b-48ee-9aee-dc0efae0349c",
+          "short_name": "copper floor pattern",
+          "description": "Intricate geometric patterns formed by copper strips run through the packed earth floor. These metallic lines occasionally emit a subtle, warm glow, suggesting some form of hidden energy or purpose.",
+          "aliases": [
+            "copper floor pattern",
+            "floor pattern",
+            "copper strips"
+          ],
+          "container": false
+        },
+        {
+          "id": "23989679-dccd-40a4-a8b9-3fcb287e33a2",
+          "short_name": "ornate archway",
+          "description": "An elegantly designed archway marks the eastern exit, its architectural details standing in contrast to the utilitarian nature of the chamber. The craftsmanship suggests this was meant to be a significant transition point.",
+          "aliases": [
+            "ornate archway",
+            "archway",
+            "east arch"
+          ],
+          "container": false
+        },
+        {
+          "id": "e7b08f9f-9730-4e52-86ae-32feb4d3d92f",
+          "short_name": "clockwork mechanisms",
+          "description": "The intricate mechanical workings of the bulletin boards consist of seized gears, springs, and levers. Though frozen now, one can still appreciate the complexity of their design.",
+          "aliases": [
+            "clockwork mechanisms",
+            "clockwork",
+            "mechanisms"
+          ],
+          "container": false
+        },
+        {
+          "id": "81b19d97-21b1-4b45-90c7-bfd3669a75de",
+          "short_name": "notice fragments",
+          "description": "Barely legible scraps of old notices and announcements cling to the bulletin boards. Most have crumbled away, leaving only tantalizing hints of their original content.",
+          "aliases": [
+            "notice fragments",
+            "notices",
+            "fragments"
+          ],
+          "container": false
+        },
+        {
+          "id": "c53fd35f-1c0b-4f3b-99f6-985f51ed012d",
+          "short_name": "brass blades",
+          "description": "The massive, motionless blades of the ventilation fan are crafted from solid brass. Their impressive size and robust construction suggest they once moved significant volumes of air through the chamber.",
+          "aliases": [
+            "brass blades",
+            "fan blades",
+            "blades"
+          ],
+          "container": false
+        },
+        {
+          "id": "073b245a-3b3f-4092-bec4-ba41afd8595b",
+          "short_name": "glowing strips",
+          "description": "These copper strips embedded in the floor pulse with a faint, warm light. Their geometric arrangement suggests they might serve some purpose beyond mere decoration.",
+          "aliases": [
+            "glowing strips",
+            "copper strips",
+            "glowing lines"
+          ],
+          "container": false
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "east": {
+          "location": [
+            2,
+            -2
+          ],
+          "direction": "east",
+          "description": "An ornate archway framed with copper filigree",
+          "room_id": "4f389c98-cdce-462f-b90a-af1e75d1aa1a",
+          "allowed": true
+        },
+        "west": {
+          "location": [
+            0,
+            -2
+          ],
+          "direction": "west",
+          "description": "A dim passage with earthen walls leads to the Mist-Veiled Plaza",
+          "room_id": "7b7a8673-598e-43b4-bb63-6eef06c8cc0a",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 1,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "treasure",
+        "tags": [
+          "welcoming",
+          "dusty",
+          "earthen",
+          "dim"
+        ]
+      },
+      "position": [
+        1,
+        -2
+      ]
+    },
+    "adf0a303-6611-4f67-b2e4-5abcc46e0fc5": {
+      "id": "adf0a303-6611-4f67-b2e4-5abcc46e0fc5",
+      "title": "The Gear-Driven Atrium",
+      "base_description": "Massive brass gears line the curved walls of this expansive circular chamber, their teeth forever frozen in mid-motion. Towering columns rise from floor to ceiling, each one wrapped in copper piping that gleams dully in the ambient light filtering through oxidized skylights far above. The metal has taken on a patina of greens and blues, creating an otherworldly atmosphere.\n\nThe floor is an intricate mosaic of metallic tiles arranged in concentric circles, each ring featuring different mechanical patterns and motifs. At the center stands a grand mechanical fountain, its multiple tiers now still and silent, though the elaborate network of pipes and pressure gauges suggests it once flowed with either water or steam.\n\nSeveral maintenance catwalks crisscross the upper levels, their railings adorned with ornate clockwork decorations. The occasional creak of settling metal echoes through the space, as if the chamber itself is sighing with the weight of ages.\n\nTwo passages lead away from this mechanical marvel - a broad archway to the east connects to the Automation Archives, while a more ominous tunnel opens to the west.",
+      "items": [],
+      "fixtures": [
+        {
+          "id": "47794d27-19ab-48bc-9eb0-9eb7abbdb092",
+          "short_name": "brass gears",
+          "description": "Massive brass gears line the curved walls, frozen in time like mechanical sentinels. Their teeth, though motionless, seem to tell stories of when this chamber hummed with activity.",
+          "aliases": [
+            "brass gears",
+            "gears",
+            "wall gears"
+          ],
+          "container": false
+        },
+        {
+          "id": "1402ea7b-1145-4d83-8c45-2a55732e3be6",
+          "short_name": "copper columns",
+          "description": "These towering columns stretch from floor to ceiling, wrapped in copper piping that has aged to a dull sheen. The pipes spiral upward in an intricate pattern, suggesting both form and function.",
+          "aliases": [
+            "copper columns",
+            "columns",
+            "piped columns"
+          ],
+          "container": false
+        },
+        {
+          "id": "27ed7fda-525a-49e1-beaf-d5483ba22345",
+          "short_name": "oxidized skylights",
+          "description": "High above, the skylights have taken on a weathered appearance, their glass panels tinted by years of oxidation. They still manage to filter in an ethereal light that plays across the chamber's metallic surfaces.",
+          "aliases": [
+            "oxidized skylights",
+            "skylights",
+            "ceiling windows"
+          ],
+          "container": false
+        },
+        {
+          "id": "50d83a3d-2bcb-4a33-a5ad-61490ceea967",
+          "short_name": "metallic floor mosaic",
+          "description": "The floor is a masterwork of metallic tiles, arranged in perfect concentric circles. Each ring displays different mechanical patterns, creating a mesmerizing mandala of gears, cogs, and industrial designs.",
+          "aliases": [
+            "metallic floor mosaic",
+            "floor mosaic",
+            "mosaic",
+            "metal floor"
+          ],
+          "container": false
+        },
+        {
+          "id": "c7a31dc8-2c0b-4a97-a6fa-d9756004246f",
+          "short_name": "mechanical fountain",
+          "description": "Standing proudly at the chamber's center, this grand fountain rises in multiple silent tiers. Its complex network of pipes and pressure gauges suggests it once produced an impressive display of water or steam. Despite its stillness, it remains an impressive feat of engineering.",
+          "aliases": [
+            "mechanical fountain",
+            "fountain",
+            "central fountain"
+          ],
+          "container": true
+        },
+        {
+          "id": "fe9fe045-d14d-4471-b2dd-94cd75a4287b",
+          "short_name": "maintenance catwalks",
+          "description": "Steel catwalks traverse the upper reaches of the chamber, their railings decorated with intricate clockwork designs. They creak occasionally, adding to the chamber's atmospheric ambiance.",
+          "aliases": [
+            "maintenance catwalks",
+            "catwalks",
+            "upper walkways"
+          ],
+          "container": true
+        },
+        {
+          "id": "ca1b45ae-3cbc-40e7-b7de-b7da6b02f262",
+          "short_name": "eastern archway",
+          "description": "A broad, well-crafted archway leads east to the Automation Archives. Its frame bears similar mechanical motifs to the rest of the chamber, creating a harmonious transition.",
+          "aliases": [
+            "eastern archway",
+            "archway",
+            "east passage"
+          ],
+          "container": false
+        },
+        {
+          "id": "944e135a-ec2b-4bfd-9764-fb5944e3fd08",
+          "short_name": "western tunnel",
+          "description": "In stark contrast to the eastern archway, this tunnel mouth opens ominously to the west. Its darker aspect and less refined appearance make it seem somehow more threatening.",
+          "aliases": [
+            "western tunnel",
+            "tunnel",
+            "west passage"
+          ],
+          "container": false
+        },
+        {
+          "id": "63033f2a-a454-46f5-933c-6595b6bf16e6",
+          "short_name": "pressure gauges",
+          "description": "Various pressure gauges dot the fountain's framework, their needles frozen at different positions. Though no longer functional, their brass faces and intricate mechanisms remain intact.",
+          "aliases": [
+            "pressure gauges",
+            "gauges",
+            "fountain gauges"
+          ],
+          "container": false
+        },
+        {
+          "id": "ca40e2cd-8665-4f07-ac25-e616c915cf53",
+          "short_name": "fountain pipes",
+          "description": "An elaborate network of pipes weaves throughout the fountain's structure. Some are thick main conduits, while others are delicate distribution tubes, all arranged in a complex but aesthetically pleasing pattern.",
+          "aliases": [
+            "fountain pipes",
+            "pipes",
+            "water pipes"
+          ],
+          "container": false
+        },
+        {
+          "id": "78fb63ef-72fe-416c-8862-e962d6fcf7d8",
+          "short_name": "fountain tiers",
+          "description": "The fountain rises in multiple graceful tiers, each level featuring different mechanical embellishments and water spouts. Though dry now, it's easy to imagine how water once cascaded down these lovely terraced levels.",
+          "aliases": [
+            "fountain tiers",
+            "tiers",
+            "fountain levels"
+          ],
+          "container": true
+        },
+        {
+          "id": "1a8c0abe-d987-4139-9196-e7d085db8455",
+          "short_name": "catwalk railings",
+          "description": "The steel railings of the catwalks provide both safety and style, their industrial strength enhanced by decorative elements. They show signs of wear from years of use.",
+          "aliases": [
+            "catwalk railings",
+            "railings",
+            "steel railings"
+          ],
+          "container": false
+        },
+        {
+          "id": "ab4d6ccf-b552-4314-a579-823fd2d13319",
+          "short_name": "clockwork decorations",
+          "description": "Ornate clockwork designs adorn the catwalk railings, featuring small gears and mechanical patterns that mirror the chamber's overall theme. These decorative elements transform utilitarian railings into works of art.",
+          "aliases": [
+            "clockwork decorations",
+            "railing decorations",
+            "mechanical ornaments"
+          ],
+          "container": false
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "west": {
+          "location": [
+            -4,
+            0
+          ],
+          "direction": "west",
+          "description": "A dark tunnel mouth emanates unsettling echoes",
+          "room_id": "367b2cf4-e0e6-4678-bab0-124d164d4a80",
+          "allowed": true
+        },
+        "east": {
+          "location": [
+            -2,
+            0
+          ],
+          "direction": "east",
+          "description": "A broad archway leads to the Automation Archives",
+          "room_id": "b459e8f5-347b-4e81-8f98-9f272fe83e15",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 0,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "atmospheric",
+        "tags": [
+          "grandabandoned",
+          "solitary",
+          "murky",
+          "wide"
+        ]
+      },
+      "position": [
+        -3,
+        0
+      ]
+    },
+    "dc5839a4-1902-4d70-83a2-a5a73c4cfcc7": {
+      "id": "dc5839a4-1902-4d70-83a2-a5a73c4cfcc7",
+      "title": "The Pipeworks Crawlspace",
+      "base_description": "This cramped maintenance tunnel feels like the veins of the underground city itself. Copper and brass pipes of varying diameters run along the walls and ceiling, their surfaces dulled with age and painted with decades of mineral deposits. Steam occasionally hisses through hairline cracks, creating a constant background whisper that echoes in the confined space.\n\nBrass gauges and pressure meters line the walls at regular intervals, their glass faces clouded and needles frozen in time. Ancient valve wheels protrude at various heights, some still bearing traces of their original red paint. The low ceiling is supported by ornate iron brackets fashioned in geometric patterns typical of the city's signature style.\n\nThe floor consists of narrow metal grating that clinks hollowly underfoot, and beneath it, even more pipes disappear into the shadows. Copper conduits branch off at irregular angles, disappearing into the walls through brass-rimmed portals.\n\nThe crawlspace continues to the north through a particularly narrow section of the maintenance tunnel, while the southern passage opens into what appears to be a more spacious area.",
+      "items": [],
+      "fixtures": [
+        {
+          "id": "2e9859a0-428d-48ef-988b-ee45461d0c12",
+          "short_name": "pipe system",
+          "description": "An extensive network of copper and brass pipes runs throughout the tunnel, covering the walls and ceiling. The pipes vary in diameter and their surfaces are dulled by age, covered in layers of mineral deposits. Occasional hisses of steam escape through tiny cracks.",
+          "aliases": [
+            "pipe system",
+            "pipes",
+            "copper pipes",
+            "brass pipes"
+          ],
+          "container": false
+        },
+        {
+          "id": "fec3f65d-d4b8-4a3a-b341-a7a0cd5b3dc2",
+          "short_name": "pressure gauges",
+          "description": "A series of brass gauges and pressure meters are mounted along the walls at regular intervals. Their glass faces are clouded with age and most of their needles appear to be stuck in place, frozen by time.",
+          "aliases": [
+            "pressure gauges",
+            "gauges",
+            "meters",
+            "brass gauges"
+          ],
+          "container": false
+        },
+        {
+          "id": "cc85b9d0-3d9f-4279-9ae9-246cbbd24039",
+          "short_name": "valve wheels",
+          "description": "Large valve wheels protrude from the walls at various heights. Some still retain traces of their original red paint, though most have been worn down to bare metal through years of use.",
+          "aliases": [
+            "valve wheels",
+            "valves",
+            "wheels",
+            "red valves"
+          ],
+          "container": false
+        },
+        {
+          "id": "6f3148c0-52a1-42bb-be5f-4ecfcd8eaa2e",
+          "short_name": "iron brackets",
+          "description": "The low ceiling is supported by decorative iron brackets featuring intricate geometric patterns, exemplifying the distinctive architectural style of the underground city.",
+          "aliases": [
+            "iron brackets",
+            "brackets",
+            "ceiling brackets",
+            "support brackets"
+          ],
+          "container": false
+        },
+        {
+          "id": "528d5a20-b193-4e86-8478-e8cae26e52f7",
+          "short_name": "metal grating",
+          "description": "The floor is made of narrow metal grating that produces hollow sounds when walked upon. Through the gaps, more pipes can be seen disappearing into the darkness below.",
+          "aliases": [
+            "metal grating",
+            "grating",
+            "floor grating",
+            "metal floor"
+          ],
+          "container": false
+        },
+        {
+          "id": "9bdf874b-0c8d-4e55-adec-af773bc5eb47",
+          "short_name": "brass portals",
+          "description": "Circular brass-rimmed openings in the walls serve as entry points for various copper conduits branching off from the main tunnel. The portals feature cleanly finished metalwork despite their age.",
+          "aliases": [
+            "brass portals",
+            "portals",
+            "wall portals",
+            "pipe portals"
+          ],
+          "container": false
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "north": {
+          "location": [
+            0,
+            -3
+          ],
+          "direction": "north",
+          "description": "A narrow maintenance tunnel with exposed pipework leads to The Pressure Junction",
+          "room_id": "24566605-9513-4b0f-8bd3-b631dc2eda34",
+          "allowed": true
+        },
+        "south": {
+          "location": [
+            0,
+            -5
+          ],
+          "direction": "south",
+          "description": "The passage opens into a larger chamber",
+          "room_id": "aa21a0bd-2092-4917-b66f-d00100e73a26",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 0,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "atmospheric",
+        "tags": [
+          "solitary",
+          "sparse",
+          "narrow",
+          "tiny"
+        ]
+      },
+      "position": [
+        0,
+        -4
+      ]
+    },
+    "4f389c98-cdce-462f-b90a-af1e75d1aa1a": {
+      "id": "4f389c98-cdce-462f-b90a-af1e75d1aa1a",
+      "title": "The Copper-Leaf Gallery",
+      "base_description": "This long, elegant gallery stands as a testament to the extraordinary craftsmanship of the underground city's artisans. The walls are adorned with intricate copper-leaf patterns that spiral and interweave, creating mesmerizing designs that catch and reflect even the dimmest light. Despite years of abandonment, the metalwork has developed only a light patina, giving the space an almost ethereal green-gold glow.\n\nTall, slender columns of brass-wrapped stone rise from floor to ceiling, their surfaces etched with countless tiny gears and mechanical motifs. Between these columns, empty display cases of crystal and bronze still stand pristinely, their glass surfaces remarkably intact despite the passage of time. Ornate brass plaques beneath each case hint at the treasures they once contained.\n\nThe vaulted ceiling features a complex network of copper pipes that seem to pulse with a faint, warm light – some ancient mechanism still operational after all these years. The marble floor, though slightly worn in the center from countless footsteps, maintains its original geometric patterns in shades of cream and copper.\n\nTo the west, an ornate archway framed with copper filigree leads to the Earthen Holding Chamber.",
+      "items": [],
+      "fixtures": [
+        {
+          "id": "6ee772b0-7a11-4aaa-9b0c-41bd59c113bb",
+          "short_name": "display cases",
+          "description": "These pristine crystal and bronze display cases stand empty but untouched by time. Each case is a masterwork of craftsmanship, with perfectly clear glass panels and elegant bronze framework. Though they now stand empty, they speak of the precious artifacts they once protected.",
+          "aliases": [
+            "display cases",
+            "cases",
+            "crystal cases",
+            "bronze cases"
+          ],
+          "container": true
+        },
+        {
+          "id": "84894c3d-1cff-4889-b088-cdb8a5cca909",
+          "short_name": "brass columns",
+          "description": "Tall, slender columns rise majestically from floor to ceiling, their stone cores wrapped in brass. Each column's surface is a canvas of intricate engravings, featuring countless miniature gears and mechanical patterns that tell stories of the city's technological achievements.",
+          "aliases": [
+            "brass columns",
+            "columns",
+            "stone columns",
+            "engraved columns"
+          ],
+          "container": false
+        },
+        {
+          "id": "bf3d1a85-d1b4-4d24-b707-a9244bac2b6f",
+          "short_name": "copper wall patterns",
+          "description": "The walls showcase an extraordinary display of copper-leaf artistry, where intricate patterns spiral and weave together in mesmerizing designs. The metalwork has developed a subtle patina over time, creating an enchanting green-gold glow that dances across the surfaces.",
+          "aliases": [
+            "copper wall patterns",
+            "wall patterns",
+            "copper patterns",
+            "wall decorations"
+          ],
+          "container": false
+        },
+        {
+          "id": "d873c81e-66f8-46f6-83af-c7eedb2a438b",
+          "short_name": "ceiling pipes",
+          "description": "A complex network of copper pipes crisscrosses the vaulted ceiling, emanating a mysterious, warm light. These pipes, part of some ancient mechanism, continue to pulse with an inner glow, suggesting that some unknown power still flows through them.",
+          "aliases": [
+            "ceiling pipes",
+            "pipes",
+            "copper pipes",
+            "glowing pipes"
+          ],
+          "container": false
+        },
+        {
+          "id": "9492074f-525b-4d16-8aba-125549f9e1bd",
+          "short_name": "marble floor",
+          "description": "The marble floor displays an elegant geometric pattern in shades of cream and copper. While the center bears the subtle marks of countless footsteps over the years, the intricate designs remain clearly visible, particularly near the edges.",
+          "aliases": [
+            "marble floor",
+            "floor",
+            "geometric floor",
+            "patterned floor"
+          ],
+          "container": false
+        },
+        {
+          "id": "e43b0964-fa69-40e1-8d74-ef5a7540c5d6",
+          "short_name": "copper archway",
+          "description": "An ornate archway marks the western exit, its frame adorned with delicate copper filigree work. The metalwork forms intricate patterns that seem to flow like frozen copper lace, marking the passage to the Earthen Holding Chamber.",
+          "aliases": [
+            "copper archway",
+            "archway",
+            "filigree arch",
+            "western arch"
+          ],
+          "container": false
+        },
+        {
+          "id": "1e346b92-e68d-4ea4-b84c-ec56730527cd",
+          "short_name": "brass plaques",
+          "description": "Mounted beneath each display case, these ornate brass plaques bear elegant inscriptions. Though time has slightly dulled their shine, they still clearly indicate what treasures once rested in the cases above them.",
+          "aliases": [
+            "brass plaques",
+            "plaques",
+            "display plaques",
+            "item plaques"
+          ],
+          "container": false
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "west": {
+          "location": [
+            1,
+            -2
+          ],
+          "direction": "west",
+          "description": "An ornate archway framed with copper filigree",
+          "room_id": "115758c0-1dbf-4b49-9b61-6e7dfb04d4af",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 1,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "treasure",
+        "tags": [
+          "pristine",
+          "ruined",
+          "stuffy",
+          "decorated"
+        ]
+      },
+      "position": [
+        2,
+        -2
+      ]
+    },
+    "367b2cf4-e0e6-4678-bab0-124d164d4a80": {
+      "id": "367b2cf4-e0e6-4678-bab0-124d164d4a80",
+      "title": "The Resonating Chamber",
+      "base_description": "Massive bronze cylinders line the walls of this cavernous circular chamber, their surfaces etched with intricate patterns that spiral from floor to ceiling. These ancient resonators, each as wide as a person is tall, bear the tarnish of centuries. Dull brass pipes connect the cylinders, forming a complex network of acoustical pathways that disappear into the shadowy ceiling above.\n\nIn the center of the room stands a towering tuning fork, its prongs reaching nearly twenty feet high. The base is set into a circular platform decorated with concentric rings of copper and iron, all showing signs of oxidation. Small holes in the platform suggest that this room once served some greater purpose in the city's mysterious sound-based technologies.\n\nThe walls between the resonating cylinders feature faded technical diagrams etched into oxidized copper plates, depicting wave patterns and mathematical formulas now barely legible. The floor bears circular grooves that radiate outward from the central platform like ripples in a pond.\n\nA dark tunnel mouth opens to the east, its shape causing any sound to echo ominously through the chamber.",
+      "items": [],
+      "fixtures": [
+        {
+          "id": "e28f2625-8b0a-47dd-a68b-1fd600fe60e7",
+          "short_name": "bronze cylinders",
+          "description": "Massive bronze cylinders line the walls, their surfaces covered in intricate spiral patterns from floor to ceiling. These ancient resonators show significant tarnish, each cylinder as wide as a person is tall.",
+          "aliases": [
+            "bronze cylinders",
+            "resonators",
+            "cylinders",
+            "ancient resonators"
+          ],
+          "container": false
+        },
+        {
+          "id": "a563a5a9-88ea-4be8-94c9-225eac4ba53b",
+          "short_name": "brass pipes",
+          "description": "Dull brass pipes form an intricate network connecting the resonating cylinders, disappearing into the shadows of the ceiling above.",
+          "aliases": [
+            "brass pipes",
+            "pipes",
+            "pipe network"
+          ],
+          "container": false
+        },
+        {
+          "id": "8e640663-5dc0-4041-8928-993a64cbdf32",
+          "short_name": "giant tuning fork",
+          "description": "A colossal tuning fork dominates the center of the chamber, its twin prongs stretching almost twenty feet toward the ceiling. The metal surface is weathered but maintains its imposing presence.",
+          "aliases": [
+            "giant tuning fork",
+            "tuning fork",
+            "fork"
+          ],
+          "container": false
+        },
+        {
+          "id": "072d7e2d-3a7c-4af6-a5e2-0ed0917ba550",
+          "short_name": "circular platform",
+          "description": "A circular platform serves as the base for the tuning fork, decorated with concentric rings of copper and iron. The oxidized surface is punctuated by small holes, hinting at its former technological purpose.",
+          "aliases": [
+            "circular platform",
+            "platform",
+            "base"
+          ],
+          "container": true
+        },
+        {
+          "id": "27e00bbb-55db-4888-b1e9-6dde2adfaf97",
+          "short_name": "technical diagrams",
+          "description": "Faded diagrams etched into oxidized copper plates adorn the walls between the resonators. They display complex wave patterns and mathematical formulas, though time has made them difficult to read.",
+          "aliases": [
+            "technical diagrams",
+            "diagrams",
+            "copper plates",
+            "etchings"
+          ],
+          "container": false
+        },
+        {
+          "id": "848bb001-4718-43d6-87b2-b46129699d4a",
+          "short_name": "floor grooves",
+          "description": "Circular grooves are carved into the floor, radiating outward from the central platform like frozen ripples in a stone pond.",
+          "aliases": [
+            "floor grooves",
+            "grooves",
+            "circular grooves"
+          ],
+          "container": false
+        },
+        {
+          "id": "b261f725-6e12-4aa7-8e31-73258e017192",
+          "short_name": "tunnel mouth",
+          "description": "A dark tunnel opening in the eastern wall creates haunting echoes of any sound in the chamber, its arch specially shaped to produce this acoustic effect.",
+          "aliases": [
+            "tunnel mouth",
+            "tunnel",
+            "opening",
+            "eastern tunnel"
+          ],
+          "container": false
+        },
+        {
+          "id": "43a1bd25-31c5-4b02-8d8d-2b240eae60d6",
+          "short_name": "platform rings",
+          "description": "Concentric rings of copper and iron decorate the circular platform, their surfaces showing the green and rust-red hues of oxidation. They form an intricate pattern around the tuning fork's base.",
+          "aliases": [
+            "platform rings",
+            "rings",
+            "concentric rings",
+            "metal rings"
+          ],
+          "container": false
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "east": {
+          "location": [
+            -3,
+            0
+          ],
+          "direction": "east",
+          "description": "A dark tunnel mouth emanates unsettling echoes",
+          "room_id": "adf0a303-6611-4f67-b2e4-5abcc46e0fc5",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 0,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "atmospheric",
+        "tags": [
+          "eerie",
+          "echoing",
+          "earthen",
+          "murky"
+        ]
+      },
+      "position": [
+        -4,
+        0
+      ]
+    },
+    "aa21a0bd-2092-4917-b66f-d00100e73a26": {
+      "id": "aa21a0bd-2092-4917-b66f-d00100e73a26",
+      "title": "The Maintenance Mezzanine",
+      "base_description": "A half-floor suspended by intricate brass support beams spans this spacious chamber, creating a split-level workspace that speaks of meticulous engineering. Polished copper railings line the mezzanine's edge, their pristine finish contrasting with the crumbling stone walls behind them. Countless brass pipes snake across the ceiling, their surfaces gleaming despite the room's apparent abandonment.\n\nFixed workbenches with inlaid measuring tools line the walls, their brass fittings still catching what little light filters through the crystalline illumination panels above. A massive diagnostic panel dominates the eastern wall, its array of gauges, dials, and pressure indicators frozen in time. The ghost of steam-driven activity lingers in the air, punctuated by the occasional distant hiss from the still-functioning pipe network.\n\nThe lower level features a grid of floor-mounted maintenance hatches, their brass handles and intricate locking mechanisms suggesting access to the city's complex underlying systems. Drafts whisper through the chamber, carrying the faint scent of metal and mineral oil.\n\nFrom this vantage point, a passage opens northward into a larger chamber, while a curious archway to the west leads into shadowy depths.",
+      "items": [
+        {
+          "id": "e3836809-9349-4bcd-9c8d-c81583c0f862",
+          "item_id": "018f75d2-7901-4103-b2ea-e6b6428c1e16",
+          "description": "A sophisticated brass chronometer sits near the edge of the mezzanine, its multiple dials glinting in the crystalline light from above.",
+          "location": "7a94926e-80b8-4092-9a7c-3f5b1bcea763"
+        }
+      ],
+      "fixtures": [
+        {
+          "id": "7a94926e-80b8-4092-9a7c-3f5b1bcea763",
+          "short_name": "suspended half floor",
+          "description": "A remarkable feat of engineering, this half-floor mezzanine is suspended by intricate brass support beams, creating an upper level workspace that overlooks the chamber below.",
+          "aliases": [
+            "half floor",
+            "mezzanine",
+            "upper level"
+          ],
+          "container": true
+        },
+        {
+          "id": "10344fba-da02-4176-840d-39b8ee79f5a1",
+          "short_name": "copper railings",
+          "description": "Polished copper railings run along the edge of the mezzanine, their pristine finish creating a striking contrast against the aged stone walls behind them.",
+          "aliases": [
+            "railings",
+            "copper rails",
+            "mezzanine rails"
+          ],
+          "container": false
+        },
+        {
+          "id": "58fbf399-cc56-4988-9e58-a3228d061098",
+          "short_name": "brass pipes",
+          "description": "An intricate network of brass pipes crisscrosses the ceiling, their surfaces maintaining a remarkable shine despite the room's abandoned state. Occasional hisses suggest they're still active.",
+          "aliases": [
+            "pipes",
+            "pipe network",
+            "ceiling pipes"
+          ],
+          "container": false
+        },
+        {
+          "id": "6bc4c4ef-131c-46dd-a239-b41ec0b92206",
+          "short_name": "fixed workbenches",
+          "description": "Sturdy workbenches line the walls, featuring precision measuring tools inlaid directly into their surfaces. Their brass fittings gleam in the ambient light.",
+          "aliases": [
+            "workbenches",
+            "benches",
+            "work stations"
+          ],
+          "container": true
+        },
+        {
+          "id": "25e61079-0e29-4eca-ade9-b7ef3c2ed285",
+          "short_name": "diagnostic panel",
+          "description": "A massive control panel dominates the eastern wall, featuring an impressive array of gauges, dials, and pressure indicators. Though frozen in time, it speaks to the complex operations once monitored here.",
+          "aliases": [
+            "control panel",
+            "panel",
+            "gauge panel"
+          ],
+          "container": false
+        },
+        {
+          "id": "5cf2e38f-dedd-402d-bc29-e938ed31fa72",
+          "short_name": "maintenance hatches",
+          "description": "A grid of floor-mounted access hatches covers the lower level, each featuring ornate brass handles and complex locking mechanisms. They appear to provide access to the city's underground systems.",
+          "aliases": [
+            "hatches",
+            "floor hatches",
+            "access hatches"
+          ],
+          "container": true
+        },
+        {
+          "id": "b4e143a3-2da8-4d6b-add7-16e9f4f790b2",
+          "short_name": "illumination panels",
+          "description": "Crystalline panels set into the ceiling provide subtle illumination throughout the chamber, casting a soft light that reflects off the numerous brass and copper surfaces.",
+          "aliases": [
+            "light panels",
+            "ceiling lights",
+            "crystal panels"
+          ],
+          "container": false
+        },
+        {
+          "id": "16d6a3d5-60c9-4488-942f-119628cb93bd",
+          "short_name": "measuring tools",
+          "description": "Precision measuring implements are permanently inlaid into the workbench surfaces, including rulers, angle gauges, and various calibration tools.",
+          "aliases": [
+            "tools",
+            "measurement implements",
+            "bench tools"
+          ],
+          "container": false
+        },
+        {
+          "id": "106101c4-1aa1-4894-822c-bb18341fa31b",
+          "short_name": "gauges and dials",
+          "description": "The diagnostic panel houses an impressive collection of measuring instruments, including pressure gauges, steam flow indicators, and various monitoring dials.",
+          "aliases": [
+            "gauges",
+            "indicators",
+            "monitoring instruments"
+          ],
+          "container": false
+        },
+        {
+          "id": "d721bae3-0e88-428d-8d63-d1454d581235",
+          "short_name": "hatch mechanisms",
+          "description": "Each maintenance hatch features an intricate brass handle connected to a complex locking mechanism, designed to secure access to the underground systems.",
+          "aliases": [
+            "mechanisms",
+            "hatch locks",
+            "brass handles"
+          ],
+          "container": false
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "west": {
+          "location": [
+            -1,
+            -5
+          ],
+          "direction": "west",
+          "description": "A curious archway leads into shadowy depths",
+          "room_id": "7dfd58a3-edbd-4573-8f25-bf129aa9be49",
+          "allowed": true
+        },
+        "north": {
+          "location": [
+            0,
+            -4
+          ],
+          "direction": "north",
+          "description": "The passage opens into a larger chamber",
+          "room_id": "dc5839a4-1902-4d70-83a2-a5a73c4cfcc7",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 1,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "treasure",
+        "tags": [
+          "crumbling",
+          "drafty",
+          "detailed",
+          "pristine"
+        ]
+      },
+      "position": [
+        0,
+        -5
+      ]
+    },
+    "7dfd58a3-edbd-4573-8f25-bf129aa9be49": {
+      "id": "7dfd58a3-edbd-4573-8f25-bf129aa9be49",
+      "title": "The Pneumatic Switchboard",
+      "base_description": "Brass control panels line the curved walls of this circular chamber, their surfaces dulled by years of neglect. Ancient pneumatic tubes, some cracked and others intact, weave between the panels like metallic vines. Faded labels in elegant script hint at the room's former purpose as a central communication hub for the underground city.\n\nThe vaulted ceiling features an intricate network of copper pipes that converge at a central brass rose, from which hangs a silent pneumatic bell. Small glass windows in the control panels reveal empty message cylinders, forever frozen in their tracks.\n\nIllumination seeps in through phosphorescent fungi that have claimed the room's upper corners, casting everything in a subtle, bluish glow. The air carries a perpetual whisper, as if the ghost of messages past still travels through the tubes.\n\nTwo passages break the continuous line of control panels. To the west, an ornate doorway beckons, while to the east, a curious archway leads into shadowy depths.",
+      "items": [],
+      "fixtures": [
+        {
+          "id": "fe3921f0-3879-4185-9eee-5864611e615d",
+          "short_name": "brass control panels",
+          "description": "These wall-mounted control panels, once gleaming brass, now bear a patina of age. Glass windows reveal empty tracks within, and faded script labels hint at their past role in city communications.",
+          "aliases": [
+            "brass panels",
+            "control panels",
+            "panels"
+          ],
+          "container": true
+        },
+        {
+          "id": "3895526d-351b-47e2-aa3e-03e4009b9a7b",
+          "short_name": "pneumatic tubes",
+          "description": "A complex network of metallic tubes snakes between the control panels. Some tubes remain intact, while others show signs of damage with visible cracks along their length.",
+          "aliases": [
+            "tubes",
+            "metal tubes",
+            "pipeline network"
+          ],
+          "container": false
+        },
+        {
+          "id": "a7e08876-ecc3-4302-a680-5b47982a6faf",
+          "short_name": "brass rose",
+          "description": "An ornate brass fitting adorns the center of the vaulted ceiling, serving as a hub where numerous copper pipes elegantly converge into a floral pattern.",
+          "aliases": [
+            "rose",
+            "ceiling rose",
+            "pipe junction"
+          ],
+          "container": false
+        },
+        {
+          "id": "963392cd-d194-4dce-aadf-5a73fcaea16c",
+          "short_name": "pneumatic bell",
+          "description": "A silent brass bell hangs from the central rose, its mechanism long dormant. Once used to announce incoming messages, it now serves as a quiet reminder of the room's former purpose.",
+          "aliases": [
+            "bell",
+            "brass bell",
+            "message bell"
+          ],
+          "container": false
+        },
+        {
+          "id": "4e6ddb41-13d5-4467-a0ed-c2e584c98ebb",
+          "short_name": "message cylinders",
+          "description": "Through small glass windows, you can see empty message cylinders trapped within their tracks, frozen in time like mechanical fossils.",
+          "aliases": [
+            "cylinders",
+            "message tubes",
+            "communication cylinders"
+          ],
+          "container": true
+        },
+        {
+          "id": "89fb5fd1-d27b-40b7-8915-3a8c37570ede",
+          "short_name": "phosphorescent fungi",
+          "description": "Clusters of glowing fungi have colonized the upper corners of the room, emanating a soft blue light that provides natural illumination to the chamber.",
+          "aliases": [
+            "fungi",
+            "glowing fungi",
+            "mushrooms"
+          ],
+          "container": false
+        },
+        {
+          "id": "ba89c691-45ea-4d61-add5-484b96ae40b3",
+          "short_name": "ornate doorway",
+          "description": "A beautifully decorated doorway breaks the western wall's array of control panels, its intricate metalwork suggesting the importance of whatever lies beyond.",
+          "aliases": [
+            "west door",
+            "decorated doorway",
+            "western doorway"
+          ],
+          "container": false
+        },
+        {
+          "id": "f4b26d39-bd5b-4b16-88b3-095cc8a7c761",
+          "short_name": "curious archway",
+          "description": "An enigmatic arch to the east leads into darkness, its simple yet unusual design contrasting with the mechanical complexity of the chamber.",
+          "aliases": [
+            "east arch",
+            "eastern archway",
+            "arch"
+          ],
+          "container": false
+        },
+        {
+          "id": "513976a3-cc8d-4884-9dc5-56ed623fd497",
+          "short_name": "glass windows",
+          "description": "Small transparent panels set into the control panels, these windows offer glimpses of the mechanical workings within, including the abandoned message cylinders.",
+          "aliases": [
+            "windows",
+            "viewing panels",
+            "glass panels"
+          ],
+          "container": false
+        },
+        {
+          "id": "7c1a2e71-3783-4a5a-aa88-ee2a6ec23749",
+          "short_name": "script labels",
+          "description": "Elegant but faded text adorns the control panels, their flowing letterforms barely legible after years of wear, yet still hinting at the various communication functions once controlled here.",
+          "aliases": [
+            "labels",
+            "panel text",
+            "faded text"
+          ],
+          "container": false
+        },
+        {
+          "id": "69cd8595-bcd9-471e-928a-85f155bd2b9f",
+          "short_name": "copper pipes",
+          "description": "An intricate network of copper piping spreads across the ceiling like metallic branches, all leading to the central brass rose. Their reddish-brown surface has developed a subtle patina over time.",
+          "aliases": [
+            "pipes",
+            "ceiling pipes",
+            "copper tubing"
+          ],
+          "container": false
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "west": {
+          "location": [
+            -2,
+            -5
+          ],
+          "direction": "west",
+          "description": "An ornate doorway with brass filigree stands in stark contrast to the utilitarian nature of this room",
+          "room_id": "4627d01e-6b2f-4abf-818c-a6204fb8722b",
+          "allowed": true
+        },
+        "east": {
+          "location": [
+            0,
+            -5
+          ],
+          "direction": "east",
+          "description": "A curious archway leads into shadowy depths",
+          "room_id": "aa21a0bd-2092-4917-b66f-d00100e73a26",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 0,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "atmospheric",
+        "tags": [
+          "quiet",
+          "puzzling",
+          "echoing",
+          "plain"
+        ]
+      },
+      "position": [
+        -1,
+        -5
+      ]
+    },
+    "4627d01e-6b2f-4abf-818c-a6204fb8722b": {
+      "id": "4627d01e-6b2f-4abf-818c-a6204fb8722b",
+      "title": "The Time-Worn Tea Room",
+      "base_description": "Faint wisps of ancient steam still curl from ornate brass spouts set into delicately tiled walls, hinting at an era when this charming parlor served refreshments to the city's elite. Circular tables, their surfaces inlaid with intricate gear patterns, stand frozen in time, permanently affixed to the floor through brass pipework that presumably once carried heat to keep beverages warm.\n\nThe ceiling features a mesmerizing clockwork mobile, its brass and copper arms moving imperceptibly slow, powered by the residual steam pressure that still haunts these halls. Tarnished mirrors line the walls between the steam spouts, their aged surfaces creating an unsettling infinity of reflections that seem to capture glimpses of phantom patrons from ages past.\n\nBrass wall sconces hold eternal flames - ingenious gas mechanisms that have somehow maintained their gentle glow through the decades. Their light plays across the deep burgundy wallpaper, where metallic patterns of cogs and springs catch and scatter the illumination in hypnotic ways.\n\nA pair of doorways punctuate the room's east and west walls. To the east, an ornate brass-trimmed entrance leads to the Pneumatic Switchboard, while the western exit opens into a smaller, more intimate space.",
+      "items": [],
+      "fixtures": [
+        {
+          "id": "8e27b6aa-8218-4d02-80db-876b370303a2",
+          "short_name": "brass spouts",
+          "description": "Ornate brass spouts set into the tiled walls still emit faint wisps of ancient steam, a remnant of the parlor's gloried past when they served hot beverages to distinguished guests.",
+          "aliases": [
+            "brass spouts",
+            "spouts",
+            "steam spouts"
+          ],
+          "container": false
+        },
+        {
+          "id": "0f5dfc8c-6542-45fb-acc7-9b32fc1434ae",
+          "short_name": "circular tables",
+          "description": "These elegant tables feature surfaces inlaid with intricate gear patterns and are permanently anchored to the floor through brass pipework, suggesting a sophisticated heating system for keeping drinks warm.",
+          "aliases": [
+            "circular tables",
+            "tables",
+            "gear tables"
+          ],
+          "container": true
+        },
+        {
+          "id": "f1c39b20-6903-4333-83ea-5fee30ba11bc",
+          "short_name": "clockwork mobile",
+          "description": "A mesmerizing mechanical installation of brass and copper arms rotates almost imperceptibly on the ceiling, powered by lingering steam pressure from the building's ancient systems.",
+          "aliases": [
+            "clockwork mobile",
+            "mobile",
+            "mechanical mobile"
+          ],
+          "container": false
+        },
+        {
+          "id": "9b55498c-c5bf-458b-924c-90b2c7eff743",
+          "short_name": "tarnished mirrors",
+          "description": "These aged mirrors line the walls between steam spouts, creating an endless series of reflections that seem to capture ghostly images of long-gone patrons in their darkened surfaces.",
+          "aliases": [
+            "tarnished mirrors",
+            "mirrors",
+            "aged mirrors"
+          ],
+          "container": false
+        },
+        {
+          "id": "054f90ec-1ed5-4dff-8c67-43c8f07973e7",
+          "short_name": "brass wall sconces",
+          "description": "Ingeniously designed gas-powered sconces continue to emit a gentle, eternal flame, their brass fixtures gleaming in their own light.",
+          "aliases": [
+            "brass wall sconces",
+            "sconces",
+            "wall sconces"
+          ],
+          "container": false
+        },
+        {
+          "id": "f3ee053c-05e1-40c3-8664-253cb9acea0f",
+          "short_name": "burgundy wallpaper",
+          "description": "Deep burgundy wallpaper adorns the walls, featuring metallic patterns of cogs and springs that shimmer hypnotically in the sconces' light.",
+          "aliases": [
+            "burgundy wallpaper",
+            "wallpaper",
+            "metallic wallpaper"
+          ],
+          "container": false
+        },
+        {
+          "id": "839b0312-4dec-4ab4-a467-76b04a93d3a1",
+          "short_name": "brass-trimmed doorway",
+          "description": "An ornate doorway trimmed with polished brass leads eastward to the Pneumatic Switchboard, its craftsmanship matching the room's elegant steampunk aesthetic.",
+          "aliases": [
+            "brass-trimmed doorway",
+            "east doorway",
+            "ornate doorway"
+          ],
+          "container": false
+        },
+        {
+          "id": "12751e7f-e372-483c-8592-e6d3c9a374d9",
+          "short_name": "western doorway",
+          "description": "A simpler doorway opens to the west, leading to what appears to be a more intimate space.",
+          "aliases": [
+            "western doorway",
+            "west doorway",
+            "doorway"
+          ],
+          "container": false
+        },
+        {
+          "id": "f8bcf325-fa09-4bb0-8ef3-c1ea35022b1d",
+          "short_name": "tiled walls",
+          "description": "Delicate tiles cover the walls between the brass fixtures, their surface showing subtle wear from decades of steam exposure.",
+          "aliases": [
+            "tiled walls",
+            "tiles",
+            "wall tiles"
+          ],
+          "container": false
+        },
+        {
+          "id": "2515bf4d-21f1-440a-833d-e8103ce0871a",
+          "short_name": "brass pipework",
+          "description": "Intricate brass pipes emerge from the floor to connect with the tables, part of an ingenious system that once provided heat to keep beverages warm.",
+          "aliases": [
+            "brass pipework",
+            "pipes",
+            "brass pipes"
+          ],
+          "container": false
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "east": {
+          "location": [
+            -1,
+            -5
+          ],
+          "direction": "east",
+          "description": "An ornate doorway with brass filigree",
+          "room_id": "7dfd58a3-edbd-4573-8f25-bf129aa9be49",
+          "allowed": true
+        },
+        "west": {
+          "location": [
+            -3,
+            -5
+          ],
+          "direction": "west",
+          "description": "A modest archway framed with tarnished copper",
+          "room_id": "34ae205b-d9a7-42a2-8c6d-981993182182",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 0,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "atmospheric",
+        "tags": [
+          "decorated",
+          "stale",
+          "welcoming",
+          "haunted"
+        ]
+      },
+      "position": [
+        -2,
+        -5
+      ]
+    },
+    "34ae205b-d9a7-42a2-8c6d-981993182182": {
+      "id": "34ae205b-d9a7-42a2-8c6d-981993182182",
+      "title": "The Watchmaker's Alcove",
+      "base_description": "This tiny, ornate chamber feels frozen in time, its stone walls adorned with delicate brass filigree that catches what little light filters through the ancient ventilation shafts above. Permanently mounted timepieces of varying sizes circle the room, their hands forever stilled, marking the moment this underground city fell silent. The centerpiece is an elaborate wall-mounted chronometer, its intricate gearwork visible through clouded crystal panels.\n\nBuilt into the curved wall are several dusty display cases with velvet-lined interiors, their glass faces reflecting the dim ambient light. A brass workbench has been permanently affixed to the far wall, its surface marked with circular stains from countless cups of tea and the occasional scorch mark from soldering work.\n\nTarnished copper pipes trace geometric patterns across the ceiling, occasionally releasing a quiet hiss of escaping steam. The room's intimate size and careful detailing suggest it once served as a specialized workspace for precision clockwork.\n\nThe chamber opens to the east through a modest copper-trimmed archway, while a imposing western passage leads deeper into the complex.",
+      "items": [
+        {
+          "id": "218e6c7f-2be0-406d-a848-01f6fe5fd3bf",
+          "item_id": "50391704-e1e2-4a0c-9cb0-064386d45328",
+          "description": "A well-maintained soldering iron rests on the workbench, its brass handle bearing ornate engravings typical of the clockmaker's craft.",
+          "location": "5580a50a-8684-4ffa-9a93-2a8c5db8c624"
+        },
+        {
+          "id": "5a6059ea-210a-4abe-bd5d-954a6be3d330",
+          "item_id": "56d0f3bf-2433-4782-b708-f4b6780e5935",
+          "description": "Behind the dusty glass of one display case, a finely crafted clockmaker's loupe catches what little light enters the room.",
+          "location": "032bb6ee-67a4-4ce1-8ed1-ecd3e47a1c97"
+        }
+      ],
+      "fixtures": [
+        {
+          "id": "632b8589-2d1c-484b-85e5-2e55bc423d89",
+          "short_name": "wall timepieces",
+          "description": "Various timepieces of different sizes are permanently mounted in a circular arrangement around the room's walls. Their hands are frozen in place, marking the moment this underground city's time stopped.",
+          "aliases": [
+            "wall timepieces",
+            "timepieces",
+            "clocks"
+          ],
+          "container": false
+        },
+        {
+          "id": "7dda5ea7-6aaf-4d91-b45f-afbf5299d943",
+          "short_name": "wall chronometer",
+          "description": "An elaborate chronometer dominates the wall, its complex gearwork visible through clouded crystal panels. This masterpiece of clockwork engineering appears to be permanently mounted and no longer functioning.",
+          "aliases": [
+            "wall chronometer",
+            "chronometer",
+            "large clock"
+          ],
+          "container": false
+        },
+        {
+          "id": "032bb6ee-67a4-4ce1-8ed1-ecd3e47a1c97",
+          "short_name": "display cases",
+          "description": "Several built-in display cases line the curved wall, their interiors lined with faded velvet. The glass faces are dusty but still manage to reflect the dim light of the room.",
+          "aliases": [
+            "display cases",
+            "cases",
+            "wall cases"
+          ],
+          "container": true
+        },
+        {
+          "id": "5580a50a-8684-4ffa-9a93-2a8c5db8c624",
+          "short_name": "brass workbench",
+          "description": "A sturdy brass workbench is permanently affixed to the far wall. Its worn surface bears the marks of its history: circular stains from countless tea cups and dark scorch marks from soldering work.",
+          "aliases": [
+            "brass workbench",
+            "workbench",
+            "bench"
+          ],
+          "container": true
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "east": {
+          "location": [
+            -2,
+            -5
+          ],
+          "direction": "east",
+          "description": "A modest archway framed with tarnished copper leads to the Time-Worn Tea Room",
+          "room_id": "4627d01e-6b2f-4abf-818c-a6204fb8722b",
+          "allowed": true
+        },
+        "west": {
+          "location": [
+            -4,
+            -5
+          ],
+          "direction": "west",
+          "description": "An imposing passage leads to darker chambers beyond",
+          "room_id": "5810ec9c-e9fe-4fdc-8057-d2177b13f1ae",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 2,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "treasure",
+        "tags": [
+          "ornate",
+          "silent",
+          "stone",
+          "tiny"
+        ]
+      },
+      "position": [
+        -3,
+        -5
+      ]
+    },
+    "5810ec9c-e9fe-4fdc-8057-d2177b13f1ae": {
+      "id": "5810ec9c-e9fe-4fdc-8057-d2177b13f1ae",
+      "title": "The Synchronization Nexus",
+      "base_description": "Enormous brass pendulums swing in perfect harmony across this octagonal chamber, their synchronized motion creating an almost hypnotic display. The ceiling rises into darkness, where the mechanisms driving these massive timepieces disappear into shadow. Each pendulum emerges from an ornate housing decorated with intricate etchings of celestial bodies and mathematical formulae.\n\nThe walls between the pendulums are covered in tall, curved mirrors that multiply the swinging motion infinitely, creating a dizzying effect. Fixed brass control panels stand before each mirror, their surfaces dotted with mysterious dials and levers. Most are frozen in place, their mechanisms seized by time, though one particular panel still gleams with possibility.\n\nA series of concentric circles are etched into the floor, each ring marked with precise measurements and arrows. In the center, a raised platform holds what appears to be a master control station, its brass surface oxidized to a dull green except for several worn spots suggesting frequent use.\n\nThe steady tick-tock of the pendulums echoes through a single passage to the east, where The Watchmaker's Alcove lies beyond.",
+      "items": [],
+      "fixtures": [
+        {
+          "id": "88e3fbef-c8aa-4f25-9b8f-da5a917ff536",
+          "short_name": "brass pendulum",
+          "description": "A massive brass pendulum swings with mesmerizing precision, its polished surface catching and reflecting light with each pass. The weight and scale of this timepiece is impressive, suggesting both precision engineering and artistic craftsmanship.",
+          "aliases": [
+            "brass pendulum",
+            "pendulum",
+            "timepiece"
+          ],
+          "container": false
+        },
+        {
+          "id": "47516344-e22d-4400-8185-dab3ad5b8478",
+          "short_name": "ornate housing",
+          "description": "An elaborate brass housing from which the pendulum emerges, covered in meticulous etchings depicting celestial bodies and mathematical equations. The craftsmanship is exquisite, turning a mechanical necessity into a work of art.",
+          "aliases": [
+            "ornate housing",
+            "housing",
+            "pendulum housing",
+            "brass housing"
+          ],
+          "container": false
+        },
+        {
+          "id": "365e1f82-fdda-45a9-83ba-df6501bbce4d",
+          "short_name": "curved mirror",
+          "description": "A tall, curved mirror mounted between the pendulums, creating an infinite reflection of the swinging timepieces. The mirror's surface is flawless, though its frame shows signs of age.",
+          "aliases": [
+            "curved mirror",
+            "mirror",
+            "wall mirror"
+          ],
+          "container": false
+        },
+        {
+          "id": "87ed4ae7-f32f-4707-b07b-822ae590da71",
+          "short_name": "brass control panel",
+          "description": "A fixed brass control panel, its surface covered in various dials and levers, all frozen in place. The mechanism appears to have seized up over time, rendering it inoperable.",
+          "aliases": [
+            "brass control panel",
+            "control panel",
+            "frozen panel",
+            "panel"
+          ],
+          "container": false
+        },
+        {
+          "id": "96756501-2da2-4702-80cb-ebc31d1fcc92",
+          "short_name": "working control panel",
+          "description": "Unlike its seized counterparts, this brass control panel still maintains its shine and functionality. The dials turn smoothly and the levers move with precision, suggesting regular maintenance or recent use.",
+          "aliases": [
+            "working control panel",
+            "functional panel",
+            "working panel"
+          ],
+          "container": false
+        },
+        {
+          "id": "a558a196-c5e6-40cc-a22b-29e8546e7718",
+          "short_name": "etched floor",
+          "description": "Concentric circles carved into the floor with remarkable precision, each ring bearing measurements and directional arrows. The craftsmanship is impeccable, suggesting these markings serve some crucial purpose in the room's function.",
+          "aliases": [
+            "etched floor",
+            "floor circles",
+            "concentric circles",
+            "marked floor"
+          ],
+          "container": false
+        },
+        {
+          "id": "120f84bc-4fa3-4554-80cd-7ab735bd654f",
+          "short_name": "master control station",
+          "description": "A central control station atop a raised platform, its brass surface oxidized to a patinated green except for several polished areas worn smooth by frequent use. Various controls and instruments are built into its surface.",
+          "aliases": [
+            "master control station",
+            "control station",
+            "central station",
+            "master station"
+          ],
+          "container": true
+        },
+        {
+          "id": "97f8daee-3626-4065-9eaa-0e771768cc9f",
+          "short_name": "celestial etchings",
+          "description": "Intricate engravings depicting various celestial bodies - suns, moons, and stars - rendered with scientific precision yet artistic flair. Each celestial body appears to be labeled with mysterious notations.",
+          "aliases": [
+            "celestial etchings",
+            "celestial engravings",
+            "star etchings"
+          ],
+          "container": false
+        },
+        {
+          "id": "916ec409-1ed0-47c4-95ff-1646ec7e8393",
+          "short_name": "mathematical equations",
+          "description": "Complex mathematical formulae etched into the brass, combining numerical sequences with mysterious symbols. Some appear to relate to astronomical calculations, while others suggest mechanical timing mechanisms.",
+          "aliases": [
+            "mathematical equations",
+            "equations",
+            "formulae",
+            "mathematical etchings"
+          ],
+          "container": false
+        },
+        {
+          "id": "c7ace74f-a1a7-4554-9908-6e199f79c202",
+          "short_name": "control instruments",
+          "description": "An array of sophisticated measuring and control instruments built into the master station's surface. Each appears to serve a specific function in the room's operation, though their exact purposes aren't immediately clear.",
+          "aliases": [
+            "control instruments",
+            "instruments",
+            "measuring devices"
+          ],
+          "container": false
+        },
+        {
+          "id": "96f58606-646a-4bb4-a76a-4ab38d057fb4",
+          "short_name": "brass dials",
+          "description": "Finely crafted brass dials of various sizes, each marked with precise increments and mysterious symbols. They turn smoothly, suggesting they control some aspect of the room's mechanical systems.",
+          "aliases": [
+            "brass dials",
+            "dials",
+            "control dials"
+          ],
+          "container": false
+        },
+        {
+          "id": "9041747e-4638-48a3-a6f0-90e3b0dbb7b6",
+          "short_name": "brass levers",
+          "description": "A series of brass levers, each uniquely shaped and labeled with enigmatic markings. They move with satisfying mechanical precision, clearly built to last centuries.",
+          "aliases": [
+            "brass levers",
+            "levers",
+            "control levers"
+          ],
+          "container": false
+        }
+      ],
+      "actions": [],
+      "flags": [],
+      "exit_map": {
+        "east": {
+          "location": [
+            -3,
+            -5
+          ],
+          "direction": "east",
+          "description": "An imposing passage leads to darker chambers beyond",
+          "room_id": "34ae205b-d9a7-42a2-8c6d-981993182182",
+          "allowed": true
+        }
+      },
+      "metadata": {
+        "num_treasures": 0,
+        "num_functional_items": 0,
+        "num_puzzles": 0,
+        "room_type": "puzzle",
+        "tags": [
+          "complex",
+          "sparse",
+          "imposing",
+          "fresh"
+        ]
+      },
+      "position": [
+        -4,
+        -5
+      ]
+    }
+  },
+  "items": {
+    "50391704-e1e2-4a0c-9cb0-064386d45328": {
+      "id": "50391704-e1e2-4a0c-9cb0-064386d45328",
+      "short_name": "soldering iron",
+      "description": "An antique soldering iron with an intricately carved brass handle. Despite its age, the copper tip appears to be in remarkably good condition.",
+      "aliases": [
+        "soldering iron",
+        "iron",
+        "brass soldering iron",
+        "crafting tool"
+      ],
+      "is_treasure": true
+    },
+    "56d0f3bf-2433-4782-b708-f4b6780e5935": {
+      "id": "56d0f3bf-2433-4782-b708-f4b6780e5935",
+      "short_name": "clockmaker's loupe",
+      "description": "A precision clockmaker's loupe with an adjustable brass frame and pristine glass lens. A masterpiece of craftsmanship in its own right.",
+      "aliases": [
+        "loupe",
+        "clockmaker loupe",
+        "magnifying glass",
+        "brass loupe"
+      ],
+      "is_treasure": true
+    },
+    "018f75d2-7901-4103-b2ea-e6b6428c1e16": {
+      "id": "018f75d2-7901-4103-b2ea-e6b6428c1e16",
+      "short_name": "brass chronometer",
+      "description": "An exquisite brass chronometer with multiple rotating dials and delicate gearwork visible through its crystal face. Despite its age, the intricate mechanism still ticks with perfect precision, marking not just time but also various atmospheric measurements.",
+      "aliases": [
+        "chronometer",
+        "brass chronometer",
+        "timepiece",
+        "mechanical clock"
+      ],
+      "is_treasure": true
+    },
+    "0dd2ad24-cc6d-4b15-b349-9bb8f5c02734": {
+      "id": "0dd2ad24-cc6d-4b15-b349-9bb8f5c02734",
+      "short_name": "brass manometer",
+      "description": "An antique brass manometer with an intricate dial face. Despite its age, the delicate pressure-measuring mechanism still moves smoothly when handled. Brass filigree decorates its edges, and faded calibration marks are still visible on its face.",
+      "aliases": [
+        "manometer",
+        "pressure gauge",
+        "brass gauge",
+        "gauge"
+      ],
+      "is_treasure": true
+    },
+    "c8027dea-ab71-4eec-8d36-29d88a4bf768": {
+      "id": "c8027dea-ab71-4eec-8d36-29d88a4bf768",
+      "short_name": "brass magnifying lens",
+      "description": "An elegant brass magnifying lens with clockwork adjustments along its handle. When held up to the light, tiny mechanical elements within the rim seem to shift and align, enhancing its magnification power.",
+      "aliases": [
+        "magnifying lens",
+        "brass lens",
+        "lens",
+        "magnifier"
+      ],
+      "is_treasure": true
+    },
+    "5a8297c6-42ba-4e6a-b68d-a17308b552fc": {
+      "id": "5a8297c6-42ba-4e6a-b68d-a17308b552fc",
+      "short_name": "golden caliper",
+      "description": "An exquisitely crafted brass caliper with gold inlay. Despite its age, the measurement scales remain precise and the joints move smoothly. Small gears along its length suggest it might have once been part of a larger mechanical calculation device.",
+      "aliases": [
+        "caliper",
+        "golden caliper",
+        "brass caliper",
+        "measuring tool"
+      ],
+      "is_treasure": true
+    }
+  },
+  "start_room_id": "b702d9ea-0f3f-4091-8e5e-8c766d993b8e"
+}
