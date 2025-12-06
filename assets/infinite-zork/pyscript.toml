@@ -1,4 +1,4 @@
-packages = ["pydantic", "dist/infinite_zork-0.1.0-py3-none-any.whl"]
+packages = ["pydantic", "dist/infinite_zork-0.1.0-py3-none-any.whl", "mistune"]
 
 [files]
 "./content/full_map.json" = "./content/full_map.json"
