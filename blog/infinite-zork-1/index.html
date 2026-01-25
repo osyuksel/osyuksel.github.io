@@ -5,9 +5,9 @@
 <meta property="og:site_name" content="Ömer Yüksel" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Infinite Zork: when procedural generation meets large language models -- " />
-<meta property="og:url" content="https://osyuksel.github.io/drafts/infinite-zork-1.html" />
+<meta property="og:url" content="https://osyuksel.github.io/blog/infinite-zork-1/" />
 <meta property="og:description" content="Combining procedural generation and LLMs to create a text adventure game." />
-<meta property="article:published_time" content="2025-10-26 00:00:00+02:00" />
+<meta property="article:published_time" content="2026-01-25 00:00:00+01:00" />
 <!-- End of OpenGraph protocol tags -->
 
 <head>
@@ -104,20 +104,20 @@
   <article>
     <header>
       <h1>
-        <a href="https://osyuksel.github.io/drafts/infinite-zork-1.html" rel="bookmark"
+        <a href="https://osyuksel.github.io/blog/infinite-zork-1/" rel="bookmark"
            title="Permalink to Infinite Zork: when procedural generation meets large language models">Infinite Zork: when procedural generation meets large language models</a></h1>
       
     </header>
-    <p>I've always found procedural generation (procgen for short) in games fascinating. First introduced by roguelikes, procgen allows for generating game levels programmatically, creating indefinitely replayable experiences through combinatorial variety. But traditional procgen has a fundamental limitation: it can create interesting spatial structures and mechanical systems, but it struggles with the kind of rich, natural-language content that makes text adventures compelling.</p>
-<p>When LLMs started getting better with GPT-3 and onwards, I wondered if they could bridge this gap by elevating procedural generation by generating descriptions, even structured game objects such as items and equipment on the fly. Text adventures seemed like the perfect testbed for this hybrid approach.</p>
-<p>However, there's a catch: LLMs alone aren't particularly creative. In my anecdotal experience, just asking them to generate text adventure content results in something repetitive. They need constraints and variety to work with.</p>
-<p>This is why I've decided to combine LLM use with traditional procedural generation. The procgen creates the map, defines room types, and adds semantic constraints to each room; the LLM takes over from there, filling in descriptions and items. This way, procgen provides variety through sheer combinatorial explosion, while the LLM provides the creative writing and parses natural language into structured output.</p>
+    <p>I've always found procedural generation in games fascinating. First introduced by roguelikes, procgen allows for generating game levels programmatically, creating indefinitely replayable experiences through combinatorial variety. While procgen excels at creating interesting spatial structures and mechanical systems, it traditionally struggles with generating rich, natural-language content that makes text adventures compelling.</p>
+<p>When LLMs started getting better with GPT-3 and onwards, I recognized their potential to complement procedural generation perfectly. LLMs excel at producing fluent natural language but have their own limitations: when asked to generate creative content without guidance, they tend to produce repetitive, predictable results. They need constraints and variety to work with.</p>
+<p>This is where the magic of combining these technologies happens. Procedural generation creates the structural framework, i.e. map layouts, room types, semantic constraints, while LLMs fill in the details with natural language descriptions, dialogue, and game objects. The procgen provides diversity through combinatorial possibility, establishing creative boundaries that actually enhance the LLM's output rather than limiting it. Meanwhile, the LLM contributes language fluency and adapts to those constraints in ways that feel organic and inventive.</p>
 <p>For this project, I'm focusing on the classical text adventure: parser-based, dungeon-crawl-minus-monsters, with puzzles, treasures, and scores. The medium has evolved quite a bit since the original Zork and Adventure, but for exploring procgen, the classic formula provides the clearest framework.</p>
+<p><strong>If you'd like to skip directly to the game, <a href="https://osyuksel.github.io/assets/infinite-zork/game.html">click here</a>.</strong></p>
 <h3 id="the-approach">The Approach</h3>
 <p>The entire world is generated upfront before the player starts exploring. This keeps generation tractable: it allows me to control API costs and generate as many worlds as needed. The end result is a game engine that can load different procedurally generated worlds, giving each playthrough its own unique map and content. The game is "infinite" in the sense that there's a program that can generate countless distinct worlds on demand, not that any single world is unbounded.</p>
 <p>The architecture is a hybrid: procgen creates the map structure and defines semantic constraints for each room: room types, tags, themes, and such. The LLM takes over from there, filling in natural language descriptions and generating items that fit those constraints. This way, procgen provides variety through sheer combinatorial explosion (e.g., a large number of possible room configurations), while the LLM provides the creative writing and later parses natural language into structured output.</p>
 <p>I've made some pragmatic choices to keep this first phase tractable. The game map is set on a perfect 2D grid with movement restricted to cardinal directions only, without diagonals, up or down. Although the map is technically a directed graph, the edges are symmetric: going east and then west will lead you back to where you started. There are also no NPCs in this implementation, just rooms, items, and objects.</p>
-<p>The hardest technical problem turned out to be room generation. Rooms don't exist in a vacuum: every room leads to at least one other room, and the exits that lead to those rooms are part of the room's description. How do you describe what might lie beyond a doorway when that room hasn't been generated yet? I'll dive into this in detail shortly.</p>
+<p>The hardest technical problem is the actual content: room generation. Rooms don't exist in a vacuum: every room leads to at least one other room, and the exits that lead to those rooms are part of the room's description. How do you describe what might lie beyond a doorway when that room hasn't been generated yet? I'll dive into this in detail shortly.</p>
 <p>This post covers the first phase: building a foundational world that players can explore. The result will be a text adventure where players can walk around, examine their surroundings, look at things, and pick up items. Think of it as a world ready for adventure, but without the actual adventure, meaning no puzzles to solve yet. The second phase, which comes after, will transform this explorable world into a proper game with puzzle generation and polish.</p>
 <h4 id="parser-and-ui">Parser and UI</h4>
 <p>To make this playable, I needed a parser and UI, though these aren't the focus of this post. The parser is deliberately simple: it supports <code>&lt;action&gt;</code> or <code>&lt;action&gt; &lt;target&gt;</code> commands with common shortcuts for movement and examination, plus basic disambiguation when needed. For the UI, I built a web-based interface using PyScript to run the game engine directly in the browser without a separate backend. If the project matures, I might write a separate post about running Python 3.13 in browsers and the quirks I encountered, but for now, it's enough to know that the game is playable.</p>
@@ -126,39 +126,43 @@
 <p>There are plenty of dungeon map generators out there, of course, but quite a few are made for roguelikes where each location is a tile rather than a "room," so the structures aren't directly comparable. I've made my own simple generator instead, which typically creates "corridors" of size 3 to 5 with occasional branching.</p>
 <h4 id="room-and-object-generation">Room and object generation</h4>
 <p>The LLM takes some inputs such as tags, theme, room type, etc. and generates a room description first. Afterward, it starts building a map of examinable and interactable objects in the room. Each object gets aliases if needed, so a "greatsword" can be referred to as "blade" or "sword" or "weapon."</p>
-<p>Here, I had to ensure that base room descriptions do not contain objects that can be picked up. Because that would create a problem of combinatorial explosion of descriptions: I'd have to generate slight variations of the same room where item X is prominently displayed or not, which would result in $2^n$ combinations. Therefore, I explicitly prompted the LLM not to create "loose" objects in the description. Item generation was a separate process, and they were only added items separately after the room is generated.</p>
+<p>Here, I had to ensure that base room descriptions do not contain objects that can be picked up. Because that would create a problem of combinatorial explosion of descriptions: I'd have to generate slight variations of the same room where item X is prominently displayed or not, which would result in $2^n$ combinations. Therefore, I explicitly prompted the LLM not to create "loose" objects in the description. Item generation was a separate process, and they were only added separately after the room is generated.</p>
 <h5 id="descriptions-and-interconnectedness">Descriptions and interconnectedness</h5>
 <p>The rooms don't exist in a vacuum. Every room leads to at least one other room, and the exits that lead to those rooms are part of the room's description.</p>
 <p>This creates a problem: if we generate a description while knowing nothing about the neighboring rooms, the description will be either incomplete or inconsistent.</p>
 <p>There are many ways to tackle this. I considered a two-pass approach where I'd create room descriptions in isolation, explicitly instructing the LLM not to speculate about exits and where they lead, then do a second pass on descriptions after gaining full knowledge of each room's content. A variation on this would be a "diffusion" approach: allow the LLM to speculate, then do multiple iterations until a "judge" LLM decides that neighboring rooms are consistent in their descriptions.</p>
 <p>I could side-step the issue by ignoring it or claiming a surreal setting where the world is not entirely coherent. While tempting, this would end up with the game losing its classical text adventure vibe.</p>
-<p>Finally, I could also do a single-pass, semantics-driven approach. As briefly mentioned earlier, procgen generates a semantic "room configuration" to be passed to the LLM later, in the form of room type, tags, and such. This means we're not completely clueless even during the first pass and can use the tags to decide on how the exits may look.</p>
-<p>I decided to go with a variation of the last option: it combines semantic config of yet-to-be-generated neighbors with the explicit descriptions of already-generated ones. In the end, I got something that looks natural, in a way that aligns with the adventurer discovering the world:</p>
+<p>Finally, I could also do a single-pass, semantics-driven approach. As briefly mentioned earlier, procgen generates a semantic "room configuration" to be passed to the LLM later, in the form of room type, tags, and such. This means we're not completely clueless even during the first pass and can use the tags to decide on how the exits may look. I decided to go with a variation this: combining semantic config of yet-to-be-generated neighbors with the explicit descriptions of already-generated ones. In the end, I got something that looks natural, in a way that aligns with the adventurer discovering the world.</p>
+<p>Here's an example from one of the room descriptions:</p>
 <blockquote>
 <p>The workshop opens to the north through an ornate archway leading to the Marble Antechamber, while a fog-shrouded doorway to the south leads deeper into the underground city.</p>
 </blockquote>
 <p>Here, the Marble Antechamber is a room the adventurer has already likely seen because it lies closer to the starting room, whereas the room to the south is to be discovered.</p>
 <p>A current limitation here is that the description does not change once the room is discovered, unlike some modern IFs, which is a problem I've yet to tackle.</p>
-<h5 id="lore">Lore</h5>
 <h5 id="breaking-monotony">Breaking monotony</h5>
-<p>My early experiments took place in a steampunk setting. For the LLM that meant a mandate to fill every room with brass pipes and clockwork, which understandably gets grating past the third room. Even the procedural generation elements that I use, which gave certain semantic cues, did not help much there.</p>
-<p>Giving examples of what was previously generated, prompting LLM to avoid previous examples, adding even more semantic cues and playing with the temperature helped with that, but I believe there's more work to do here.</p>
+<p>Getting back to the "LLMs are not creative" point from the intro: my early experiments took place in a steampunk setting, and for the LLM that meant a mandate to fill every room with brass pipes and clockwork, which understandably gets grating past the third room. Even the procedural generation elements that I use, which gave certain semantic cues, did not help much there.</p>
+<p>Giving examples of what was previously generated, prompting the LLM to avoid previous examples, adding even more semantic cues and playing with the temperature helped with that, but I believe there's more work to do here.</p>
 <h5 id="llm-failures">LLM failures</h5>
-<p>The models never ceased to amaze with the occasional failures during object detection and alias generation, such as:
-- Skipping over the obvious aliases and going straight to the obscure ones: "a frozen greatsword" could have "ice blade", "frost weapon", "chilled claymore", "icy great blade" but not "sword",
-- Generating multiple "objects" for what is semantically the same thing in the room. A "glass hexagonal display" in the main description, if referred to twice, could cause the creation of a "glass display" and "hexagonal display" as separate objects, not just aliases. </p>
+<p>The models never ceased to amaze with the occasional failures during object detection and alias generation, such as:</p>
+<ul>
+<li>Skipping over the obvious aliases and going straight to the obscure ones: "a frozen greatsword" could have "ice blade", "frost weapon", "chilled claymore", "icy great blade" but not "sword",</li>
+<li>Generating multiple "objects" for what is semantically the same thing in the room. A "glass hexagonal display" in the main description, if referred to twice, could cause the creation of a "glass display" and "hexagonal display" as separate objects, not just aliases.</li>
+</ul>
 <p>Tweaking prompts and model choices was enough to address these issues.</p>
+<h5 id="lore">Lore</h5>
+<p>Creating a game taking place in a fictional world also means world-building to a certain degree. This can be a bit of a problem, since objects in the world represent a certain lore, and in a coherent game, lore should be consistent across rooms.</p>
+<p>Imagine the game taking place at a fictional company's headquarters. If two different rooms were to contain documents talking about history, since they are nearly independently generated, it's possible that they would give contradicting information and break immersion.</p>
+<p>For now, I've (mostly) side-stepped this issue by focusing on physical descriptions without heavy lore. Contradicting lore is still possible, however, in the "visual" elements like the company logo. In the future, I might consider tracking lore across room generations.</p>
 <h3 id="final-output">Final output</h3>
-<p>Here's a sample from my last attempt, taking place in the cyberpunk setting: <link here></p>
-<p>As stated, it allows walking around, examining objects, collecting items (either in the room itself or hidden in one of the containers), and will congratulate the player upon reaching maximum score.</p>
+<p><a href="https://osyuksel.github.io/assets/infinite-zork/game.html">Here's</a> a sample game from my last generation, taking place in a cyberpunk setting. While I've decided to keep the generation code itself private for now, I'm sharing this playable output to demonstrate what the system can create.</p>
+<p>As described earlier, the game allows walking around, examining objects, collecting items (either in the room itself or hidden in containers), and will congratulate the player upon reaching maximum score.</p>
 <h3 id="whats-next">What's Next</h3>
-<p>Right now, the engine generates explorable worlds: players can navigate interconnected rooms, examine objects, and pick up items. The descriptions feel natural, and the rooms connect in ways that make sense as you discover them.</p>
-<p>But it's not a game yet but an interesting place to wander. Phase 2 will change that by tackling the hardest problem: puzzle generation. How do you procedurally create puzzles that are solvable, satisfying, and fit naturally into the world? That's the challenge I'm excited to dig into next.</p>
-<p>If you want to try the current version or follow along as I build it, [link to repo/demo].</p>
+<p>Right now, the engine generates explorable worlds: players can navigate interconnected rooms, examine objects, and pick up items. The descriptions feel more natural than what I started with, and the rooms connect in ways that make sense as you discover them.</p>
+<p>It's not a game yet but an interesting place to wander. Phase 2 will change that by tackling the hardest problem: puzzle generation. How does one procedurally create puzzles that are solvable, satisfying, and fit naturally into the world? That's the challenge I'm excited to dig into next.</p>
     <footer>
       <hr>
-      <p>Published: <time datetime="2025-10-26T00:00:00+02:00">
-        Sun 26 October 2025
+      <p>Published: <time datetime="2026-01-25T00:00:00+01:00">
+        Sun 25 January 2026
       </time></p>
         <address>
           By <!--            <a href="https://osyuksel.github.io/author/omer-yuksel.html">Ömer Yüksel</a>-->
@@ -183,7 +187,7 @@
 <footer>
   <footer>
     <address>
-      © 2025 Powered by <a href="https://getpelican.com/">Pelican</a>.
+      © 2026 Powered by <a href="https://getpelican.com/">Pelican</a>.
     </address>
   </footer>
 </footer>
