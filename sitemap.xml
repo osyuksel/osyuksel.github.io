@@ -5,35 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://osyuksel.github.io/</loc>
-<lastmod>2026-02-02T19:41:50-00:00</lastmod>
+<lastmod>2026-02-02T21:07:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/pages/about.html</loc>
-<lastmod>2026-02-02T19:41:50-00:00</lastmod>
+<lastmod>2026-02-02T21:07:37-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/pages/my-work.html</loc>
-<lastmod>2026-02-02T19:41:50-00:00</lastmod>
+<lastmod>2026-02-02T21:07:37-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/pages/contact.html</loc>
-<lastmod>2026-02-02T19:41:50-00:00</lastmod>
+<lastmod>2026-02-02T21:07:37-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/blog/infinite-zork-1/</loc>
-<lastmod>2026-02-02T00:00:00+01:00</lastmod>
+<lastmod>2026-01-25T00:00:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -75,35 +75,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://osyuksel.github.io/tag/python.html</loc>
-<lastmod>2026-02-02T00:00:00+00:18</lastmod>
+<lastmod>2026-01-25T00:00:00+00:18</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/tag/llm.html</loc>
-<lastmod>2026-02-02T00:00:00+00:18</lastmod>
+<lastmod>2026-01-25T00:00:00+00:18</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/tag/gaming.html</loc>
-<lastmod>2026-02-02T00:00:00+00:18</lastmod>
+<lastmod>2026-01-25T00:00:00+00:18</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/tag/interactive-fiction.html</loc>
-<lastmod>2026-02-02T00:00:00+00:18</lastmod>
+<lastmod>2026-01-25T00:00:00+00:18</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://osyuksel.github.io/tag/procgen.html</loc>
-<lastmod>2026-02-02T00:00:00+00:18</lastmod>
+<lastmod>2026-01-25T00:00:00+00:18</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
