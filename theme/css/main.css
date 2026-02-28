@@ -1,63 +1,135 @@
-body {
-    font-family: monospace;
-    font-size: 125%;
-    background-color: white;
-    color: #111;
-    width: 80%;
-    min-width: 400px;
-    max-width: 800px;
-    min-height: 200px;
-    padding: 1em;
-    /*margin: 5% 10%;*/
-    border: thin solid gray;
-    border-radius: 5px;
-    margin: 0 auto;
+/* 1. Scroll behavior */
+html {
+    scroll-behavior: smooth;
 }
 
+/* 2. Selection color */
+::selection {
+    background-color: #c8d6e5;
+    color: #111;
+}
+
+/* 3. Body */
+body {
+    font-family: 'IBM Plex Sans', -apple-system, 'Segoe UI', sans-serif;
+    font-size: 125%;
+    line-height: 1.6;
+    background-color: white;
+    color: #111;
+    max-width: 42em;
+    min-height: 200px;
+    padding: 1em;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+    margin: 0 auto;
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* 4. Typography */
+p {
+    margin-bottom: 1.2em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3;
+    margin-top: 2em;
+    margin-bottom: 0.3em;
+    font-weight: 700;
+    scroll-margin-top: 1em;
+}
+
+h1, h2, h3, h4, h5, h6 { + p { margin-top: 0; } }
+
+h1 { font-size: 1.8em; margin-top: 1em; }
+h2 { font-size: 1.4em; }
+h3 { font-size: 1.15em; }
+
+li {
+    margin-bottom: 0.3em;
+}
+
+li:last-child {
+    margin-bottom: 0;
+}
+
+/* 5. Links */
 a:link {
-    color: blue;
+    color: #2656c4;
     text-decoration: none;
 }
 
 a:hover {
-    color: blue;
+    color: #2656c4;
     text-decoration: underline;
 }
 
 a:visited {
-    color: blue;
+    color: #2656c4;
 }
 
+/* 6. Heading links */
 h1 a {
-    color: inherit !important
+    color: inherit !important;
 }
 
 h2 a {
-    color: inherit !important
+    color: inherit !important;
 }
 
 h3 a {
-    color: inherit !important
+    color: inherit !important;
 }
 
 h4 a {
-    color: inherit !important
+    color: inherit !important;
 }
 
 h5 a {
-    color: inherit !important
+    color: inherit !important;
 }
 
 h6 a {
-    color: inherit !important
+    color: inherit !important;
 }
 
-#menu li {
-    display: inline;
+/* 6b. Site title */
+body > header h1 {
+    font-size: 2.2em;
 }
 
+/* 7. Navigation */
 nav {
     text-align: center;
+    letter-spacing: 0.05em;
+    font-size: 0.85em;
+}
+
+nav img {
+    height: 1em;
+    width: 1em;
+    vertical-align: middle;
+}
+
+nav a {
+    text-decoration: none;
+    color: #111;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+}
+
+nav a:hover {
+    border-bottom: 1px solid #111;
+    text-decoration: none;
+}
+
+nav a[aria-current="page"] {
+    font-weight: 700;
+}
+
+/* 8. Layout */
+#menu li {
+    display: inline;
 }
 
 #post-list {
@@ -65,39 +137,207 @@ nav {
     margin-top: 1em;
 }
 
+main > article {
+    margin-bottom: 1.5em;
+}
+
+main > article > header,
+main > article > section,
+main > article > footer {
+    margin: 0;
+    padding: 0;
+}
+
+main > article > section p {
+    margin: 0;
+}
+
+.highlight {
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 9. Content elements */
+pre, code {
+    font-family: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', 'Menlo', 'Consolas', monospace;
+    font-size: 0.85em;
+}
+
 pre {
-    margin: 2em 1em 2em 4em;
+    margin: 1.5em 0;
+    padding: 0.75em 1em;
+    overflow-x: auto;
     white-space: pre-wrap;
+    text-align: left;
+    hyphens: none;
+    line-height: 1.3;
 }
 
 blockquote {
-    border-left: 4px solid #e0e4e8;
+    border-left: 3px solid #bbbbbb;
     padding: 0.5em 0 0.5em 1em;
-    margin-left: 0;
+    margin: 1.5em 0;
     background-color: #f8f9fa;
+    color: #444;
+    text-align: left;
+    hyphens: none;
 }
 
-/* Make tables slightly smaller and distinct */
+hr {
+    border: none;
+    border-top: 1px solid #d0d0d0;
+    margin: 2.5em auto;
+    width: 40%;
+}
+
 table {
-    font-size: 0.9em; /* or try 85%, 14px, etc. */
+    font-size: 0.9em;
     line-height: 1.4;
     border-collapse: collapse;
     margin: 1em 0;
     width: 100%;
     opacity: 0.95;
-
 }
 
 table th,
 table td {
     padding: 0.4em 0.8em;
-    /*border: 1px solid #ccc;*/
 }
 
 table th {
     font-weight: bold;
-    /*background-color: #f9f9f9;*/
-    text-align: left; /* 👈 center the header content */
-
+    text-align: left;
 }
 
+/* 10. Article metadata */
+article > footer {
+    margin-top: 2em;
+    font-size: 0.85em;
+    color: #666;
+}
+
+article > footer p {
+    margin-bottom: 0.4em;
+}
+
+article > footer a {
+    color: #4a7ab5;
+}
+
+/* 10b. Site footer */
+body > footer {
+    font-size: 0.75em;
+    color: #999;
+    text-align: center;
+    margin-top: 3em;
+}
+
+/* 11. Mobile */
+@media (max-width: 600px) {
+    body {
+        min-width: 0;
+        width: 100%;
+        padding: 0.75em;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+    }
+    pre {
+        margin: 1.5em 0;
+        padding: 0.75em;
+    }
+}
+
+/* 12. Dark mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #d4d4d4;
+        border-color: #333;
+    }
+
+    a:link, a:hover, a:visited {
+        color: #6fa3e8;
+    }
+
+    nav a {
+        color: #d4d4d4;
+    }
+
+    nav a:hover,
+    nav a[aria-current="page"] {
+        border-bottom-color: #d4d4d4;
+    }
+
+    blockquote {
+        background-color: #252525;
+        border-left-color: #555;
+        color: #aaa;
+    }
+
+    hr {
+        border-top-color: #444;
+    }
+
+    table {
+        opacity: 0.9;
+    }
+
+    table th {
+        color: #ccc;
+    }
+
+    article > footer {
+        color: #888;
+    }
+
+    body > footer {
+        color: #666;
+    }
+
+    article > footer a {
+        color: #6fa3e8;
+    }
+
+    ::selection {
+        background-color: #3a4f63;
+        color: #e0e0e0;
+    }
+
+    .MathJax .mo, .MathJax .mi {
+        color: #d4d4d4 !important;
+    }
+}
+
+/* 13. Print */
+@media print {
+    body {
+        border: none;
+        padding: 0;
+        max-width: 100%;
+        color: #000;
+        background: #fff;
+        font-size: 11pt;
+    }
+
+    nav, footer, header nav {
+        display: none;
+    }
+
+    a:link, a:visited {
+        color: #000;
+        text-decoration: underline;
+    }
+
+    pre {
+        border: 1px solid #ccc;
+        padding: 0.5em;
+        white-space: pre-wrap;
+    }
+
+    .highlight {
+        background: #f5f5f5 !important;
+        color: #111 !important;
+    }
+}
